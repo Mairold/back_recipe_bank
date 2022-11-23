@@ -22,15 +22,15 @@ public class LoginController {
         LoginResponse loginResponse = loginService.login(username, password);
         return loginResponse;
 
-        //public - mis on meetodi tüüp ? // LoginResponse - Mis on tagastuse tüüp ( võib olla ka void, kui ei tagasta midagi, v int, boolean ja meil see objeks
-        //<- meil võbi olla mitmeid objekte ja kuidagi peame neid koondada.. Ja see ongi klassinimi, ühisnimetaja.
-        // sellekst, et näha, mis omadused sellel objektil on, siis avame LoginResponse enda klassi. Mis fieldid,mis asjad, meetodid, kons.seal on.
-        // login väikese algusega on meetodi nimi
-        // sulgudes meetodi parameetrid.. ehk siis mida see meetod tööle hakkab. Sulgudes võib olla ka tühjus - sõltub mida me meetodi sees teha tahame ja mis selleks vaja on.
-// rida 21: Kutsume objekti "loginService" abil välja meetodi login.
-//vasakule paneb sisse def. muutuja.
-        // peab annab vastuse loginresponse.  <- annab frondile teele. // oleme kontrolleris, mis siin sisse tuleb ja mis sellega tehakse ja return siis
-        // saadab frondile. Rida 22 tuleb frondist. 23 läheb fronti. Controll klass võtab vastu ja saadab välja asju. Siin klassis muud ei tehta.
+
+        /* Controlleri funktsioon - Java klass, mis võtab frondist vastu infot ja saadab backist välja infot.
+LoginResponse on klassi nimetus.
+loginResponse on objekt
+login meetodi nimi, sulgudes selgitus, millega meetod login tegelema hakkab.
+loginService objekti abil kutsume välja meetodi login.
+
+         */
+
 
     }
 

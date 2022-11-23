@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 public class LoginService {
     public LoginResponse login(String username, String password) {
-        LoginResponse loginResponse = new LoginResponse(); // siia objekti paneme user ID. Ja selle id saadame tagasi front endile juhul kui id olemas.
+        LoginResponse loginResponse = new LoginResponse(); // siia objekti paneme user ID. Ja selle id saadame tagasi front endile
         return loginResponse;
     }
 }
