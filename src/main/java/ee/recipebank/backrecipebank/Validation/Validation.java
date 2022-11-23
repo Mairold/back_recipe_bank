@@ -1,7 +1,7 @@
 package ee.recipebank.backrecipebank.Validation;
 
 import ee.recipebank.backrecipebank.infrastructure.exception.BusinessException;
-import ee.recipebank.backrecipebank.user.User;
+import ee.recipebank.backrecipebank.domain.user.User;
 
 import java.util.Optional;
 

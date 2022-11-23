@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.user;
+package ee.recipebank.backrecipebank.domain.user;
 
 import ee.recipebank.backrecipebank.login.LoginResponse;
 import org.mapstruct.Mapper;

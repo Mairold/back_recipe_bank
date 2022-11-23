@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.user;
+package ee.recipebank.backrecipebank.domain.user;
 
 import ee.recipebank.backrecipebank.Validation.Validation;
 import org.springframework.stereotype.Service;

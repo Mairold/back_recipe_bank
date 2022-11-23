@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.user;
+package ee.recipebank.backrecipebank.domain.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
