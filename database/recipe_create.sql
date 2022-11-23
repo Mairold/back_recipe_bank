@@ -44,7 +44,8 @@ CREATE TABLE measurement_unit (
 CREATE TABLE menu (
                       id int  NOT NULL,
                       user_id int  NOT NULL,
-                      date_time_added timestamp  NOT NULL,
+                      date_time_added timestamp  NOT NULL DEFAULT now(),
+                      status char(1)  NOT NULL,
                       CONSTRAINT menu_pk PRIMARY KEY (id)
 );
 
@@ -59,12 +60,12 @@ CREATE TABLE preparation_time (
 -- Table: recipe
 CREATE TABLE recipe (
                         id serial  NOT NULL,
+                        recipe_category_id int  NOT NULL,
                         preparation_time_id int  NOT NULL,
-                        food_category_id int  NOT NULL,
                         name varchar(255)  NOT NULL,
                         serving_size int  NOT NULL,
                         instructions varchar(2000)  NOT NULL,
-                        date_from timestamp  NOT NULL,
+                        date_from timestamp  NOT NULL DEFAULT now(),
                         date_to date  NULL,
                         CONSTRAINT recipe_pk PRIMARY KEY (id)
 );
@@ -84,7 +85,7 @@ CREATE TABLE recipe_in_section (
                                    recipe_id int  NOT NULL,
                                    planned_serving_size int  NOT NULL,
                                    comment varchar(255)  NULL,
-                                   date_time_added timestamp  NOT NULL,
+                                   date_time_added timestamp  NOT NULL DEFAULT now(),
                                    date_time_modified timestamp  NULL,
                                    CONSTRAINT recipe_in_section_pk PRIMARY KEY (id)
 );
@@ -96,7 +97,7 @@ CREATE TABLE recipe_ingredient (
                                    ingredient_id int  NOT NULL,
                                    measure_unit_id int  NOT NULL,
                                    quantity decimal(6,2)  NOT NULL,
-                                   date_from timestamp  NOT NULL,
+                                   date_from timestamp  NOT NULL DEFAULT now(),
                                    date_to date  NULL,
                                    CONSTRAINT recipe_ingredient_pk PRIMARY KEY (id)
 );
@@ -113,34 +114,24 @@ CREATE TABLE section_in_menu (
 CREATE TABLE shopping_list (
                                id serial  NOT NULL,
                                menu_id int  NOT NULL,
-                               user_id int  NOT NULL,
-                               date_time_added timestamp  NULL,
+                               date_time_added timestamp  NOT NULL DEFAULT now(),
                                comment varchar(255)  NULL,
                                CONSTRAINT shopping_list_pk PRIMARY KEY (id)
-);
-
--- Table: shopping_list_custom_ingredient
-CREATE TABLE shopping_list_custom_ingredient (
-                                                 id serial  NOT NULL,
-                                                 ingredient_group_id int  NULL,
-                                                 measurement_unit_id int  NULL,
-                                                 shopping_list_id int  NOT NULL,
-                                                 name varchar(255)  NOT NULL,
-                                                 quantity decimal(6,2)  NULL,
-                                                 date_time_added timestamp  NOT NULL,
-                                                 date_time_modified timestamp  NULL,
-                                                 CONSTRAINT shopping_list_custom_ingredient_pk PRIMARY KEY (id)
 );
 
 -- Table: shopping_list_ingredient
 CREATE TABLE shopping_list_ingredient (
                                           id serial  NOT NULL,
-                                          ingredient_id int  NOT NULL,
-                                          measurement_unit_id int  NOT NULL,
+                                          name varchar(255)  NOT NULL,
+                                          is_custom boolean  NOT NULL DEFAULT false,
+                                          ingredient_id int  NULL,
+                                          ingredient_group_id int  NULL,
+                                          measurement_unit_id int  NULL,
                                           shopping_list_id int  NOT NULL,
-                                          quantity decimal(6,2)  NOT NULL,
-                                          date_time_added timestamp  NOT NULL,
+                                          quantity decimal(6,2)  NULL,
+                                          date_time_added timestamp  NOT NULL DEFAULT now(),
                                           date_time_modified timestamp  NULL,
+                                          status char(1)  NOT NULL DEFAULT 'A',
                                           CONSTRAINT shopping_list_ingredient_pk PRIMARY KEY (id)
 );
 
@@ -182,14 +173,6 @@ ALTER TABLE ingredient ADD CONSTRAINT ingredient_ingredient_group
 ALTER TABLE menu ADD CONSTRAINT menu_user
     FOREIGN KEY (user_id)
         REFERENCES "user" (id)
-        NOT DEFERRABLE
-            INITIALLY IMMEDIATE
-;
-
--- Reference: recipe_food_category (table: recipe)
-ALTER TABLE recipe ADD CONSTRAINT recipe_food_category
-    FOREIGN KEY (food_category_id)
-        REFERENCES recipe_category (id)
         NOT DEFERRABLE
             INITIALLY IMMEDIATE
 ;
@@ -242,6 +225,14 @@ ALTER TABLE recipe ADD CONSTRAINT recipe_preparation_time
             INITIALLY IMMEDIATE
 ;
 
+-- Reference: recipe_recipe_category (table: recipe)
+ALTER TABLE recipe ADD CONSTRAINT recipe_recipe_category
+    FOREIGN KEY (recipe_category_id)
+        REFERENCES recipe_category (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE
+;
+
 -- Reference: section_in_menu_menu (table: section_in_menu)
 ALTER TABLE section_in_menu ADD CONSTRAINT section_in_menu_menu
     FOREIGN KEY (menu_id)
@@ -250,34 +241,18 @@ ALTER TABLE section_in_menu ADD CONSTRAINT section_in_menu_menu
             INITIALLY IMMEDIATE
 ;
 
--- Reference: shopping_list_custom_ingredient_ingredient_group (table: shopping_list_custom_ingredient)
-ALTER TABLE shopping_list_custom_ingredient ADD CONSTRAINT shopping_list_custom_ingredient_ingredient_group
-    FOREIGN KEY (ingredient_group_id)
-        REFERENCES ingredient_group (id)
-        NOT DEFERRABLE
-            INITIALLY IMMEDIATE
-;
-
--- Reference: shopping_list_custom_ingredient_measurement_unit (table: shopping_list_custom_ingredient)
-ALTER TABLE shopping_list_custom_ingredient ADD CONSTRAINT shopping_list_custom_ingredient_measurement_unit
-    FOREIGN KEY (measurement_unit_id)
-        REFERENCES measurement_unit (id)
-        NOT DEFERRABLE
-            INITIALLY IMMEDIATE
-;
-
--- Reference: shopping_list_custom_ingredient_shopping_list (table: shopping_list_custom_ingredient)
-ALTER TABLE shopping_list_custom_ingredient ADD CONSTRAINT shopping_list_custom_ingredient_shopping_list
-    FOREIGN KEY (shopping_list_id)
-        REFERENCES shopping_list (id)
-        NOT DEFERRABLE
-            INITIALLY IMMEDIATE
-;
-
 -- Reference: shopping_list_ingredient_ingredient (table: shopping_list_ingredient)
 ALTER TABLE shopping_list_ingredient ADD CONSTRAINT shopping_list_ingredient_ingredient
     FOREIGN KEY (ingredient_id)
         REFERENCES ingredient (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE
+;
+
+-- Reference: shopping_list_ingredient_ingredient_group (table: shopping_list_ingredient)
+ALTER TABLE shopping_list_ingredient ADD CONSTRAINT shopping_list_ingredient_ingredient_group
+    FOREIGN KEY (ingredient_group_id)
+        REFERENCES ingredient_group (id)
         NOT DEFERRABLE
             INITIALLY IMMEDIATE
 ;
@@ -306,12 +281,5 @@ ALTER TABLE shopping_list ADD CONSTRAINT shopping_list_menu
             INITIALLY IMMEDIATE
 ;
 
--- Reference: shopping_list_user (table: shopping_list)
-ALTER TABLE shopping_list ADD CONSTRAINT shopping_list_user
-    FOREIGN KEY (user_id)
-        REFERENCES "user" (id)
-        NOT DEFERRABLE
-            INITIALLY IMMEDIATE
-;
-
 -- End of file.
+
