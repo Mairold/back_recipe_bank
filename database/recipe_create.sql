@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2022-11-22 13:46:27.417
+-- Last modification date: 2022-11-23 10:59:28.922
 
 -- tables
 -- Table: allowed_measurement_unit
@@ -42,7 +42,7 @@ CREATE TABLE measurement_unit (
 
 -- Table: menu
 CREATE TABLE menu (
-                      id int  NOT NULL,
+                      id serial  NOT NULL,
                       user_id int  NOT NULL,
                       date_time_added timestamp  NOT NULL DEFAULT now(),
                       status char(1)  NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE menu (
 
 -- Table: preparation_time
 CREATE TABLE preparation_time (
-                                  id int  NOT NULL,
+                                  id serial  NOT NULL,
                                   prep_time varchar(50)  NOT NULL,
                                   CONSTRAINT preparation_time_ak_1 UNIQUE (prep_time) NOT DEFERRABLE  INITIALLY IMMEDIATE,
                                   CONSTRAINT preparation_time_pk PRIMARY KEY (id)
@@ -72,7 +72,7 @@ CREATE TABLE recipe (
 
 -- Table: recipe_category
 CREATE TABLE recipe_category (
-                                 id int  NOT NULL,
+                                 id serial  NOT NULL,
                                  name varchar(50)  NOT NULL,
                                  CONSTRAINT food_category_ak_1 UNIQUE (name) NOT DEFERRABLE  INITIALLY IMMEDIATE,
                                  CONSTRAINT recipe_category_pk PRIMARY KEY (id)

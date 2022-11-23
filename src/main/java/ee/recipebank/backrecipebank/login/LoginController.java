@@ -18,9 +18,10 @@ public class LoginController {
     @GetMapping("/login")
     @Operation(summary = "Kontrollib username ja parooli. Loob login teenuse.")
 
-    public LoginResponse login(@RequestParam String username, @RequestParam String password) {
-        LoginResponse loginResponse = loginService.login(username, password);
-        return loginResponse;
+    /* Allolevas reas 'public Integer login' tähendab Integer meetodit*/
+    public Integer login(@RequestParam String username, @RequestParam String password) {
+        Integer id = loginService.login(username, password);
+        return id;
 
 
         /* Controlleri funktsioon - Java klass, mis võtab frondist vastu infot ja saadab backist välja infot.
