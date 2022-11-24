@@ -1,7 +1,7 @@
 package ee.recipebank.backrecipebank.Validation;
 
-import ee.recipebank.backrecipebank.infrastructure.exception.BusinessException;
 import ee.recipebank.backrecipebank.domain.user.User;
+import ee.recipebank.backrecipebank.infrastructure.exception.BusinessException;
 
 import java.util.Optional;
 
@@ -12,3 +12,6 @@ public class Validation {
         }
     }
 }
+//byUsernameANdPassword on entity objekt
+
+//throw <- selline omadus, et katkestab kogu selle meetodi

@@ -18,7 +18,7 @@ public class LoginController {
     @GetMapping("/login")
     @Operation(summary = "Kontrollib username ja parooli. Loob login teenuse.")
 
-    /* Allolevas reas 'public Integer login' tähendab Integer meetodit*/
+    /* Allolevas reas 'public Integer login' tähendab Integer klassi, kõikidel primitiivsetel muutujatel on olemas klass(Integer)*/
     public Integer login(@RequestParam String username, @RequestParam String password) {
         Integer id = loginService.login(username, password);
         return id;

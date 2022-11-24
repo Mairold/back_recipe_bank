@@ -8,13 +8,9 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 @Service
-
-
 public class LoginService {
-
     @Resource
     private UserMapper userMapper;
-
     @Resource
     private UserService userService;
 
@@ -25,4 +21,8 @@ public class LoginService {
         return id;
     }
 }
+/* klass, mis defineerib ära  login service funktsionaalsuse
+ *
+ *User on entity. Entity klass, kuhu salvestame andmebaasi infot
+ * userService on objekt ja .getValidUser on meetod, mille abil ..valideerime kasutaja */
 
