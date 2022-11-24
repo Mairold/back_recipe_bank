@@ -8,5 +8,12 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("select u from User u where u.username = ?1 and u.password = ?2")
     Optional<User> findByUsernameAndPassword(String username, String password);
+
+    @Query("select u from User u where u.username = ?1")
+    Optional<NewUser> findByUsername(String username);
+
+
+    //Optional<NewUser> findByUsername(String username); // Meetod, mis otsib ainult username'i järgi
+
+    void saveNewUser(NewUser newUser);
 }
-// LoginController => LoginService => UserService => UserRepository ja validation//

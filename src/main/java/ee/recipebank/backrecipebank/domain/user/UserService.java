@@ -15,7 +15,7 @@ public class UserService {
     public User getValidUser(String username, String password) {
         Optional<User> byUsernameAndPassword = userRepository.findByUsernameAndPassword(username, password);
         Validation.validateUserCredentials(byUsernameAndPassword);
-        User user = byUsernameAndPassword.get(); //User entity võetakse .get ehk get funktsiooni abil  Optionalsi seest välja.//
+        User user = byUsernameAndPassword.get(); //User entity võetakse .get ehk get funktsiooni abil Optionali seest välja.//
         return user;
     }
     //meetodil'getValidUser' alati sulud lõpus. Kas on tühjad seest või mitte, sellest sõltub, kas sinna läheb midagi veel sisse või mitte.//
@@ -24,13 +24,10 @@ public class UserService {
 
 
     public void getUserName(NewUser newUser) {
-        Optional<User> byUsername = userRepository.findByUsername(newUser.getUsername());
-        Validation.checkIfUserNameIs(byUsername);
-        userRepository.saveNewUser(newUser);
+        Optional<NewUser> byUsername = userRepository.findByUsername(newUser.getUsername());
+        Validation.validateUserName(byUsername); //siia tuleb username'i kontrollimise meetod
+        userRepository.saveNewUser(newUser); //siia tuleb useri andmebaasi lisamise meetod
 
     }
 
-
-    //siia tuleb username'i kontrollimise meetod
-    //siia tuleb useri lisamise
 }

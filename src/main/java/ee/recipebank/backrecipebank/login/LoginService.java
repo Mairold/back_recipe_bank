@@ -1,9 +1,6 @@
 package ee.recipebank.backrecipebank.login;
 
-import ee.recipebank.backrecipebank.domain.user.User;
-import ee.recipebank.backrecipebank.domain.user.UserMapper;
-import ee.recipebank.backrecipebank.domain.user.UserService;
-import ee.recipebank.backrecipebank.domain.user.NewUser;
+import ee.recipebank.backrecipebank.domain.user.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,14 +17,16 @@ public class LoginService {
         LoginResponse loginResponse = userMapper.toLoginResponse(user);
         Integer id = loginResponse.getUserId();
         return id;
-        /* klass, mis defineerib ära  login service funktsionaalsuse
+        /* klass, mis defineerib ära login service funktsionaalsuse
         User on entity. Entity klass, kuhu salvestame andmebaasi infot
-        UserService on objekt ja .getValidUser on meetod, mille abil ..valideerime kasutaja */
+        UserService on objekt ja .getValidUser on meetod, mille abil ..valideerime kasutaja
+        LoginResponse on klassi nimetus. loginResponse on objekt LoginResponse klassist
+*/
     }
 
     public void createUser(String username, String password) {
         NewUser newUser = userMapper.toNewUser(username, password); // kõigepealt mäpping ja seejärel getUsername meetod
-        userService.getUserName(newUser); // siit saadame
+        userService.getUserName(newUser); // siit saadame edasi
     }
 }
 

@@ -22,19 +22,19 @@ public class LoginController {
     public Integer login(@RequestParam String username, @RequestParam String password) {
         Integer id = loginService.login(username, password);
         return id;
-        /* Controlleri funktsioon - Java klass, mis võtab frondist vastu infot ja saadab backist välja infot.
-LoginResponse on klassi nimetus.
-loginResponse on objekt
-login meetodi nimi, sulgudes selgitus, millega meetod login tegelema hakkab.
-loginService objekti abil kutsume välja meetodi login. */
+        /* Liikumise järjekord: LoginController => LoginService => UserService => UserRepository ja validation
+        Controlleri funktsioon - Java klass, mis võtab frondist vastu infot ja saadab backist välja infot.
+        login on meetodi nimi, sulgudes selgitus, millega meetod login tegelema hakkab.
+        loginService objekti abil kutsume välja meetodi login. */
     }
 
     @PostMapping("/login")
     @Operation(summary = "Kontrollib kasutajanime olemasolu ja loob uue kasutaja.")
     public void createUser(@RequestParam String username, @RequestParam String password) {
         loginService.createUser(username, password);
-        // siin on suund ühesuunaline - saadame ainult info andmebaasi ja tagasi fronti ei saadeta midagi juhul, kui kõik OK
-    }
+        // siin on suund ühesuunaline - saadame ainult info andmebaasi ja tagasi fronti ei saadeta midagi
+        // v.a juhul, kui kasutaja on juba olemas aga siis läheb errormessage välja otse validation klassist.
+        }
 }
 
 

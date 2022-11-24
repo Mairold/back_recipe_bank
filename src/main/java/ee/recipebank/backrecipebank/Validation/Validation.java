@@ -1,5 +1,6 @@
 package ee.recipebank.backrecipebank.Validation;
 
+import ee.recipebank.backrecipebank.domain.user.NewUser;
 import ee.recipebank.backrecipebank.domain.user.User;
 import ee.recipebank.backrecipebank.infrastructure.exception.BusinessException;
 
@@ -14,9 +15,9 @@ public class Validation {
         }
     }
 
-    public static void validateUserName(Optional<User> byUserName) {
+    public static void validateUserName(Optional<NewUser> byUserName) {
         if (byUserName.isEmpty()) {
-            throw new BusinessException(LoginError.) //tee siit edasi
+            throw new BusinessException(NewUserError.INCORRECT_CREDENTIALS.getMessage(), NewUserError.INCORRECT_CREDENTIALS.getErrorCode()); //tee siit edasi
         }
     }
 }

@@ -13,7 +13,6 @@ import java.io.Serializable;
 
 public class LoginResponse implements Serializable {
     private Integer userId;
+    /* mida me tahame frontendis saada. Ainus asi, mille siin tahame edasi saata on user id.*/
 }
 
-
-/* mida me tahame frontendis saada. Ainus asi, mille siin tahame edasi saata on user id.*/
