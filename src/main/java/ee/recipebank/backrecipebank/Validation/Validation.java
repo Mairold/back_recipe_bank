@@ -9,9 +9,14 @@ public class Validation {
     public static void validateUserCredentials(Optional<User> byUsernameAndPassword) {
         if (byUsernameAndPassword.isEmpty()) {
             throw new BusinessException(LoginError.INCORRECT_CREDENTIALS.getMessage(), LoginError.INCORRECT_CREDENTIALS.getErrorCode());
+            //byUsernameANdPassword on entity objekt
+            // throw <- selline omadus, et katkestab kogu selle meetodi
+        }
+    }
+
+    public static void validateUserName(Optional<User> byUserName) {
+        if (byUserName.isEmpty()) {
+            throw new BusinessException(LoginError.) //tee siit edasi
         }
     }
 }
-//byUsernameANdPassword on entity objekt
-
-//throw <- selline omadus, et katkestab kogu selle meetodi

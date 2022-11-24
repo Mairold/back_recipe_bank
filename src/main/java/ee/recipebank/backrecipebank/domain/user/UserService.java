@@ -18,7 +18,19 @@ public class UserService {
         User user = byUsernameAndPassword.get(); //User entity võetakse .get ehk get funktsiooni abil  Optionalsi seest välja.//
         return user;
     }
-//meetodil'getValidUser' alati sulud lõpus. Kas on tühjad seest või mitte, sellest sõltub, kas sinna läheb midagi veel sisse või mitte.//
+    //meetodil'getValidUser' alati sulud lõpus. Kas on tühjad seest või mitte, sellest sõltub, kas sinna läheb midagi veel sisse või mitte.//
     // meetodil on alati keha.
     //findByUsernameAndPassowrdi meetod, millega kaasa antakse username, password suglustest ja selle abil otsib/ tagastab useri.
+
+
+    public void getUserName(NewUser newUser) {
+        Optional<User> byUsername = userRepository.findByUsername(newUser.getUsername());
+        Validation.checkIfUserNameIs(byUsername);
+        userRepository.saveNewUser(newUser);
+
+    }
+
+
+    //siia tuleb username'i kontrollimise meetod
+    //siia tuleb useri lisamise
 }
