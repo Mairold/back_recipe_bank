@@ -25,8 +25,8 @@ public class UserService {
 
     public void getUserName(User newUser) {
         Optional<User> byUsername = userRepository.findByUsername(newUser.getUsername());
-        Validation.validateUserName(byUsername); //siia tuleb username'i kontrollimise meetod
-        userRepository.save(newUser); //siia tuleb useri andmebaasi lisamise meetod
+        Validation.validateUserName(byUsername); //see on username'i kontrollimise meetod
+        userRepository.save(newUser); //see on useri andmebaasi lisamise meetod
 
     }
 

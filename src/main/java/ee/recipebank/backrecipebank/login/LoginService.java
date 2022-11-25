@@ -1,6 +1,8 @@
 package ee.recipebank.backrecipebank.login;
 
-import ee.recipebank.backrecipebank.domain.user.*;
+import ee.recipebank.backrecipebank.domain.user.User;
+import ee.recipebank.backrecipebank.domain.user.UserMapper;
+import ee.recipebank.backrecipebank.domain.user.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

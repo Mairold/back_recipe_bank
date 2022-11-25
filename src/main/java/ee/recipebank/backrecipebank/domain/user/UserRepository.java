@@ -11,6 +11,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query("select u from User u where u.username = ?1")
     Optional<User> findByUsername(String username);
-    //Optional<NewUser> findByUsername(String username); // Meetod, mis otsib ainult username'i järgi
+    // Meetod, mis otsib andmebaasist ainult username'i järgi
 
 }
