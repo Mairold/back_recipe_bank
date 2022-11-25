@@ -4,7 +4,9 @@ import lombok.Getter;
 
 @Getter
 public enum LoginError {
-    INCORRECT_CREDENTIALS("Sellist kasutajanime või parooli ei leitud", "333");
+    INCORRECT_CREDENTIALS("Sellist kasutajanime või parooli ei leitud", "333"),
+    USER_TAKEN("Selline kasutajanimi on juba võetud, palun vali uus", "444");
+
 
     private final String message;
     private final String errorCode;

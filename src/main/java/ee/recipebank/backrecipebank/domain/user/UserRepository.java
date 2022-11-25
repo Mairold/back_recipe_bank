@@ -10,10 +10,13 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findByUsernameAndPassword(String username, String password);
 
     @Query("select u from User u where u.username = ?1")
-    Optional<NewUser> findByUsername(String username);
-
-
+    Optional<User> findByUsername(String username);
     //Optional<NewUser> findByUsername(String username); // Meetod, mis otsib ainult username'i järgi
 
-    void saveNewUser(NewUser newUser);
+
+
+
+   // void saveNewUser(NewUser newUser);
+
+    // No property 'saveNewUser' found for type 'User'
 }

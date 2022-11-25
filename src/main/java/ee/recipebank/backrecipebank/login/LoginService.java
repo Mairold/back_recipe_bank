@@ -25,7 +25,7 @@ public class LoginService {
     }
 
     public void createUser(String username, String password) {
-        NewUser newUser = userMapper.toNewUser(username, password); // kõigepealt mäpping ja seejärel getUsername meetod
+        User newUser = userMapper.toNewUser(username, password); // kõigepealt mäpping ja seejärel getUsername meetod
         userService.getUserName(newUser); // siit saadame edasi
     }
 }

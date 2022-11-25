@@ -10,7 +10,7 @@ public interface UserMapper {
     @Mapping(source = "id", target = "userId")
     LoginResponse toLoginResponse(User user);
 
-    NewUser toNewUser (String username, String password);
+    User toNewUser (String username, String password);
 
 //    @Mapping(source = "username", target = "username")
 //    @Mapping(source = "password", target = "password")

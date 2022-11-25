@@ -23,10 +23,10 @@ public class UserService {
     //findByUsernameAndPassowrdi meetod, millega kaasa antakse username, password suglustest ja selle abil otsib/ tagastab useri.
 
 
-    public void getUserName(NewUser newUser) {
-        Optional<NewUser> byUsername = userRepository.findByUsername(newUser.getUsername());
+    public void getUserName(User newUser) {
+        Optional<User> byUsername = userRepository.findByUsername(newUser.getUsername());
         Validation.validateUserName(byUsername); //siia tuleb username'i kontrollimise meetod
-        userRepository.saveNewUser(newUser); //siia tuleb useri andmebaasi lisamise meetod
+        userRepository.save(newUser); //siia tuleb useri andmebaasi lisamise meetod
 
     }
 
