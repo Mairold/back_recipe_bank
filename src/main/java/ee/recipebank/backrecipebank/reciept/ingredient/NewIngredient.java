@@ -11,4 +11,5 @@ public class NewIngredient {
     private Integer selectedIngredientGroupId;
     private List<MeasurementDto> allowedMeasurements;
 
+
 }

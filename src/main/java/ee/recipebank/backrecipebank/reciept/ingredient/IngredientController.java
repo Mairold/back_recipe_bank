@@ -1,5 +1,6 @@
 package ee.recipebank.backrecipebank.reciept.ingredient;
 
+import ee.recipebank.backrecipebank.domain.ingridient.IngredientGroupDto;
 import ee.recipebank.backrecipebank.domain.ingridient.IngredientService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +9,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ingredients")
+@RequestMapping("/ingredient")
 public class IngredientController {
     @Resource
     private IngredientService ingredientService;
@@ -21,14 +22,14 @@ public class IngredientController {
 
     @GetMapping("/group")
      @Operation(summary = "Selle teenuse abil tagastame fronti toiduainegrupid")
-    public void getAllIngredientGroups() {
-
+    public List<IngredientGroupDto> getAllIngredientGroups() {
+        return ingredientService.getAllGroups();
     }
 
-    @PostMapping("addIngredient")
+    @PostMapping("")
     @Operation(summary = "See teenus kontrollib toiduaine olemasolu andmebaasis ja lisab, kui ei ole")
     public void addIngredient(@RequestBody NewIngredient newIngredient) {
-
+        ingredientService.addIngredient(newIngredient);
     }
 
 }

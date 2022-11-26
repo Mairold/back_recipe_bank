@@ -49,15 +49,15 @@ INSERT INTO public.recipe_category (id, name) VALUES (DEFAULT, 'Võileivad');
 INSERT INTO public.recipe_category (id, name) VALUES (DEFAULT, 'Taimetoidud');
 
 INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'tk', 'tükk');
-INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'tk', 'milliliiter');
-INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'ml', 'detsiliiter');
-INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'dl', 'liiter');
-INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'l', 'gramm');
-INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'g', 'kilogramm');
-INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'kg', 'teelusikas');
-INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'tl', 'supilusikas');
-INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'spl', 'valmis toote pudel');
-INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'pudel', 'valmis toote purk');
+INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'ml', 'milliliiter');
+INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'dl', 'detsiliiter');
+INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'l', 'liiter');
+INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'g', 'gramm');
+INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'kg', 'kilogramm');
+INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'tl', 'teelusikas');
+INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'spl', 'supilusikas');
+INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'pudel', 'valmis toote pudel');
+INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'purk', 'valmis toote purk');
 
 INSERT INTO public.preparation_time (id, prep_time) VALUES (DEFAULT, '0-15 min');
 INSERT INTO public.preparation_time (id, prep_time) VALUES (DEFAULT, '16-30 min');
