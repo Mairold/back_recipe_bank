@@ -1,6 +1,6 @@
 package ee.recipebank.backrecipebank.domain.ingridient.group;
 
-import ee.recipebank.backrecipebank.reciept.ingredient.IngredientGroupDto;
+import ee.recipebank.backrecipebank.bussiness.reciept.ingredient.IngredientGroupDto;
 import org.mapstruct.*;
 
 import java.util.List;

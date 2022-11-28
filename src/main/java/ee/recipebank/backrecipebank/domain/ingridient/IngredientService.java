@@ -6,9 +6,9 @@ import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.Allowe
 import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupMapper;
 import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupRepository;
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnitRepository;
-import ee.recipebank.backrecipebank.reciept.ingredient.IngredientGroupDto;
-import ee.recipebank.backrecipebank.reciept.ingredient.MeasurementDto;
-import ee.recipebank.backrecipebank.reciept.ingredient.IngredientRequest;
+import ee.recipebank.backrecipebank.bussiness.reciept.ingredient.IngredientGroupDto;
+import ee.recipebank.backrecipebank.bussiness.reciept.ingredient.MeasurementDto;
+import ee.recipebank.backrecipebank.bussiness.reciept.ingredient.IngredientRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

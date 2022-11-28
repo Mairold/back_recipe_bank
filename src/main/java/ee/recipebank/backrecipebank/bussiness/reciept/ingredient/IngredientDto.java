@@ -1,7 +1,6 @@
-package ee.recipebank.backrecipebank.reciept.ingredient;
+package ee.recipebank.backrecipebank.bussiness.reciept.ingredient;
 
 import ee.recipebank.backrecipebank.domain.ingridient.Ingredient;
-import ee.recipebank.backrecipebank.reciept.ingredient.IngredientGroupDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.login;
+package ee.recipebank.backrecipebank.bussiness.login;
 
 import ee.recipebank.backrecipebank.domain.user.User;
 import ee.recipebank.backrecipebank.domain.user.UserMapper;
