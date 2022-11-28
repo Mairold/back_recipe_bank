@@ -8,10 +8,11 @@ import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupRepos
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnitRepository;
 import ee.recipebank.backrecipebank.reciept.ingredient.IngredientGroupDto;
 import ee.recipebank.backrecipebank.reciept.ingredient.MeasurementDto;
-import ee.recipebank.backrecipebank.reciept.ingredient.NewIngredient;
+import ee.recipebank.backrecipebank.reciept.ingredient.IngredientRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,30 +40,30 @@ public class IngredientService {
         return ingredientGroupMapper.toDtos(ingredientGroupRepository.findAll());
     }
 
-    public void addIngredient(NewIngredient newIngredient) {
-        checkForDatabaseExistence(newIngredient);
-        Ingredient ingredient = getIngredient(newIngredient);
+    @Transactional
+    public void addIngredient(IngredientRequest request) {
+        checkForDatabaseExistence(request);
+        Ingredient ingredient = getIngredient(request);
         ingredientRepository.save(ingredient);
 
-        List<AllowedMeasurementUnit> allowedMeasurementUnits = getAllowedMeasurementUnits(newIngredient, ingredient);
+        List<AllowedMeasurementUnit> allowedMeasurementUnits = getAllowedMeasurementUnits(request, ingredient);
         allowedMeasurementUnitRepository.saveAll(allowedMeasurementUnits);
     }
 
-    private void checkForDatabaseExistence(NewIngredient newIngredient) {
-        Validation.validateIngredient(ingredientRepository.findByName(newIngredient.getIngredientName()));
+    private void checkForDatabaseExistence(IngredientRequest ingredientRequest) {
+        Validation.validateIngredient(ingredientRepository.findByName(ingredientRequest.getIngredientName()));
     }
 
-    private Ingredient getIngredient(NewIngredient newIngredient) {
-        Ingredient ingredient = ingredientMapper.toEntity(newIngredient);
-        ingredient.setIngredientGroup(ingredientGroupRepository.findById(newIngredient.getSelectedIngredientGroupId()).get());
-        ingredient.setStatus("A");
+    private Ingredient getIngredient(IngredientRequest ingredientRequest) {
+        Ingredient ingredient = ingredientMapper.toEntity(ingredientRequest);
+        ingredient.setIngredientGroup(ingredientGroupRepository.findById(ingredientRequest.getIngredientGroupId()).get());
         return ingredient;
     }
 
-    private List<AllowedMeasurementUnit> getAllowedMeasurementUnits(NewIngredient newIngredient, Ingredient ingredient) {
+    private List<AllowedMeasurementUnit> getAllowedMeasurementUnits(IngredientRequest request, Ingredient ingredient) {
         List<AllowedMeasurementUnit> allowedMeasurementUnits = new ArrayList<>();
 
-        for (MeasurementDto allowedMeasurement : newIngredient.getAllowedMeasurements()) {
+        for (MeasurementDto allowedMeasurement : request.getAllowedMeasurements()) {
             AllowedMeasurementUnit allowedMeasurementUnit = new AllowedMeasurementUnit();
             allowedMeasurementUnit.setMeasurementUnit(measurementUnitRepository.findById(allowedMeasurement.getMeasurementId()).get());
             allowedMeasurementUnit.setIngredient(ingredient);

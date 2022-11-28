@@ -27,8 +27,8 @@ public class IngredientController {
 
     @PostMapping("")
     @Operation(summary = "See teenus kontrollib toiduaine olemasolu andmebaasis ja lisab, kui ei ole")
-    public void addIngredient(@RequestBody NewIngredient newIngredient) {
-        ingredientService.addIngredient(newIngredient);
+    public void addIngredient(@RequestBody IngredientRequest ingredientRequest) {
+        ingredientService.addIngredient(ingredientRequest);
     }
 
 }

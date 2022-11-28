@@ -15,10 +15,9 @@ public class Validation {
         }
     }
 
-    public static void validateUserName(Optional<User> byUserName) {
-        if (byUserName.isPresent()) {
+    public static void validateUserName(boolean userExists) {
+        if (userExists) {
             throw new BusinessException(LoginError.USER_TAKEN.getMessage(), LoginError.USER_TAKEN.getErrorCode());
-            //tee siit edasi
         }
     }
 

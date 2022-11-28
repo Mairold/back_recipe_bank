@@ -15,10 +15,10 @@ public class LoginService {
     private UserService userService;
 
     public Integer login(String username, String password) {
-        User user = userService.getValidUser(username, password);
-        LoginResponse loginResponse = userMapper.toLoginResponse(user);
-        Integer id = loginResponse.getUserId();
-        return id;
+//        User user = userService.getValidUser(username, password);
+//        LoginResponse loginResponse = userMapper.toLoginResponse(user);
+//        Integer id = loginResponse.getUserId();
+        return userService.getValidUserId(username, password);
         /* klass, mis defineerib ära login service funktsionaalsuse
         User on entity. Entity klass, kuhu salvestame andmebaasi infot
         UserService on objekt ja .getValidUser on meetod, mille abil ..valideerime kasutaja
@@ -27,8 +27,8 @@ public class LoginService {
     }
 
     public void createUser(String username, String password) {
-        User newUser = userMapper.toNewUser(username, password); // kõigepealt mäpping ja seejärel getUsername meetod
-        userService.getUserName(newUser); // siit saadame edasi
+        User user = userMapper.toUser(username, password); // kõigepealt mäpping ja seejärel getUsername meetod
+        userService.getUserName(user); // siit saadame edasi
     }
 }
 

@@ -5,10 +5,10 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class NewIngredient {
+public class IngredientRequest {
 
     private String ingredientName;
-    private Integer selectedIngredientGroupId;
+    private Integer ingredientGroupId;
     private List<MeasurementDto> allowedMeasurements;
 
 

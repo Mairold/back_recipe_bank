@@ -1,8 +1,8 @@
 package ee.recipebank.backrecipebank.domain.ingridient;
 
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnit;
+import ee.recipebank.backrecipebank.reciept.ingredient.IngredientRequest;
 import ee.recipebank.backrecipebank.reciept.ingredient.MeasurementDto;
-import ee.recipebank.backrecipebank.reciept.ingredient.NewIngredient;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
@@ -19,6 +19,7 @@ public interface IngredientMapper {
     List<MeasurementDto> toDtos(List<MeasurementUnit> measurements);
 
     @Mapping(source = "ingredientName", target = "name")
-    Ingredient toEntity(NewIngredient newIngredient);
+    @Mapping(constant = "A", target = "status")
+    Ingredient toEntity(IngredientRequest ingredientRequest);
 
 }

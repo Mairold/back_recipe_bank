@@ -9,8 +9,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("select u from User u where u.username = ?1 and u.password = ?2")
     Optional<User> findByUsernameAndPassword(String username, String password);
 
-    @Query("select u from User u where u.username = ?1")
-    Optional<User> findByUsername(String username);
+    @Query("select (count(u) > 0) from User u where u.username = ?1")
+    boolean existsBy(String username);
     // Meetod, mis otsib andmebaasist ainult username'i järgi
-
 }

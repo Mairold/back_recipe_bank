@@ -12,6 +12,10 @@ public class UserService {
     @Resource
     private UserRepository userRepository;
 
+    public Integer getValidUserId(String username, String password) {
+       return getValidUser(username, password).getId();
+    }
+
     public User getValidUser(String username, String password) {
         Optional<User> byUsernameAndPassword = userRepository.findByUsernameAndPassword(username, password);
         Validation.validateUserCredentials(byUsernameAndPassword);
@@ -23,10 +27,10 @@ public class UserService {
     //findByUsernameAndPassowrdi meetod, millega kaasa antakse username, password suglustest ja selle abil otsib/ tagastab useri.
 
 
-    public void getUserName(User newUser) {
-        Optional<User> byUsername = userRepository.findByUsername(newUser.getUsername());
-        Validation.validateUserName(byUsername); //see on username'i kontrollimise meetod
-        userRepository.save(newUser); //see on useri andmebaasi lisamise meetod
+    public void getUserName(User user) {
+        boolean userExists = userRepository.existsBy(user.getUsername());
+        Validation.validateUserName(userExists); //see on username'i kontrollimise meetod
+        userRepository.save(user); //see on useri andmebaasi lisamise meetod
 
     }
 
