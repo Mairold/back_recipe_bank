@@ -1,5 +1,6 @@
 package ee.recipebank.backrecipebank.Validation;
 
+import ee.recipebank.backrecipebank.domain.ingridient.Ingredient;
 import ee.recipebank.backrecipebank.domain.user.User;
 import ee.recipebank.backrecipebank.infrastructure.exception.BusinessException;
 
@@ -18,6 +19,12 @@ public class Validation {
         if (byUserName.isPresent()) {
             throw new BusinessException(LoginError.USER_TAKEN.getMessage(), LoginError.USER_TAKEN.getErrorCode());
             //tee siit edasi
+        }
+    }
+
+    public static void validateIngredient(Optional<Ingredient> byIngredientName) {
+        if (byIngredientName.isPresent()) {
+            throw new BusinessException(RecipeError.INGREDIENT_EXISTS.getMessage(),RecipeError.INGREDIENT_EXISTS.getErrorCode());
         }
     }
 }
