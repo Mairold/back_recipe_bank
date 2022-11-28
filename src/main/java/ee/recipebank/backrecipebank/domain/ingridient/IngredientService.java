@@ -40,17 +40,15 @@ public class IngredientService {
     }
 
     public void addIngredient(NewIngredient newIngredient) {
-        checkForDatabaseExistance(newIngredient);
+        checkForDatabaseExistence(newIngredient);
         Ingredient ingredient = getIngredient(newIngredient);
         ingredientRepository.save(ingredient);
 
         List<AllowedMeasurementUnit> allowedMeasurementUnits = getAllowedMeasurementUnits(newIngredient, ingredient);
         allowedMeasurementUnitRepository.saveAll(allowedMeasurementUnits);
-
-
     }
 
-    private void checkForDatabaseExistance(NewIngredient newIngredient) {
+    private void checkForDatabaseExistence(NewIngredient newIngredient) {
         Validation.validateIngredient(ingredientRepository.findByName(newIngredient.getIngredientName()));
     }
 
