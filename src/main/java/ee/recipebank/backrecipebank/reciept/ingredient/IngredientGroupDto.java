@@ -1,5 +1,6 @@
-package ee.recipebank.backrecipebank.domain.ingridient;
+package ee.recipebank.backrecipebank.reciept.ingredient;
 
+import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroup;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;

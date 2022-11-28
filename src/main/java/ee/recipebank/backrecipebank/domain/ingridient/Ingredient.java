@@ -1,8 +1,11 @@
 package ee.recipebank.backrecipebank.domain.ingridient;
 
+import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroup;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Optional;
 
 @Entity
 @Table(name = "ingredient")

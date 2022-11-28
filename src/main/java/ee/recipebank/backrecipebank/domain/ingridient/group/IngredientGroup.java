@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.domain.ingridient;
+package ee.recipebank.backrecipebank.domain.ingridient.group;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

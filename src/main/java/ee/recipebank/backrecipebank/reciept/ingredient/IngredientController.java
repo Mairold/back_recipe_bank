@@ -1,6 +1,5 @@
 package ee.recipebank.backrecipebank.reciept.ingredient;
 
-import ee.recipebank.backrecipebank.domain.ingridient.IngredientGroupDto;
 import ee.recipebank.backrecipebank.domain.ingridient.IngredientService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;

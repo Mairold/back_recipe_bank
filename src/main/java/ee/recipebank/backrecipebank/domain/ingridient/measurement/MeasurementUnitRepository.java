@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.domain.ingridient;
+package ee.recipebank.backrecipebank.domain.ingridient.measurement;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.domain.ingridient;
+package ee.recipebank.backrecipebank.domain.ingridient.measurement;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
