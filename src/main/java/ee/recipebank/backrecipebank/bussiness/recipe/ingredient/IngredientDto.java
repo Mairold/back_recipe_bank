@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.bussiness.reciept.ingredient;
+package ee.recipebank.backrecipebank.bussiness.recipe.ingredient;
 
 import ee.recipebank.backrecipebank.domain.ingridient.Ingredient;
 import lombok.AllArgsConstructor;
