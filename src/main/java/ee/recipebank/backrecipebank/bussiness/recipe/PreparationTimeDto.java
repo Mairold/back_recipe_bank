@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 @Data
 public class PreparationTimeDto implements Serializable {
-    private final Integer id;
+    private final Integer prepTimeId;
     @Size(max = 50)
     @NotNull
     private final String prepTime;

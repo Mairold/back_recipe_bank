@@ -33,4 +33,8 @@ public class RecipeService {
     public List<RecipeToListDto> getAllRecipes() {
         return recipeMapper.toDtos(recipeRepository.findAll());
     }
+
+    public List<RecipeToListDto> getFilteredRecipes(Integer prepId, Integer catId, String name) {
+        return recipeMapper.toDtos(recipeRepository.findFilteredRecipesBy(prepId, catId, name));
+    }
 }

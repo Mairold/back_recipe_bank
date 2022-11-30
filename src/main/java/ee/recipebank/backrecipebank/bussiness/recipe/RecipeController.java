@@ -16,22 +16,30 @@ public class RecipeController {
     private RecipeService recipeService;
 
     @GetMapping("/category")
-    @Operation(summary = "Selle teenuse abil tagastame fronti retseptide kategooriate valikud")
+    @Operation(summary = "Selle teenuse abil tagastame retseptide kategooriate valikud frondi add-to-menu vaatesse")
     public List<RecipeCategoryDto> getAllCategories() {
         return recipeService.getAllCategories();
     }
 
     @GetMapping("/prep-time")
-    @Operation(summary = "Selle teenuse abil tagastame fronti toidu valmistamise ajakulu valikud")
+    @Operation(summary = "Selle teenuse abil tagastame toidu valmistamise ajakulu valikud frondi add-to-menu vaatesse")
     public List<PreparationTimeDto> getAllPrepTimes() {
         return recipeService.getAllPrepTimes();
     }
 
     @GetMapping("/recipe")
-    @Operation(summary = "Selle teenuse abil tagastame fronti add-to-menu vaatesse kõik retseptid")
+    @Operation(summary = "Selle teenuse abil tagastame kõik retseptid frondi add-to-menu vaatesse")
     public List<RecipeToListDto> getAllRecipes() {
         return recipeService.getAllRecipes();
+
     }
+    @GetMapping("/filter-recipes")
+    @Operation(summary = "Selle teenuse abil tagastame filtreeritud retseptid frondi add-to-menu vaatesse")
+    public List<RecipeToListDto> getFilteredRecipes(@RequestParam Integer prepTimeId, @RequestParam Integer categoryId, @RequestParam String searchBoxValue) {
+        return recipeService.getFilteredRecipes(prepTimeId, categoryId, searchBoxValue);
+
+    }
+
 
 
 }
