@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.domain;
+package ee.recipebank.backrecipebank.domain.menu;
 
 import ee.recipebank.backrecipebank.domain.user.User;
 import lombok.Getter;
