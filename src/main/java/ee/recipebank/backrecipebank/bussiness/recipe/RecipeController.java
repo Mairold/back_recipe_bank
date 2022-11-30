@@ -1,7 +1,7 @@
 package ee.recipebank.backrecipebank.bussiness.recipe;
 
 
-import ee.recipebank.backrecipebank.bussiness.recipe.preparationTime.PreparationTimeDto;
+import ee.recipebank.backrecipebank.bussiness.recipe.recipeCategory.preparationTime.PreparationTimeDto;
 import ee.recipebank.backrecipebank.bussiness.recipe.recipeCategory.RecipeCategoryDto;
 import ee.recipebank.backrecipebank.domain.recipe.RecipeService;
 import io.swagger.v3.oas.annotations.Operation;

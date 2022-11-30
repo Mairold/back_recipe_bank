@@ -1,7 +1,7 @@
 package ee.recipebank.backrecipebank.domain.recipe;
 
 import ee.recipebank.backrecipebank.bussiness.recipe.RecipeToListDto;
-import ee.recipebank.backrecipebank.bussiness.recipe.preparationTime.PreparationTimeDto;
+import ee.recipebank.backrecipebank.bussiness.recipe.recipeCategory.preparationTime.PreparationTimeDto;
 import ee.recipebank.backrecipebank.bussiness.recipe.recipeCategory.RecipeCategoryDto;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeMapper;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeRepository;
