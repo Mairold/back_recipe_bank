@@ -1,4 +1,7 @@
-package ee.recipebank.backrecipebank.bussiness.recipe;
+package ee.recipebank.backrecipebank.domain.recipe;
+
+import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTime;
+import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategory;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

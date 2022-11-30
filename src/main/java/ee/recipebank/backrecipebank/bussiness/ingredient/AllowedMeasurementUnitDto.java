@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.bussiness.recipe.ingredient;
+package ee.recipebank.backrecipebank.bussiness.ingredient;
 
 import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnit;
 import lombok.AllArgsConstructor;

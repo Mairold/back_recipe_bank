@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.bussiness.recipe;
+package ee.recipebank.backrecipebank.domain.recipe;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 
-    @Query(
+    @Query( // Toob andmebaasist välja teksti, kategooria ja preptime'i järgi filtreeritud retseptid
             value = "SELECT *\n" +
                     "FROM recipe\n" +
                     "WHERE(\n" +

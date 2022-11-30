@@ -1,5 +1,6 @@
-package ee.recipebank.backrecipebank.bussiness.recipe;
+package ee.recipebank.backrecipebank.domain.recipe;
 
+import ee.recipebank.backrecipebank.bussiness.recipe.RecipeToListDto;
 import org.mapstruct.*;
 
 import java.util.List;

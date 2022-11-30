@@ -1,6 +1,9 @@
 package ee.recipebank.backrecipebank.bussiness.recipe;
 
 
+import ee.recipebank.backrecipebank.bussiness.recipe.preparationTime.PreparationTimeDto;
+import ee.recipebank.backrecipebank.bussiness.recipe.recipeCategory.RecipeCategoryDto;
+import ee.recipebank.backrecipebank.domain.recipe.RecipeService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,13 +36,13 @@ public class RecipeController {
         return recipeService.getAllRecipes();
 
     }
+
     @GetMapping("/filter-recipes")
     @Operation(summary = "Selle teenuse abil tagastame filtreeritud retseptid frondi add-to-menu vaatesse")
     public List<RecipeToListDto> getFilteredRecipes(@RequestParam Integer prepTimeId, @RequestParam Integer categoryId, @RequestParam String searchBoxValue) {
         return recipeService.getFilteredRecipes(prepTimeId, categoryId, searchBoxValue);
 
     }
-
 
 
 }

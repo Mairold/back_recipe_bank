@@ -1,5 +1,6 @@
-package ee.recipebank.backrecipebank.bussiness.recipe;
+package ee.recipebank.backrecipebank.bussiness.recipe.recipeCategory;
 
+import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategory;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;

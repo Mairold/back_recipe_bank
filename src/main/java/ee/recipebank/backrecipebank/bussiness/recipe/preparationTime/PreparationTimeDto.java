@@ -1,5 +1,6 @@
-package ee.recipebank.backrecipebank.bussiness.recipe;
+package ee.recipebank.backrecipebank.bussiness.recipe.preparationTime;
 
+import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTime;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;

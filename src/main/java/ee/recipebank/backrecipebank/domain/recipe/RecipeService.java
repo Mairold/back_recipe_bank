@@ -1,5 +1,12 @@
-package ee.recipebank.backrecipebank.bussiness.recipe;
+package ee.recipebank.backrecipebank.domain.recipe;
 
+import ee.recipebank.backrecipebank.bussiness.recipe.RecipeToListDto;
+import ee.recipebank.backrecipebank.bussiness.recipe.preparationTime.PreparationTimeDto;
+import ee.recipebank.backrecipebank.bussiness.recipe.recipeCategory.RecipeCategoryDto;
+import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeMapper;
+import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeRepository;
+import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategoryMapper;
+import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategoryRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -32,9 +39,9 @@ public class RecipeService {
 
     public List<RecipeToListDto> getAllRecipes() {
         return recipeMapper.toDtos(recipeRepository.findAll());
-    }
+    } // tagastab controllerisse kõik retseptid
 
     public List<RecipeToListDto> getFilteredRecipes(Integer prepId, Integer catId, String name) {
         return recipeMapper.toDtos(recipeRepository.findFilteredRecipesBy(prepId, catId, name));
-    }
+    } // tagastab controllerisse filtreeritud retseptid
 }

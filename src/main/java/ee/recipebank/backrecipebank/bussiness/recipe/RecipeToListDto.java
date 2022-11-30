@@ -1,5 +1,6 @@
 package ee.recipebank.backrecipebank.bussiness.recipe;
 
+import ee.recipebank.backrecipebank.domain.recipe.Recipe;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

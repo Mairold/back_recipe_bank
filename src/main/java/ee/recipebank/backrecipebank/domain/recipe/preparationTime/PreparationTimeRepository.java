@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.bussiness.recipe;
+package ee.recipebank.backrecipebank.domain.recipe.preparationTime;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
