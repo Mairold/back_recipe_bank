@@ -70,3 +70,4 @@ INSERT INTO public."user" (id, username, password) VALUES (DEFAULT, 'Mairold', '
 INSERT INTO public."user" (id, username, password) VALUES (DEFAULT, 'Kristiina', '123');
 INSERT INTO public."user" (id, username, password) VALUES (DEFAULT, 'Helen', '123');
 
+

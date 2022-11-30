@@ -15,7 +15,7 @@ public class Validation {
         }
     }
 
-    public static void validateUserName(boolean userExists) {
+    public static void validateUser(boolean userExists) {
         if (userExists) {
             throw new BusinessException(LoginError.USER_TAKEN.getMessage(), LoginError.USER_TAKEN.getErrorCode());
         }
@@ -24,6 +24,13 @@ public class Validation {
     public static void validateIngredient(Optional<Ingredient> byIngredientName) {
         if (byIngredientName.isPresent()) {
             throw new BusinessException(RecipeError.INGREDIENT_EXISTS.getMessage(),RecipeError.INGREDIENT_EXISTS.getErrorCode());
+        }
+    }
+    public static void validateUser(Optional<User> byUserId) {
+        if (byUserId.isEmpty()) {
+            throw new BusinessException(LoginError.INCORRECT_CREDENTIALS.getMessage(), LoginError.INCORRECT_CREDENTIALS.getErrorCode());
+            //byUsernameANdPassword on entity objekt
+            // throw <- selline omadus, et katkestab kogu selle meetodi
         }
     }
 }

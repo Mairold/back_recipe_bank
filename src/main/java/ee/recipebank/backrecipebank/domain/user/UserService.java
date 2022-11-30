@@ -29,7 +29,7 @@ public class UserService {
 
     public void getUserName(User user) {
         boolean userExists = userRepository.existsBy(user.getUsername());
-        Validation.validateUserName(userExists); //see on username'i kontrollimise meetod
+        Validation.validateUser(userExists); //see on username'i kontrollimise meetod
         userRepository.save(user); //see on useri andmebaasi lisamise meetod
 
     }
