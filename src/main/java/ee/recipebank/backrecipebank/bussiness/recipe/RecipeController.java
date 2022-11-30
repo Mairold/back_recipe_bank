@@ -27,6 +27,12 @@ public class RecipeController {
         return recipeService.getAllPrepTimes();
     }
 
+    @GetMapping("/recipe")
+    public List<RecipeToListDto> getAllRecipes() {
+        return recipeService.getAllRecipes()
+
+    }
+
 
 }
 
