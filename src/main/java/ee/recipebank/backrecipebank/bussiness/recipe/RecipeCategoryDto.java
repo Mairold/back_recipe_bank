@@ -11,8 +11,8 @@ import java.io.Serializable;
  */
 @Data
 public class RecipeCategoryDto implements Serializable {
-    private final Integer id;
+    private final Integer categoryId;
     @Size(max = 50)
     @NotNull
-    private final String name;
+    private final String categoryName;
 }

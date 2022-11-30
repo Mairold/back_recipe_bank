@@ -12,12 +12,14 @@ public class RecipeService {
     private RecipeCategoryMapper recipeCategoryMapper;
     @Resource
     private RecipeCategoryRepository recipeCategoryRepository;
-
     @Resource
     private PreparationTimeMapper preparationTimeMapper;
-
     @Resource
     private PreparationTimeRepository preparationTimeRepository;
+    @Resource
+    private RecipeMapper recipeMapper;
+    @Resource
+    private RecipeRepository recipeRepository;
 
 
     public List<RecipeCategoryDto> getAllCategories() {
@@ -27,4 +29,8 @@ public class RecipeService {
     public List<PreparationTimeDto> getAllPrepTimes() {
         return preparationTimeMapper.toDtos(preparationTimeRepository.findAll());
     } // Tagastab controllerisse kõik preptime'id DTO-na
+
+    public List<RecipeToListDto> getAllRecipes() {
+        return recipeMapper.toDtos(recipeRepository.findAll());
+    }
 }

@@ -9,8 +9,8 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface RecipeCategoryMapper {
 
-    @Mapping(source = "id", target = "id")
-    @Mapping(source = "name", target = "name")
+    @Mapping(source = "id", target = "categoryId")
+    @Mapping(source = "name", target = "categoryName")
     RecipeCategoryDto toDto(RecipeCategory recipeCategory);
 
     List<RecipeCategoryDto> toDtos(List<RecipeCategory> recipeCategories);

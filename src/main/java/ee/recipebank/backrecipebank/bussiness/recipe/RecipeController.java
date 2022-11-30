@@ -28,9 +28,9 @@ public class RecipeController {
     }
 
     @GetMapping("/recipe")
+    @Operation(summary = "Selle teenuse abil tagastame fronti add-to-menu vaatesse kõik retseptid")
     public List<RecipeToListDto> getAllRecipes() {
-        return recipeService.getAllRecipes()
-
+        return recipeService.getAllRecipes();
     }
 
 
