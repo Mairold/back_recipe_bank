@@ -65,7 +65,7 @@ CREATE TABLE recipe (
                         name varchar(255)  NOT NULL,
                         serving_size int  NOT NULL,
                         instructions varchar(2000)  NOT NULL,
-                        date_from timestamp  NOT NULL DEFAULT now(),
+                        date_from date  NOT NULL DEFAULT now(),
                         date_to date  NULL,
                         CONSTRAINT recipe_pk PRIMARY KEY (id)
 );

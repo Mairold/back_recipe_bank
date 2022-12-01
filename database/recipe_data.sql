@@ -1,3 +1,6 @@
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 1, 'Porgand', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 2, 'Veiseliha', DEFAULT);
+
 INSERT INTO public.ingredient_group (id, name) VALUES (DEFAULT, 'Puu- ja köögiviljad');
 INSERT INTO public.ingredient_group (id, name) VALUES (DEFAULT, 'Lihatooted');
 INSERT INTO public.ingredient_group (id, name) VALUES (DEFAULT, 'kalatooted');

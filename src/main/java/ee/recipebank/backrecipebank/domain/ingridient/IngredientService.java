@@ -1,6 +1,7 @@
 package ee.recipebank.backrecipebank.domain.ingridient;
 
 import ee.recipebank.backrecipebank.Validation.Validation;
+import ee.recipebank.backrecipebank.bussiness.ingredient.IngredientInfo;
 import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnit;
 import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnitRepository;
 import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupMapper;
@@ -70,5 +71,13 @@ public class IngredientService {
             allowedMeasurementUnits.add(allowedMeasurementUnit);
         }
         return allowedMeasurementUnits;
+    }
+
+    public List<IngredientInfo> getAllIngredients() {
+        //List<Ingredient> ingredients = ingredientRepository.findAll();
+      //  ingredientMapper.toDtos(ingredients);
+        return ingredientMapper.toAwesomeDtos(ingredientRepository.findAll());
+
+     //   return ingredientInfo;
     }
 }

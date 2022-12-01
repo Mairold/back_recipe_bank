@@ -6,6 +6,7 @@ import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUni
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+
 @Entity
 @Table(name = "allowed_measurement_unit")
 public class AllowedMeasurementUnit {

@@ -1,8 +1,14 @@
 package ee.recipebank.backrecipebank.domain.recipe;
 
+import ee.recipebank.backrecipebank.bussiness.recipe.RecipeRequestDto;
 import ee.recipebank.backrecipebank.bussiness.recipe.RecipeToListDto;
 import org.mapstruct.*;
 
+import javax.persistence.Column;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
@@ -12,13 +18,15 @@ public interface RecipeMapper {
     @Mapping(source = "prepTime", target = "preparationTime.prepTime")
     @Mapping(source = "recipeName", target = "name")
     Recipe toEntity(RecipeToListDto recipeToListDto);
+
     List<Recipe> toEntities(List<RecipeToListDto> recipeToListDtos);
 
-    @Mapping(source = "id", target ="recipeId")
-    @Mapping(source = "recipeCategory.name", target ="categoryName")
-    @Mapping(source = "preparationTime.prepTime", target ="prepTime")
-    @Mapping(source = "name", target ="recipeName")
+    @Mapping(source = "id", target = "recipeId")
+    @Mapping(source = "recipeCategory.name", target = "categoryName")
+    @Mapping(source = "preparationTime.prepTime", target = "prepTime")
+    @Mapping(source = "name", target = "recipeName")
     RecipeToListDto toDto(Recipe recipe);
+
     List<RecipeToListDto> toDtos(List<Recipe> recipe);
 
     @InheritInverseConfiguration(name = "toDto")
@@ -26,4 +34,14 @@ public interface RecipeMapper {
     @InheritConfiguration(name = "toEntity")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Recipe updateRecipeFromRecipeToListDto(RecipeToListDto recipeToListDto, @MappingTarget Recipe recipe);
+
+
+    // Recipe
+//    private LocalDate dateFrom;
+//    private LocalDate dateTo;
+
+
+    @Mapping(source = "recipeName", target = "name")
+    @Mapping(constant = "", target = "instructions")
+    Recipe toEntity(RecipeRequestDto request);
 }
