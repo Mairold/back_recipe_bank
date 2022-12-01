@@ -3,6 +3,7 @@ package ee.recipebank.backrecipebank.bussiness.menu;
 import ee.recipebank.backrecipebank.domain.menu.Menu;
 import ee.recipebank.backrecipebank.domain.menu.MenuRepository;
 import ee.recipebank.backrecipebank.domain.menu.SectionInMenu;
+import ee.recipebank.backrecipebank.domain.menu.SectionInMenuMapper;
 import ee.recipebank.backrecipebank.domain.user.MenuPlanService;
 import ee.recipebank.backrecipebank.domain.user.User;
 import ee.recipebank.backrecipebank.domain.user.UserRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.time.Instant;
+import java.util.List;
 
 @Data
 @Service
@@ -22,6 +24,8 @@ public class MenuService {
     private MenuRepository menuRepository;
     @Resource
     private MenuPlanService menuPlanService;
+    @Resource
+    private SectionInMenuMapper sectionInMenuMapper;
 
     public Integer addNewMenu(Integer userId) {
         Menu menu = getMenu(menuPlanService.getValidUser(userId));
@@ -46,5 +50,11 @@ public class MenuService {
         sectionInMenu.setMenu(menuPlanService.getValidMenuBy(menuId));
         sectionInMenu.setName(sectionInMenuName);
         return sectionInMenu;
+    }
+
+    public List<SectionInMenuDto> getAllSectionsInMenu(Integer menuId) {
+        return sectionInMenuMapper.toSectionInMenuDtos(menuPlanService.getAllSectionsInMenu(menuId));
+
+
     }
 }

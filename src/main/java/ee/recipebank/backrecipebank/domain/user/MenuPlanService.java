@@ -9,6 +9,7 @@ import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Optional;
 
 @Data
@@ -40,5 +41,9 @@ public class MenuPlanService {
     public Integer saveSectionInMenu(SectionInMenu sectionInMenu) {
         sectionInMenuRepository.save(sectionInMenu);
         return sectionInMenu.getId();
+    }
+
+    public List<SectionInMenu> getAllSectionsInMenu(Integer menuId) {
+        return sectionInMenuRepository.findBy(menuId);
     }
 }

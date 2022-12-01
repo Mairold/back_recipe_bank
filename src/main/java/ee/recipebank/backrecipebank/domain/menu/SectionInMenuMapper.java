@@ -3,12 +3,15 @@ package ee.recipebank.backrecipebank.domain.menu;
 import ee.recipebank.backrecipebank.bussiness.menu.SectionInMenuDto;
 import org.mapstruct.*;
 
+import java.util.List;
+
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface SectionInMenuMapper {
-    SectionInMenu sectionInMenuDtoToSectionInMenu(SectionInMenuDto sectionInMenuDto);
+    SectionInMenu dtoToSectionInMenu(SectionInMenuDto sectionInMenuDto);
 
-    SectionInMenuDto sectionInMenuToSectionInMenuDto(SectionInMenu sectionInMenu);
+    @Mapping(source = "name", target = "sectionName")
+    @Mapping(source = "id", target = "sectionId")
+    SectionInMenuDto toSectionInMenuDto(SectionInMenu sectionInMenu);
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    SectionInMenu updateSectionInMenuFromSectionInMenuDto(SectionInMenuDto sectionInMenuDto, @MappingTarget SectionInMenu sectionInMenu);
+    List<SectionInMenuDto> toSectionInMenuDtos(List<SectionInMenu> sectionInMenus);
 }

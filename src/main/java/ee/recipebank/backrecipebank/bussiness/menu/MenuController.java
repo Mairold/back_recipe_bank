@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("/menu")
@@ -24,10 +25,9 @@ public class MenuController {
         return menuService.addNewSectionInMenu(menuId, sectionInMenuName);
     }
 
-    @GetMapping("/sections")
+    @GetMapping("/section")
     @Operation(summary = "See teenus otsib kõik menüü plaani sektsioonid menüü plaani id järgi ja tagastab fronti")
-    public List<SectionsInMenuDto> getAllSectionsInMenu(@RequestParam Integer menuId) {
-
+    public List<SectionInMenuDto> getAllSectionsInMenu(@RequestParam Integer menuId) {
         return menuService.getAllSectionsInMenu(menuId);
     }
 

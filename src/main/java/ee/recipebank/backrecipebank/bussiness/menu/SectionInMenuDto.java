@@ -16,8 +16,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SectionInMenuDto implements Serializable {
-    private Integer id;
+    private Integer sectionId;
     @Size(max = 100)
     @NotNull
-    private String name;
+    private String sectionName;
 }
