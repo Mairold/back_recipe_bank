@@ -1,16 +1,18 @@
 package ee.recipebank.backrecipebank.domain.recipe;
 
-import ee.recipebank.backrecipebank.bussiness.recipe.RecipeRequest;
 import ee.recipebank.backrecipebank.bussiness.recipe.RecipeToListDto;
 import ee.recipebank.backrecipebank.bussiness.recipe.recipeCategory.preparationTime.PreparationTimeDto;
 import ee.recipebank.backrecipebank.bussiness.recipe.recipeCategory.RecipeCategoryDto;
+import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTime;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeMapper;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeRepository;
+import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategory;
 import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategoryMapper;
 import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategoryRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -51,4 +53,19 @@ public class RecipeService {
         SectionInMenu sectionInMenu = sectionInMenuRepository.findById(request.getSectionInMenuId()).get();
 //        recipeInSectionRepository.save(recipe);
     }
+
+    public RecipeResponseDto addRecipe(RecipeRequestDto request) {
+
+        RecipeCategory recipeCategory = recipeCategoryRepository.findById(request.getRecipeCategoryId()).get();
+        PreparationTime preparationTime = preparationTimeRepository.findById(request.getPreparationTimeId()).get();
+
+        Recipe recipe = recipeMapper.toEntity(request);
+        recipe.setRecipeCategory(recipeCategory);
+        recipe.setPreparationTime(preparationTime);
+        recipe.setDateFrom(LocalDate.now());
+        recipeRepository.save(recipe);
+
+        return new RecipeResponseDto(recipe.getId());
+    }
+
 }

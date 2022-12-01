@@ -2,6 +2,7 @@ package ee.recipebank.backrecipebank.domain.recipe;
 
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTime;
 import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategory;
+import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Size;
 import java.time.Instant;
 import java.time.LocalDate;
 
+@Data
 @Entity
 @Table(name = "recipe")
 public class Recipe {
@@ -43,73 +45,9 @@ public class Recipe {
 
     @NotNull
     @Column(name = "date_from", nullable = false)
-    private Instant dateFrom;
+    private LocalDate dateFrom;
 
     @Column(name = "date_to")
     private LocalDate dateTo;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public RecipeCategory getRecipeCategory() {
-        return recipeCategory;
-    }
-
-    public void setRecipeCategory(RecipeCategory recipeCategory) {
-        this.recipeCategory = recipeCategory;
-    }
-
-    public PreparationTime getPreparationTime() {
-        return preparationTime;
-    }
-
-    public void setPreparationTime(PreparationTime preparationTime) {
-        this.preparationTime = preparationTime;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getServingSize() {
-        return servingSize;
-    }
-
-    public void setServingSize(Integer servingSize) {
-        this.servingSize = servingSize;
-    }
-
-    public String getInstructions() {
-        return instructions;
-    }
-
-    public void setInstructions(String instructions) {
-        this.instructions = instructions;
-    }
-
-    public Instant getDateFrom() {
-        return dateFrom;
-    }
-
-    public void setDateFrom(Instant dateFrom) {
-        this.dateFrom = dateFrom;
-    }
-
-    public LocalDate getDateTo() {
-        return dateTo;
-    }
-
-    public void setDateTo(LocalDate dateTo) {
-        this.dateTo = dateTo;
-    }
 
 }

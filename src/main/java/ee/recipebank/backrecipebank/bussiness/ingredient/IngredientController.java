@@ -13,6 +13,7 @@ public class IngredientController {
     @Resource
     private IngredientService ingredientService;
 
+
     @GetMapping("/measurements")
     @Operation(summary = "Selle teenuse abil tagastame fronti mõõteühikud")
     public List<MeasurementDto> getAllMeasurements() {
@@ -20,7 +21,7 @@ public class IngredientController {
     }
 
     @GetMapping("/group")
-     @Operation(summary = "Selle teenuse abil tagastame fronti toiduainegrupid")
+    @Operation(summary = "Selle teenuse abil tagastame fronti toiduainegrupid")
     public List<IngredientGroupDto> getAllIngredientGroups() {
         return ingredientService.getAllGroups();
     }
@@ -31,4 +32,9 @@ public class IngredientController {
         ingredientService.addIngredient(ingredientRequest);
     }
 
-}
+    @GetMapping("/recipeIngredient")
+    @Operation(summary = "See teenus tagastab kõik toiduained")
+    public List<IngredientInfo> getAllIngredients() {return ingredientService.getAllIngredients(); }
+
+    }
+

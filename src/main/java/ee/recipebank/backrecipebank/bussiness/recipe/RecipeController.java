@@ -34,9 +34,18 @@ public class RecipeController {
         return recipeService.getAllRecipes();
     }
 
+    @PostMapping("/recipe")
+    @Operation(summary = "Selle teenuse abil lisame uue retsepti")
+    public RecipeResponseDto addRecipe(@RequestBody RecipeRequestDto request) {
+        return recipeService.addRecipe(request);
+    }
+
+
+
     @GetMapping("/filter-recipes")
     @Operation(summary = "Selle teenuse abil tagastame filtreeritud retseptid frondi add-to-menu vaatesse")
     public List<RecipeToListDto> getFilteredRecipes(@RequestParam Integer prepTimeId, @RequestParam Integer categoryId, @RequestParam String searchBoxValue) {
+
         return recipeService.getFilteredRecipes(prepTimeId, categoryId, searchBoxValue);
     }
 

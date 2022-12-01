@@ -1,5 +1,7 @@
 package ee.recipebank.backrecipebank.domain.ingridient;
 
+import ee.recipebank.backrecipebank.bussiness.ingredient.IngredientDto;
+import ee.recipebank.backrecipebank.bussiness.ingredient.IngredientInfo;
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnit;
 import ee.recipebank.backrecipebank.bussiness.ingredient.IngredientRequest;
 import ee.recipebank.backrecipebank.bussiness.ingredient.MeasurementDto;
@@ -22,4 +24,9 @@ public interface IngredientMapper {
     @Mapping(constant = "A", target = "status")
     Ingredient toEntity(IngredientRequest ingredientRequest);
 
+
+    @Mapping(source = "name", target = "ingredientName")
+    @Mapping(source = "id", target = "ingredientId")
+    IngredientInfo toDto(Ingredient ingredient);
+    List<IngredientInfo> toAwesomeDtos(List<Ingredient> ingredients);
 }
