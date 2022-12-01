@@ -5,9 +5,7 @@ import ee.recipebank.backrecipebank.bussiness.recipe.recipeCategory.preparationT
 import ee.recipebank.backrecipebank.bussiness.recipe.recipeCategory.RecipeCategoryDto;
 import ee.recipebank.backrecipebank.domain.recipe.RecipeService;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -34,17 +32,26 @@ public class RecipeController {
     @Operation(summary = "Selle teenuse abil tagastame kõik retseptid frondi add-to-menu vaatesse")
     public List<RecipeToListDto> getAllRecipes() {
         return recipeService.getAllRecipes();
-
     }
 
     @GetMapping("/filter-recipes")
     @Operation(summary = "Selle teenuse abil tagastame filtreeritud retseptid frondi add-to-menu vaatesse")
     public List<RecipeToListDto> getFilteredRecipes(@RequestParam Integer prepTimeId, @RequestParam Integer categoryId, @RequestParam String searchBoxValue) {
         return recipeService.getFilteredRecipes(prepTimeId, categoryId, searchBoxValue);
-
     }
 
-
+    @PostMapping("/add-recipe-to-menu")
+    @Operation(summary = "valitud retsepti salvestamine menüüsse")
+    public void addRecipeToMenu(@RequestBody RecipeRequest recipeRequest) {
+        recipeService.saveRecipeInMenu(recipeRequest);
+    }
 }
+
+
+
+
+
+
+
 
 
