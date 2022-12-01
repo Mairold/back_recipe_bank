@@ -48,6 +48,7 @@ public class RecipeService {
 
     public void saveRecipeInMenu(RecipeRequest request) {
         Recipe recipe = recipeRepository.findById(request.getRecipeId()).get();
+        SectionInMenu sectionInMenu = sectionInMenuRepository.findById(request.getSectionInMenuId()).get();
 //        recipeInSectionRepository.save(recipe);
     }
 }
