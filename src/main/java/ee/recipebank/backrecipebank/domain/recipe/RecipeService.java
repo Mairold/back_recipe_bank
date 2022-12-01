@@ -1,5 +1,6 @@
 package ee.recipebank.backrecipebank.domain.recipe;
 
+import ee.recipebank.backrecipebank.bussiness.recipe.RecipeRequest;
 import ee.recipebank.backrecipebank.bussiness.recipe.RecipeToListDto;
 import ee.recipebank.backrecipebank.bussiness.recipe.recipeCategory.preparationTime.PreparationTimeDto;
 import ee.recipebank.backrecipebank.bussiness.recipe.recipeCategory.RecipeCategoryDto;
@@ -44,4 +45,10 @@ public class RecipeService {
     public List<RecipeToListDto> getFilteredRecipes(Integer prepId, Integer catId, String name) {
         return recipeMapper.toDtos(recipeRepository.findFilteredRecipesBy(prepId, catId, name));
     } // tagastab controllerisse filtreeritud retseptid
+
+    public void saveRecipeInMenu(RecipeRequest request) {
+        Recipe recipe = recipeRepository.findById(request.getRecipeId()).get();
+        SectionInMenu sectionInMenu = sectionInMenuRepository.findById(request.getSectionInMenuId()).get();
+//        recipeInSectionRepository.save(recipe);
+    }
 }

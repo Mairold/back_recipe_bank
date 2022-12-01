@@ -26,4 +26,10 @@ public interface RecipeMapper {
     @InheritConfiguration(name = "toEntity")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Recipe updateRecipeFromRecipeToListDto(RecipeToListDto recipeToListDto, @MappingTarget Recipe recipe);
+
+//    @Mapping(source = "sectionInMenuId", target ="")
+//    @Mapping(source = "recipeId", target ="")
+//    @Mapping(source = "servingSize", target ="")
+//    @Mapping(source = "commentToRecipe", target ="")
+//    RecipeInSection toRecipeInSectionEntity()
 }
