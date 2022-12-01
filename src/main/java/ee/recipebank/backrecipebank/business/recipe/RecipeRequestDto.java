@@ -1,11 +1,10 @@
-package ee.recipebank.backrecipebank.bussiness.recipe;
+package ee.recipebank.backrecipebank.business.recipe;
 
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.time.Instant;
 
 /**
  * A DTO for the {@link ee.recipebank.backrecipebank.domain.recipe.Recipe} entity

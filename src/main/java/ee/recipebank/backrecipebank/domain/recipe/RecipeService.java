@@ -1,8 +1,13 @@
 package ee.recipebank.backrecipebank.domain.recipe;
 
-import ee.recipebank.backrecipebank.bussiness.recipe.RecipeToListDto;
-import ee.recipebank.backrecipebank.bussiness.recipe.recipeCategory.preparationTime.PreparationTimeDto;
-import ee.recipebank.backrecipebank.bussiness.recipe.recipeCategory.RecipeCategoryDto;
+import ee.recipebank.backrecipebank.business.recipe.RecipeRequest;
+import ee.recipebank.backrecipebank.business.recipe.RecipeRequestDto;
+import ee.recipebank.backrecipebank.business.recipe.RecipeResponseDto;
+import ee.recipebank.backrecipebank.business.recipe.RecipeToListDto;
+import ee.recipebank.backrecipebank.business.recipe.recipeCategory.preparationTime.PreparationTimeDto;
+import ee.recipebank.backrecipebank.business.recipe.recipeCategory.RecipeCategoryDto;
+import ee.recipebank.backrecipebank.domain.menu.SectionInMenu;
+import ee.recipebank.backrecipebank.domain.menu.SectionInMenuRepository;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTime;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeMapper;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeRepository;
@@ -26,6 +31,8 @@ public class RecipeService {
     private PreparationTimeMapper preparationTimeMapper;
     @Resource
     private PreparationTimeRepository preparationTimeRepository;
+    @Resource
+    private SectionInMenuRepository sectionInMenuRepository;
     @Resource
     private RecipeMapper recipeMapper;
     @Resource

@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.bussiness.menu;
+package ee.recipebank.backrecipebank.business.menu;
 
 import ee.recipebank.backrecipebank.domain.menu.SectionInMenu;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.bussiness.reciept;
+package ee.recipebank.backrecipebank.business.recipe;
 
 import ee.recipebank.backrecipebank.domain.recipe.RecipeInSection;
 import lombok.AllArgsConstructor;

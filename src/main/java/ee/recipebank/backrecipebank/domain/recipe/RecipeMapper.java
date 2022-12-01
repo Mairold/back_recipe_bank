@@ -1,14 +1,9 @@
 package ee.recipebank.backrecipebank.domain.recipe;
 
-import ee.recipebank.backrecipebank.bussiness.recipe.RecipeRequestDto;
-import ee.recipebank.backrecipebank.bussiness.recipe.RecipeToListDto;
+import ee.recipebank.backrecipebank.business.recipe.RecipeRequestDto;
+import ee.recipebank.backrecipebank.business.recipe.RecipeToListDto;
 import org.mapstruct.*;
 
-import javax.persistence.Column;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.time.Instant;
-import java.time.LocalDate;
 import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")

@@ -1,6 +1,6 @@
 package ee.recipebank.backrecipebank.domain.recipe;
 
-import ee.recipebank.backrecipebank.bussiness.reciept.RecipeInSectionDto;
+import ee.recipebank.backrecipebank.business.recipe.RecipeInSectionDto;
 import org.mapstruct.*;
 
 import java.util.List;

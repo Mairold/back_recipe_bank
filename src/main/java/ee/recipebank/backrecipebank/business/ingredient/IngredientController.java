@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.bussiness.ingredient;
+package ee.recipebank.backrecipebank.business.ingredient;
 
 import ee.recipebank.backrecipebank.domain.ingridient.IngredientService;
 import io.swagger.v3.oas.annotations.Operation;

@@ -1,8 +1,8 @@
-package ee.recipebank.backrecipebank.bussiness.recipe;
+package ee.recipebank.backrecipebank.business.recipe;
 
 
-import ee.recipebank.backrecipebank.bussiness.recipe.recipeCategory.preparationTime.PreparationTimeDto;
-import ee.recipebank.backrecipebank.bussiness.recipe.recipeCategory.RecipeCategoryDto;
+import ee.recipebank.backrecipebank.business.recipe.recipeCategory.preparationTime.PreparationTimeDto;
+import ee.recipebank.backrecipebank.business.recipe.recipeCategory.RecipeCategoryDto;
 import ee.recipebank.backrecipebank.domain.recipe.RecipeService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +15,9 @@ public class RecipeController {
 
     @Resource
     private RecipeService recipeService;
+
+    @Resource
+    private RecipeInSectionService recipeInSectionService;
 
     @GetMapping("/category")
     @Operation(summary = "Selle teenuse abil tagastame retseptide kategooriate valikud frondi add-to-menu vaatesse")
@@ -53,6 +56,12 @@ public class RecipeController {
     @Operation(summary = "valitud retsepti salvestamine menüüsse")
     public void addRecipeToMenu(@RequestBody RecipeRequest recipeRequest) {
         recipeService.saveRecipeInMenu(recipeRequest);
+    }
+
+    @GetMapping("/recipe/inSection")
+    @Operation(summary = "See teenus toob ära kõik retseptid, mis on seotud antud menüü plaani id-ga")
+    public List<RecipeInSectionDto> getAllRecipeInSections(@RequestParam Integer menuId) {
+        return recipeInSectionService.getAllSectionsInMenu(menuId);
     }
 }
 

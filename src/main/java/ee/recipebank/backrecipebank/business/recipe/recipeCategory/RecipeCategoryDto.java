@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.bussiness.recipe.recipeCategory;
+package ee.recipebank.backrecipebank.business.recipe.recipeCategory;
 
 import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategory;
 import lombok.Data;

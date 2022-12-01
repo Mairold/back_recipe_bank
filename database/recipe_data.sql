@@ -1,5 +1,4 @@
-INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 1, 'Porgand', DEFAULT);
-INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 2, 'Veiseliha', DEFAULT);
+
 
 INSERT INTO public.ingredient_group (id, name) VALUES (DEFAULT, 'Puu- ja köögiviljad');
 INSERT INTO public.ingredient_group (id, name) VALUES (DEFAULT, 'Lihatooted');
@@ -109,5 +108,8 @@ Lõika üle koogivormi ulatuvad tainaääred ühtlaseks. Vajadusel vormi ja silu
 INSERT INTO public."user" (id, username, password) VALUES (DEFAULT, 'Mairold', '123');
 INSERT INTO public."user" (id, username, password) VALUES (DEFAULT, 'Kristiina', '123');
 INSERT INTO public."user" (id, username, password) VALUES (DEFAULT, 'Helen', '123');
+
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 1, 'Porgand', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 2, 'Veiseliha', DEFAULT);
 
 

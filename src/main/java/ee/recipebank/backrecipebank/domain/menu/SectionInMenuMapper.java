@@ -1,6 +1,6 @@
 package ee.recipebank.backrecipebank.domain.menu;
 
-import ee.recipebank.backrecipebank.bussiness.menu.SectionInMenuDto;
+import ee.recipebank.backrecipebank.business.menu.SectionInMenuDto;
 import org.mapstruct.*;
 
 import java.util.List;

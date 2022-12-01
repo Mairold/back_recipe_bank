@@ -1,15 +1,15 @@
 package ee.recipebank.backrecipebank.domain.ingridient;
 
 import ee.recipebank.backrecipebank.Validation.Validation;
-import ee.recipebank.backrecipebank.bussiness.ingredient.IngredientInfo;
+import ee.recipebank.backrecipebank.business.ingredient.IngredientInfo;
 import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnit;
 import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnitRepository;
 import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupMapper;
 import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupRepository;
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnitRepository;
-import ee.recipebank.backrecipebank.bussiness.ingredient.IngredientGroupDto;
-import ee.recipebank.backrecipebank.bussiness.ingredient.MeasurementDto;
-import ee.recipebank.backrecipebank.bussiness.ingredient.IngredientRequest;
+import ee.recipebank.backrecipebank.business.ingredient.IngredientGroupDto;
+import ee.recipebank.backrecipebank.business.ingredient.MeasurementDto;
+import ee.recipebank.backrecipebank.business.ingredient.IngredientRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
