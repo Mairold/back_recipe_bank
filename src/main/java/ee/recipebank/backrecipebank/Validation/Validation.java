@@ -1,5 +1,6 @@
 package ee.recipebank.backrecipebank.Validation;
 
+import ee.recipebank.backrecipebank.domain.menu.Menu;
 import ee.recipebank.backrecipebank.domain.ingridient.Ingredient;
 import ee.recipebank.backrecipebank.domain.user.User;
 import ee.recipebank.backrecipebank.infrastructure.exception.BusinessException;
@@ -14,16 +15,24 @@ public class Validation {
             // throw <- selline omadus, et katkestab kogu selle meetodi
         }
     }
-
-    public static void validateUserName(boolean userExists) {
+    public static void validateUser(boolean userExists) {
         if (userExists) {
             throw new BusinessException(LoginError.USER_TAKEN.getMessage(), LoginError.USER_TAKEN.getErrorCode());
         }
     }
-
     public static void validateIngredient(Optional<Ingredient> byIngredientName) {
         if (byIngredientName.isPresent()) {
             throw new BusinessException(RecipeError.INGREDIENT_EXISTS.getMessage(),RecipeError.INGREDIENT_EXISTS.getErrorCode());
+        }
+    }
+    public static void validateUser(Optional<User> byUserId) {
+        if (byUserId.isEmpty()) {
+            throw new BusinessException(LoginError.USER_DOES_NOT_EXIST.getMessage(), LoginError.USER_DOES_NOT_EXIST.getErrorCode());
+        }
+    }
+    public static void validateMenu(Optional<Menu> byMenuId) {
+        if (byMenuId.isEmpty()) {
+            throw new BusinessException(LoginError.MENU_DOES_NOT_EXIST.getMessage(), LoginError.MENU_DOES_NOT_EXIST.getErrorCode());
         }
     }
 }
