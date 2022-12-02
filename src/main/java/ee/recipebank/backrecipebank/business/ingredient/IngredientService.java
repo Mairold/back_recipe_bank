@@ -1,23 +1,23 @@
 package ee.recipebank.backrecipebank.business.ingredient;
 
 import ee.recipebank.backrecipebank.Validation.Validation;
-import ee.recipebank.backrecipebank.business.ingredient.IngredientInfo;
 import ee.recipebank.backrecipebank.domain.ingridient.Ingredient;
 import ee.recipebank.backrecipebank.domain.ingridient.IngredientMapper;
+import ee.recipebank.backrecipebank.domain.ingridient.IngredientServiceInDomain;
 import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnit;
-import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnitRepository;
+import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnitService;
+import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroup;
 import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupMapper;
-import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupRepository;
-import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnitRepository;
-import ee.recipebank.backrecipebank.business.ingredient.IngredientGroupDto;
-import ee.recipebank.backrecipebank.business.ingredient.MeasurementDto;
-import ee.recipebank.backrecipebank.business.ingredient.IngredientRequest;
+import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupService;
+import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnit;
+import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnitService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class IngredientService {
@@ -27,51 +27,66 @@ public class IngredientService {
     @Resource
     private IngredientGroupMapper ingredientGroupMapper;
 
-    public List<MeasurementDto> getAllMeasurements() { // Kristiina
-        return ingredientMapper.toDtos(measurementUnitRepository.findAll());
+    @Resource
+    private MeasurementUnitService measurementUnitService;
+
+    @Resource
+    private IngredientServiceInDomain ingredientServiceInDomain;
+
+    @Resource
+    private IngredientGroupService ingredientGroupService;
+
+    @Resource
+    private AllowedMeasurementUnitService allowedMeasurementUnitService;
+
+    public List<MeasurementDto> getAllMeasurements() {
+        List<MeasurementUnit> allMeasurementUnits = measurementUnitService.getAllMeasurements();
+        return ingredientMapper.toDtos(allMeasurementUnits);
     }
 
-    public List<IngredientGroupDto> getAllGroups() { // Helen
-        return ingredientGroupMapper.toDtos(ingredientGroupRepository.findAll());
+    public List<IngredientGroupDto> getAllGroups() {
+        List<IngredientGroup> allGroups = ingredientGroupService.getAllGroups();
+
+        return ingredientGroupMapper.toDtos(allGroups);
     }
 
     @Transactional
-    public void addIngredient(IngredientRequest request) { // Kristiina
+    public void addIngredient(IngredientRequest request) {
         checkForDatabaseExistence(request);
         Ingredient ingredient = getIngredient(request);
-        ingredientRepository.save(ingredient);
+        ingredientServiceInDomain.saveIngredient(ingredient);
 
         List<AllowedMeasurementUnit> allowedMeasurementUnits = getAllowedMeasurementUnits(request, ingredient);
-        allowedMeasurementUnitRepository.saveAll(allowedMeasurementUnits);
+        allowedMeasurementUnitService.saveAllMeasurementUnits(allowedMeasurementUnits);
     }
 
-    private void checkForDatabaseExistence(IngredientRequest ingredientRequest) { // Helen
-        Validation.validateIngredient(ingredientRepository.findByName(ingredientRequest.getIngredientName()));
+    private void checkForDatabaseExistence(IngredientRequest ingredientRequest) {
+        Optional<Ingredient> optionalIngredient = ingredientServiceInDomain.getOptionalIngredient(ingredientRequest);
+        Validation.validateIngredient(optionalIngredient);
     }
 
-    private Ingredient getIngredient(IngredientRequest ingredientRequest) { // Kristiina
+    private Ingredient getIngredient(IngredientRequest ingredientRequest) {
         Ingredient ingredient = ingredientMapper.toEntity(ingredientRequest);
-        ingredient.setIngredientGroup(ingredientGroupRepository.findById(ingredientRequest.getIngredientGroupId()).get());
+        IngredientGroup ingredientGroup = ingredientGroupService.getIngredientGroup(ingredientRequest);
+        ingredient.setIngredientGroup(ingredientGroup);
         return ingredient;
     }
 
-    private List<AllowedMeasurementUnit> getAllowedMeasurementUnits(IngredientRequest request, Ingredient ingredient) { // Helen
+    private List<AllowedMeasurementUnit> getAllowedMeasurementUnits(IngredientRequest request, Ingredient ingredient) {
         List<AllowedMeasurementUnit> allowedMeasurementUnits = new ArrayList<>();
 
         for (MeasurementDto allowedMeasurement : request.getAllowedMeasurements()) {
             AllowedMeasurementUnit allowedMeasurementUnit = new AllowedMeasurementUnit();
-            allowedMeasurementUnit.setMeasurementUnit(measurementUnitRepository.findById(allowedMeasurement.getMeasurementId()).get());
+            MeasurementUnit measurementUnit = measurementUnitService.getAllowedMeasurementUnit(allowedMeasurement);
+            allowedMeasurementUnit.setMeasurementUnit(measurementUnit);
             allowedMeasurementUnit.setIngredient(ingredient);
             allowedMeasurementUnits.add(allowedMeasurementUnit);
         }
         return allowedMeasurementUnits;
     }
 
-    public List<IngredientInfo> getAllIngredients() { // Kristiina
-        //List<Ingredient> ingredients = ingredientRepository.findAll();
-      //  ingredientMapper.toDtos(ingredients);
-        return ingredientMapper.toAwesomeDtos(ingredientRepository.findAll());
-
-     //   return ingredientInfo;
+    public List<IngredientInfo> getAllIngredients() {
+        List<Ingredient> ingredients = ingredientServiceInDomain.getAllIngredients();
+        return ingredientMapper.toAwesomeDtos(ingredients);
     }
 }

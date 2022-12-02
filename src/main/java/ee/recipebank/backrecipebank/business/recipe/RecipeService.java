@@ -64,24 +64,24 @@ public class RecipeService {
 //        return recipeMapper.toDtos(recipeRepository.findFilteredRecipesBy(prepId, catId, name));
     } // tagastab controllerisse filtreeritud retseptid
 
-    public void saveRecipeInMenu(RecipeRequest request) {
-        Recipe recipe = recipeRepository.findById(request.getRecipeId()).get();
-        SectionInMenu sectionInMenu = sectionInMenuRepository.findById(request.getSectionInMenuId()).get();
-//        recipeInSectionRepository.save(recipe);
-    }
-
-    public RecipeResponseDto addRecipe(RecipeRequestDto request) {
-
-        RecipeCategory recipeCategory = recipeCategoryRepository.findById(request.getRecipeCategoryId()).get();
-        PreparationTime preparationTime = preparationTimeRepository.findById(request.getPreparationTimeId()).get();
-
-        Recipe recipe = recipeMapper.toEntity(request);
-        recipe.setRecipeCategory(recipeCategory);
-        recipe.setPreparationTime(preparationTime);
-        recipe.setDateFrom(LocalDate.now());
-        recipeRepository.save(recipe);
-
-        return new RecipeResponseDto(recipe.getId());
-    }
+//    public void saveRecipeInMenu(RecipeRequest request) {
+//        Recipe recipe = recipeRepository.findById(request.getRecipeId()).get();
+//        SectionInMenu sectionInMenu = sectionInMenuRepository.findById(request.getSectionInMenuId()).get();
+////        recipeInSectionRepository.save(recipe);
+//    }
+//
+//    public RecipeResponseDto addRecipe(RecipeRequestDto request) {
+//
+//        RecipeCategory recipeCategory = recipeCategoryRepository.findById(request.getRecipeCategoryId()).get();
+//        PreparationTime preparationTime = preparationTimeRepository.findById(request.getPreparationTimeId()).get();
+//
+//        Recipe recipe = recipeMapper.toEntity(request);
+//        recipe.setRecipeCategory(recipeCategory);
+//        recipe.setPreparationTime(preparationTime);
+//        recipe.setDateFrom(LocalDate.now());
+//        recipeRepository.save(recipe);
+//
+//        return new RecipeResponseDto(recipe.getId());
+//    }
 
 }

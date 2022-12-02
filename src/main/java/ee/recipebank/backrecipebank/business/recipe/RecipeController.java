@@ -40,7 +40,8 @@ public class RecipeController {
     @PostMapping("/recipe")
     @Operation(summary = "Selle teenuse abil lisame uue retsepti")
     public RecipeResponseDto addRecipe(@RequestBody RecipeRequestDto request) {
-        return recipeService.addRecipe(request);
+        return null;
+//        return recipeService.addRecipe(request);
     }
 
     @GetMapping("/filter-recipes")
@@ -53,7 +54,8 @@ public class RecipeController {
     @PostMapping("/add-recipe-to-menu")
     @Operation(summary = "valitud retsepti salvestamine menüüsse")
     public void addRecipeToMenu(@RequestBody RecipeRequest recipeRequest) {
-        recipeService.saveRecipeInMenu(recipeRequest);
+//        recipeService.saveRecipeInMenu(recipeRequest);
+
     }
 
     @GetMapping("/recipe/inSection")
