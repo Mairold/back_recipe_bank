@@ -1,7 +1,7 @@
 package ee.recipebank.backrecipebank.business.recipe;
 
-import ee.recipebank.backrecipebank.domain.recipe.RecipeInSectionMapper;
-import ee.recipebank.backrecipebank.domain.recipe.SectionRecipeService;
+import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionMapper;
+import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionServiceDomain;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -11,7 +11,7 @@ import java.util.List;
 public class RecipeInSectionService {
 
     @Resource
-    private SectionRecipeService sectionRecipeService;
+    private RecipeInSectionServiceDomain sectionRecipeService;
     @Resource
     private RecipeInSectionMapper recipeInSectionMapper;
 

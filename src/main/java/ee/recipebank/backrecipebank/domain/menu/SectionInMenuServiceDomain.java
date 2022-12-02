@@ -1,10 +1,9 @@
-package ee.recipebank.backrecipebank.domain.user;
+package ee.recipebank.backrecipebank.domain.menu;
 
 import ee.recipebank.backrecipebank.Validation.Validation;
-import ee.recipebank.backrecipebank.domain.menu.Menu;
-import ee.recipebank.backrecipebank.domain.menu.MenuRepository;
-import ee.recipebank.backrecipebank.domain.menu.SectionInMenu;
-import ee.recipebank.backrecipebank.domain.menu.SectionInMenuRepository;
+import ee.recipebank.backrecipebank.business.recipe.RecipeRequest;
+import ee.recipebank.backrecipebank.domain.user.User;
+import ee.recipebank.backrecipebank.domain.user.UserRepository;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +13,7 @@ import java.util.Optional;
 
 @Data
 @Service
-public class MenuPlanService {
+public class SectionInMenuServiceDomain {
     @Resource
     private UserRepository userRepository;
     @Resource
@@ -45,5 +44,10 @@ public class MenuPlanService {
 
     public List<SectionInMenu> getAllSectionsInMenu(Integer menuId) {
         return sectionInMenuRepository.findBy(menuId);
+
+    }
+
+    public SectionInMenu findThisSectionId(RecipeRequest request) {
+        return sectionInMenuRepository.findById(request.getSectionInMenuId()).get();
     }
 }

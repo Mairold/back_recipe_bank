@@ -4,7 +4,7 @@ import ee.recipebank.backrecipebank.domain.menu.Menu;
 import ee.recipebank.backrecipebank.domain.menu.MenuRepository;
 import ee.recipebank.backrecipebank.domain.menu.SectionInMenu;
 import ee.recipebank.backrecipebank.domain.menu.SectionInMenuMapper;
-import ee.recipebank.backrecipebank.domain.user.MenuPlanService;
+import ee.recipebank.backrecipebank.domain.menu.SectionInMenuServiceDomain;
 import ee.recipebank.backrecipebank.domain.user.User;
 import ee.recipebank.backrecipebank.domain.user.UserRepository;
 import lombok.Data;
@@ -23,7 +23,7 @@ public class MenuService {
     @Resource
     private MenuRepository menuRepository;
     @Resource
-    private MenuPlanService menuPlanService;
+    private SectionInMenuServiceDomain menuPlanService;
     @Resource
     private SectionInMenuMapper sectionInMenuMapper;
 

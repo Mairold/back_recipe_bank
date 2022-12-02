@@ -54,8 +54,7 @@ public class RecipeController {
     @PostMapping("/add-recipe-to-menu")
     @Operation(summary = "valitud retsepti salvestamine menüüsse")
     public void addRecipeToMenu(@RequestBody RecipeRequest recipeRequest) {
-//        recipeService.saveRecipeInMenu(recipeRequest);
-
+        recipeService.saveRecipeInMenu(recipeRequest);
     }
 
     @GetMapping("/recipe/inSection")

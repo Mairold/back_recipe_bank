@@ -1,6 +1,7 @@
-package ee.recipebank.backrecipebank.domain.recipe;
+package ee.recipebank.backrecipebank.domain.recipe.recipeinsection;
 
 import ee.recipebank.backrecipebank.business.recipe.RecipeInSectionDto;
+import ee.recipebank.backrecipebank.business.recipe.RecipeRequest;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -17,4 +18,7 @@ public interface RecipeInSectionMapper {
 
     List<RecipeInSectionDto> toRecipeInSectionDtos(List<RecipeInSection> recipeInSections);
 
+    @Mapping(source = "servingSize", target = "plannedServingSize")
+    @Mapping(source = "commentToRecipe", target = "comment")
+    RecipeInSection toEntity(RecipeRequest request);
 }

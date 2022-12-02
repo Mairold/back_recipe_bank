@@ -1,29 +1,23 @@
 package ee.recipebank.backrecipebank.business.recipe;
 
-import ee.recipebank.backrecipebank.business.recipe.RecipeRequest;
-import ee.recipebank.backrecipebank.business.recipe.RecipeRequestDto;
-import ee.recipebank.backrecipebank.business.recipe.RecipeResponseDto;
-import ee.recipebank.backrecipebank.business.recipe.RecipeToListDto;
 import ee.recipebank.backrecipebank.business.recipe.recipeCategory.preparationTime.PreparationTimeDto;
 import ee.recipebank.backrecipebank.business.recipe.recipeCategory.RecipeCategoryDto;
 import ee.recipebank.backrecipebank.domain.menu.SectionInMenu;
-import ee.recipebank.backrecipebank.domain.menu.SectionInMenuRepository;
-import ee.recipebank.backrecipebank.domain.recipe.Recipe;
-import ee.recipebank.backrecipebank.domain.recipe.RecipeMapper;
-import ee.recipebank.backrecipebank.domain.recipe.RecipeRepository;
-import ee.recipebank.backrecipebank.domain.recipe.RecipeServiceInDomain;
+import ee.recipebank.backrecipebank.domain.menu.SectionInMenuServiceDomain;
+import ee.recipebank.backrecipebank.domain.recipe.*;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTime;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeMapper;
-import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeRepository;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeService;
 import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategory;
 import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategoryMapper;
-import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategoryRepository;
 import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategoryService;
+import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSection;
+import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionMapper;
+import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionServiceDomain;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.time.LocalDate;
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -41,6 +35,13 @@ public class RecipeService {
     private RecipeCategoryService recipeCategoryService;
     @Resource
     private RecipeServiceInDomain recipeServiceInDomain;
+    @Resource
+    private SectionInMenuServiceDomain sectionInMenuService;
+    @Resource
+    private RecipeInSectionMapper recipeInSectionMapper;
+    @Resource
+    private RecipeInSectionServiceDomain recipeInSectionServiceDomain;
+
 
 
     public List<RecipeCategoryDto> getAllCategories() {
@@ -64,24 +65,15 @@ public class RecipeService {
 //        return recipeMapper.toDtos(recipeRepository.findFilteredRecipesBy(prepId, catId, name));
     } // tagastab controllerisse filtreeritud retseptid
 
-//    public void saveRecipeInMenu(RecipeRequest request) {
-//        Recipe recipe = recipeRepository.findById(request.getRecipeId()).get();
-//        SectionInMenu sectionInMenu = sectionInMenuRepository.findById(request.getSectionInMenuId()).get();
-////        recipeInSectionRepository.save(recipe);
-//    }
-//
-//    public RecipeResponseDto addRecipe(RecipeRequestDto request) {
-//
-//        RecipeCategory recipeCategory = recipeCategoryRepository.findById(request.getRecipeCategoryId()).get();
-//        PreparationTime preparationTime = preparationTimeRepository.findById(request.getPreparationTimeId()).get();
-//
-//        Recipe recipe = recipeMapper.toEntity(request);
-//        recipe.setRecipeCategory(recipeCategory);
-//        recipe.setPreparationTime(preparationTime);
-//        recipe.setDateFrom(LocalDate.now());
-//        recipeRepository.save(recipe);
-//
-//        return new RecipeResponseDto(recipe.getId());
-//    }
+    public void saveRecipeInMenu(RecipeRequest request) {
+        Recipe recipe = recipeServiceInDomain.findThisRecipeId(request); // selle küsin andmebaasist
+        SectionInMenu section = sectionInMenuService.findThisSectionId(request); // selle küsin andmebaasist
+        RecipeInSection recipeInSection = recipeInSectionMapper.toEntity(request); // mäpin 2 rida Entityks
+        recipeInSection.setRecipe(recipe);
+        recipeInSection.setSectionInMenu(section);
+        recipeInSection.setDateTimeAdded(Instant.now());
+        recipeInSectionServiceDomain.saveRecipeInSection(recipeInSection);
+    }
+// todo: teha ridadest 71-74 eraldi meetod siia samma publik meetodi sisse
 
 }
