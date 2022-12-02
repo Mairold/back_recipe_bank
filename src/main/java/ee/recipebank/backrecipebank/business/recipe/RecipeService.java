@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.domain.recipe;
+package ee.recipebank.backrecipebank.business.recipe;
 
 import ee.recipebank.backrecipebank.business.recipe.RecipeRequest;
 import ee.recipebank.backrecipebank.business.recipe.RecipeRequestDto;
@@ -8,12 +8,16 @@ import ee.recipebank.backrecipebank.business.recipe.recipeCategory.preparationTi
 import ee.recipebank.backrecipebank.business.recipe.recipeCategory.RecipeCategoryDto;
 import ee.recipebank.backrecipebank.domain.menu.SectionInMenu;
 import ee.recipebank.backrecipebank.domain.menu.SectionInMenuRepository;
+import ee.recipebank.backrecipebank.domain.recipe.Recipe;
+import ee.recipebank.backrecipebank.domain.recipe.RecipeMapper;
+import ee.recipebank.backrecipebank.domain.recipe.RecipeRepository;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTime;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeMapper;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeRepository;
 import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategory;
 import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategoryMapper;
 import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategoryRepository;
+import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategoryService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -37,10 +41,13 @@ public class RecipeService {
     private RecipeMapper recipeMapper;
     @Resource
     private RecipeRepository recipeRepository;
+    @Resource
+    private RecipeCategoryService recipeCategoryService;
 
 
     public List<RecipeCategoryDto> getAllCategories() {
-        return recipeCategoryMapper.toDtos(recipeCategoryRepository.findAll());
+        List<RecipeCategory> allCategories = recipeCategoryService.getAllCategories();
+        return recipeCategoryMapper.toDtos(allCategories);
     } // Tagastab controllerisse kõik kategooriad DTO-na
 
     public List<PreparationTimeDto> getAllPrepTimes() {

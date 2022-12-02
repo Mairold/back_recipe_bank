@@ -3,7 +3,6 @@ package ee.recipebank.backrecipebank.business.recipe;
 
 import ee.recipebank.backrecipebank.business.recipe.recipeCategory.preparationTime.PreparationTimeDto;
 import ee.recipebank.backrecipebank.business.recipe.recipeCategory.RecipeCategoryDto;
-import ee.recipebank.backrecipebank.domain.recipe.RecipeService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +21,8 @@ public class RecipeController {
     @GetMapping("/category")
     @Operation(summary = "Selle teenuse abil tagastame retseptide kategooriate valikud frondi add-to-menu vaatesse")
     public List<RecipeCategoryDto> getAllCategories() {
-        return recipeService.getAllCategories();
+        List<RecipeCategoryDto> allCategories = recipeService.getAllCategories();
+        return allCategories;
     }
 
     @GetMapping("/prep-time")
