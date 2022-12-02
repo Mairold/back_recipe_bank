@@ -66,13 +66,13 @@ public class RecipeService {
     } // tagastab controllerisse filtreeritud retseptid
 
     public void saveRecipeInMenu(RecipeRequest request) {
-        Recipe recipe = recipeServiceInDomain.findThisRecipeId(request); // selle küsin andmebaasist
-        SectionInMenu section = sectionInMenuService.findThisSectionId(request); // selle küsin andmebaasist
-        RecipeInSection recipeInSection = recipeInSectionMapper.toEntity(request); // mäpin 2 rida Entityks
-        recipeInSection.setRecipe(recipe);
-        recipeInSection.setSectionInMenu(section);
-        recipeInSection.setDateTimeAdded(Instant.now());
-        recipeInSectionServiceDomain.saveRecipeInSection(recipeInSection);
+        Recipe recipe = recipeServiceInDomain.findThisRecipeId(request); // selle küsib andmebaasist
+        SectionInMenu section = sectionInMenuService.findThisSectionId(request); // selle küsib andmebaasist
+        RecipeInSection recipeInSection = recipeInSectionMapper.toEntity(request); // mäpib 2 rida Entityks
+        recipeInSection.setRecipe(recipe); // lisab entityle andmebaasist küsitud retsepti
+        recipeInSection.setSectionInMenu(section); // lisab entityle andmebaasist küsitud section'i
+        recipeInSection.setDateTimeAdded(Instant.now()); // lisab entityle Date&Time'i
+        recipeInSectionServiceDomain.saveRecipeInSection(recipeInSection); // salvestab retsepti andmebaasi tabelisse recipeInSection
     }
 // todo: teha ridadest 71-74 eraldi meetod siia samma publik meetodi sisse
 

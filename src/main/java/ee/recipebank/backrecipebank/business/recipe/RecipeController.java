@@ -51,8 +51,8 @@ public class RecipeController {
         return recipeService.getFilteredRecipes(prepTimeId, categoryId, searchBoxValue);
     }
 
-    @PostMapping("/add-recipe-to-menu")
-    @Operation(summary = "valitud retsepti salvestamine menüüsse")
+    @PostMapping("/add-recipe-to-section")
+    @Operation(summary = "valitud retsepti salvestamine menüü sektsiooni")
     public void addRecipeToMenu(@RequestBody RecipeRequest recipeRequest) {
         recipeService.saveRecipeInMenu(recipeRequest);
     }

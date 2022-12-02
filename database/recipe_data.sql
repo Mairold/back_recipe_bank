@@ -60,6 +60,7 @@ INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'tl
 INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'spl', 'supilusikas');
 INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'pudel', 'valmis toote pudel');
 INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'purk', 'valmis toote purk');
+INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'pakk', 'valmis toote pakk');
 
 INSERT INTO public.preparation_time (id, prep_time) VALUES (DEFAULT, '0-15 min');
 INSERT INTO public.preparation_time (id, prep_time) VALUES (DEFAULT, '16-30 min');
@@ -85,9 +86,7 @@ Kui kõrvits on pehme, siis püreesta kannmikseris või köögikombainis või sa
 Lase supil 10-15 minutit taheneda, siis jaota kaussidesse ja serveeri. Peale nirista paksemat kõrvitsaseemneõli.
 NIPP: Kui soovid, võid kaunistada supi ka röstitud kõrvitsaseemnetega', DEFAULT, null);
 INSERT INTO public.recipe (id, recipe_category_id, preparation_time_id, name, serving_size, instructions, date_from, date_to) VALUES (DEFAULT, 18, 4, 'Anni Arro lasanje', 10,
-'Eelkuumuta ahi 200 kraadini. Haki sibul, küüslauk ja rosmariin ning prae kergelt läbi. Lisa hakkliha ja pruunista korralikult. Kui vedelik hakkab juba vaikselt aurustuma, lisa suts valget veini ja prae veel minutike. Lisa purustatud tomatid ja hauta umbes 10–15 minutit. Maitsesta soola, pipra ja punega.
-Lao oliiviõliga piserdatud ahjuvormi kiht lasanjelehti, siis kiht hakklihasegu, õhuke kiht riivjuustu, värskeid basiilikulehti ja tükeldatud mozzarella’t. Tee samamoodi ka järgmised kihid. Kõige pealmiseks kihiks jääb hakklihasegu, basiilik, riivitud juust ja mozzarella. Pista vorm ahju ja küpseta 200° juures umbes 30 minutit.
-Enne serveerimist lase lasanjel natuke aega jahtuda ja hanguda.', DEFAULT, null);
+'https://toidutare.ohtuleht.ee/920118/anni-arro-lasanje', DEFAULT, null);
 INSERT INTO public.recipe (id, recipe_category_id, preparation_time_id, name, serving_size, instructions, date_from, date_to) VALUES (DEFAULT, 13, 2, 'Pasta carbonara', 4,
 'Keeda makaronid rohkes soolases vees al dente.
 Samal ajal lõika guanciale, pancetta või peekon väikesteks kuubikuteks või ribadeks. Prae mõõdukalt kuumal pannil väheses oliiviõlis kuldseks ja krõbedaks.
@@ -111,5 +110,26 @@ INSERT INTO public."user" (id, username, password) VALUES (DEFAULT, 'Helen', '12
 
 INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 1, 'Porgand', DEFAULT);
 INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 2, 'Veiseliha', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 11, 'Spagetid', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 5, 'Kanamuna M', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 5, 'Kanamuna L', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 5, 'Vutimuna', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 4, 'Piim 2.5%', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 4, 'Pett', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 4, 'Keefir', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 4, 'Maitsestamata jogurt', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 11, 'Lasanjeplaadid', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 2, 'Hakkliha', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 1, 'Sibul', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 1, 'Küüslauk', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 15, 'Rosmariin', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 22, 'Valge vein', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 13, 'Purustatud tomatid', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 15, 'Sool', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 15, 'Pipar', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 15, 'Pune', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 15, 'Basiilik', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 4, 'Riivjuust', DEFAULT);
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 4, 'Mozzarella', DEFAULT);
 
 
