@@ -1,7 +1,9 @@
-package ee.recipebank.backrecipebank.domain.ingridient;
+package ee.recipebank.backrecipebank.business.ingredient;
 
 import ee.recipebank.backrecipebank.Validation.Validation;
 import ee.recipebank.backrecipebank.business.ingredient.IngredientInfo;
+import ee.recipebank.backrecipebank.domain.ingridient.Ingredient;
+import ee.recipebank.backrecipebank.domain.ingridient.IngredientMapper;
 import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnit;
 import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnitRepository;
 import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupMapper;
@@ -24,25 +26,17 @@ public class IngredientService {
     private IngredientMapper ingredientMapper;
     @Resource
     private IngredientGroupMapper ingredientGroupMapper;
-    @Resource
-    private MeasurementUnitRepository measurementUnitRepository;
-    @Resource
-    private IngredientGroupRepository ingredientGroupRepository;
-    @Resource
-    private IngredientRepository ingredientRepository;
-    @Resource
-    private AllowedMeasurementUnitRepository allowedMeasurementUnitRepository;
 
-    public List<MeasurementDto> getAllMeasurements() {
+    public List<MeasurementDto> getAllMeasurements() { // Kristiina
         return ingredientMapper.toDtos(measurementUnitRepository.findAll());
     }
 
-    public List<IngredientGroupDto> getAllGroups() {
+    public List<IngredientGroupDto> getAllGroups() { // Helen
         return ingredientGroupMapper.toDtos(ingredientGroupRepository.findAll());
     }
 
     @Transactional
-    public void addIngredient(IngredientRequest request) {
+    public void addIngredient(IngredientRequest request) { // Kristiina
         checkForDatabaseExistence(request);
         Ingredient ingredient = getIngredient(request);
         ingredientRepository.save(ingredient);
@@ -51,17 +45,17 @@ public class IngredientService {
         allowedMeasurementUnitRepository.saveAll(allowedMeasurementUnits);
     }
 
-    private void checkForDatabaseExistence(IngredientRequest ingredientRequest) {
+    private void checkForDatabaseExistence(IngredientRequest ingredientRequest) { // Helen
         Validation.validateIngredient(ingredientRepository.findByName(ingredientRequest.getIngredientName()));
     }
 
-    private Ingredient getIngredient(IngredientRequest ingredientRequest) {
+    private Ingredient getIngredient(IngredientRequest ingredientRequest) { // Kristiina
         Ingredient ingredient = ingredientMapper.toEntity(ingredientRequest);
         ingredient.setIngredientGroup(ingredientGroupRepository.findById(ingredientRequest.getIngredientGroupId()).get());
         return ingredient;
     }
 
-    private List<AllowedMeasurementUnit> getAllowedMeasurementUnits(IngredientRequest request, Ingredient ingredient) {
+    private List<AllowedMeasurementUnit> getAllowedMeasurementUnits(IngredientRequest request, Ingredient ingredient) { // Helen
         List<AllowedMeasurementUnit> allowedMeasurementUnits = new ArrayList<>();
 
         for (MeasurementDto allowedMeasurement : request.getAllowedMeasurements()) {
@@ -73,7 +67,7 @@ public class IngredientService {
         return allowedMeasurementUnits;
     }
 
-    public List<IngredientInfo> getAllIngredients() {
+    public List<IngredientInfo> getAllIngredients() { // Kristiina
         //List<Ingredient> ingredients = ingredientRepository.findAll();
       //  ingredientMapper.toDtos(ingredients);
         return ingredientMapper.toAwesomeDtos(ingredientRepository.findAll());

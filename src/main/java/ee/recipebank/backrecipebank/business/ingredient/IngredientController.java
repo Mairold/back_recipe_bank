@@ -1,6 +1,5 @@
 package ee.recipebank.backrecipebank.business.ingredient;
 
-import ee.recipebank.backrecipebank.domain.ingridient.IngredientService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +11,6 @@ import java.util.List;
 public class IngredientController {
     @Resource
     private IngredientService ingredientService;
-
 
     @GetMapping("/measurements")
     @Operation(summary = "Selle teenuse abil tagastame fronti mõõteühikud")
