@@ -43,8 +43,6 @@ public class RecipeController {
         return recipeService.addRecipe(request);
     }
 
-
-
     @GetMapping("/filter-recipes")
     @Operation(summary = "Selle teenuse abil tagastame filtreeritud retseptid frondi add-to-menu vaatesse")
     public List<RecipeToListDto> getFilteredRecipes(@RequestParam Integer prepTimeId, @RequestParam Integer categoryId, @RequestParam String searchBoxValue) {

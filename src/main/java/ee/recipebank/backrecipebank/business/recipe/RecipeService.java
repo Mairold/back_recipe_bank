@@ -11,9 +11,11 @@ import ee.recipebank.backrecipebank.domain.menu.SectionInMenuRepository;
 import ee.recipebank.backrecipebank.domain.recipe.Recipe;
 import ee.recipebank.backrecipebank.domain.recipe.RecipeMapper;
 import ee.recipebank.backrecipebank.domain.recipe.RecipeRepository;
+import ee.recipebank.backrecipebank.domain.recipe.RecipeServiceInDomain;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTime;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeMapper;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeRepository;
+import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeService;
 import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategory;
 import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategoryMapper;
 import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategoryRepository;
@@ -30,19 +32,15 @@ public class RecipeService {
     @Resource
     private RecipeCategoryMapper recipeCategoryMapper;
     @Resource
-    private RecipeCategoryRepository recipeCategoryRepository;
-    @Resource
     private PreparationTimeMapper preparationTimeMapper;
     @Resource
-    private PreparationTimeRepository preparationTimeRepository;
-    @Resource
-    private SectionInMenuRepository sectionInMenuRepository;
+    private PreparationTimeService preparationTimeService;
     @Resource
     private RecipeMapper recipeMapper;
     @Resource
-    private RecipeRepository recipeRepository;
-    @Resource
     private RecipeCategoryService recipeCategoryService;
+    @Resource
+    private RecipeServiceInDomain recipeServiceInDomain;
 
 
     public List<RecipeCategoryDto> getAllCategories() {
@@ -51,15 +49,19 @@ public class RecipeService {
     } // Tagastab controllerisse kõik kategooriad DTO-na
 
     public List<PreparationTimeDto> getAllPrepTimes() {
-        return preparationTimeMapper.toDtos(preparationTimeRepository.findAll());
+        List<PreparationTime> allPrepTimes = preparationTimeService.getAllPrepTimes();
+        return preparationTimeMapper.toDtos(allPrepTimes);
     } // Tagastab controllerisse kõik preptime'id DTO-na
 
     public List<RecipeToListDto> getAllRecipes() {
-        return recipeMapper.toDtos(recipeRepository.findAll());
+        List<Recipe> allRecipes = recipeServiceInDomain.getAllRecipes();
+        return recipeMapper.toDtos(allRecipes);
     } // tagastab controllerisse kõik retseptid
 
     public List<RecipeToListDto> getFilteredRecipes(Integer prepId, Integer catId, String name) {
-        return recipeMapper.toDtos(recipeRepository.findFilteredRecipesBy(prepId, catId, name));
+        List<Recipe> filteredRecipes = recipeServiceInDomain.getFilteredRecipes(prepId, catId, name);
+        return recipeMapper.toDtos(filteredRecipes);
+//        return recipeMapper.toDtos(recipeRepository.findFilteredRecipesBy(prepId, catId, name));
     } // tagastab controllerisse filtreeritud retseptid
 
     public void saveRecipeInMenu(RecipeRequest request) {
