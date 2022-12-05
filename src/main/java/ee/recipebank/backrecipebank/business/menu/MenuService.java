@@ -7,6 +7,7 @@ import ee.recipebank.backrecipebank.domain.menu.Menu;
 import ee.recipebank.backrecipebank.domain.menu.SectionInMenu;
 import ee.recipebank.backrecipebank.domain.menu.SectionInMenuMapper;
 import ee.recipebank.backrecipebank.domain.menu.SectionInMenuServiceDomain;
+import ee.recipebank.backrecipebank.domain.recipe.Recipe;
 import ee.recipebank.backrecipebank.domain.recipe.RecipeServiceDomain;
 import ee.recipebank.backrecipebank.domain.recipe.recipeInSection.RecipeInSection;
 import ee.recipebank.backrecipebank.domain.recipe.recipeInSection.RecipeInSectionMapper;
@@ -22,8 +23,6 @@ import java.util.List;
 @Data
 @Service
 public class MenuService {
-
-
     @Resource
     private SectionInMenuServiceDomain menuPlanService;
     @Resource
@@ -35,6 +34,8 @@ public class MenuService {
     private RecipeInSectionServiceDomain recipeInSectionServiceDomain;
     @Resource
     private RecipeInSectionMapper recipeInSectionMapper;
+    @Resource
+    private SectionInMenuServiceDomain sectionInMenuServiceDomain;
 
     public Integer addNewMenu(Integer userId) {
         Menu menu = getMenu(menuPlanService.getValidUser(userId));
@@ -75,9 +76,17 @@ public class MenuService {
 
     }
 
-    public void saveRecipeInMenu(RecipeInsertRequest recipeRequest) {
-
+    public void saveRecipeInMenu(RecipeInsertRequest request) {
+        Recipe recipe = recipeServiceDomain.findThisRecipeId(request); // selle küsib andmebaasist
+        SectionInMenu section = sectionInMenuServiceDomain.findThisSectionId(request); // selle küsib andmebaasist
+        RecipeInSection recipeInSection = recipeInSectionMapper.toEntity(request); // mäpib 2 ülejäänud rida Entityks
+        recipeInSection.setRecipe(recipe); // lisab entityle andmebaasist küsitud retsepti Id
+        recipeInSection.setSectionInMenu(section); // lisab entityle andmebaasist küsitud section'i id
+        recipeInSection.setDateTimeAdded(Instant.now()); // lisab entityle Date&Time'i
+        recipeInSectionServiceDomain.saveRecipeInSection(recipeInSection); // salvestab retsepti andmebaasi tabelisse recipeInSection
+        // todo: teha ridadest 71-74 eraldi meetod siia samma publik meetodi sisse
     }
+
 
     public RecipeChangeDto getRecipeInMenuById(Integer recipeInSectionId) {
         RecipeInSection recipeInSection = recipeInSectionServiceDomain.findRecipeInSectionById(recipeInSectionId);
