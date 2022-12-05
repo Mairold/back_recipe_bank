@@ -16,7 +16,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RecipeInSectionDto implements Serializable {
-    private Integer id;
+    private Integer recipeInSectionId;
     private Integer sectionInMenuId;
     @Size(max = 255)
     @NotNull
