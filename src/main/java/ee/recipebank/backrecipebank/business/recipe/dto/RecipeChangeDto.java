@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.business.recipe;
+package ee.recipebank.backrecipebank.business.recipe.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,10 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RecipeInsertRequest {
-    private Integer sectionInMenuId;
-    private Integer recipeId;
+public class RecipeChangeDto extends RecipeInsertRequest {
+    private Integer recipeInSectionId;
+    private String recipeName;
     private Integer servingSize;
     private String commentToRecipe;
-
 }

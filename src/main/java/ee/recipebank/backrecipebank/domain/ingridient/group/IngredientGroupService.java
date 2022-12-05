@@ -1,8 +1,6 @@
 package ee.recipebank.backrecipebank.domain.ingridient.group;
 
-import ee.recipebank.backrecipebank.business.ingredient.IngredientRequest;
-import ee.recipebank.backrecipebank.domain.ingridient.Ingredient;
-import ee.recipebank.backrecipebank.domain.ingridient.IngredientRepository;
+import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

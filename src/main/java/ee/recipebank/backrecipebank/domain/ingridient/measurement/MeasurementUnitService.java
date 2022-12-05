@@ -1,6 +1,6 @@
 package ee.recipebank.backrecipebank.domain.ingridient.measurement;
 
-import ee.recipebank.backrecipebank.business.ingredient.MeasurementDto;
+import ee.recipebank.backrecipebank.business.ingredient.dto.MeasurementDto;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

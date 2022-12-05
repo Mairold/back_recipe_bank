@@ -1,7 +1,7 @@
 package ee.recipebank.backrecipebank.domain.menu;
 
 import ee.recipebank.backrecipebank.Validation.Validation;
-import ee.recipebank.backrecipebank.business.recipe.RecipeInsertRequest;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInsertRequest;
 import ee.recipebank.backrecipebank.domain.user.User;
 import ee.recipebank.backrecipebank.domain.user.UserRepository;
 import lombok.Data;

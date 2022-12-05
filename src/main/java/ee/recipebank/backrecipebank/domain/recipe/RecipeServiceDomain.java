@@ -1,14 +1,14 @@
 package ee.recipebank.backrecipebank.domain.recipe;
 
-import ee.recipebank.backrecipebank.business.recipe.RecipeInsertRequest;
-import ee.recipebank.backrecipebank.business.recipe.RecipeChangeDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInsertRequest;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeDto;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class RecipeServiceInDomain {
+public class RecipeServiceDomain {
 
     @Resource
     private RecipeRepository recipeRepository;

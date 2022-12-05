@@ -1,8 +1,8 @@
 package ee.recipebank.backrecipebank.business.menu;
 
-import ee.recipebank.backrecipebank.business.recipe.RecipeChangeDto;
-import ee.recipebank.backrecipebank.business.recipe.RecipeInSectionDto;
-import ee.recipebank.backrecipebank.business.recipe.RecipeInsertRequest;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInSectionDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInsertRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 

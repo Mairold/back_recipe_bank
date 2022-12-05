@@ -1,8 +1,11 @@
 package ee.recipebank.backrecipebank.business.recipe;
 
 
-import ee.recipebank.backrecipebank.business.recipe.recipeCategory.preparationTime.PreparationTimeDto;
-import ee.recipebank.backrecipebank.business.recipe.recipeCategory.RecipeCategoryDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeRequestDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeResponseDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeToListDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.recipeCategory.preparationTime.PreparationTimeDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.recipeCategory.RecipeCategoryDto;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,9 +1,13 @@
 package ee.recipebank.backrecipebank.business.ingredient;
 
 import ee.recipebank.backrecipebank.Validation.Validation;
+import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientGroupDto;
+import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientInfo;
+import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientRequest;
+import ee.recipebank.backrecipebank.business.ingredient.dto.MeasurementDto;
 import ee.recipebank.backrecipebank.domain.ingridient.Ingredient;
 import ee.recipebank.backrecipebank.domain.ingridient.IngredientMapper;
-import ee.recipebank.backrecipebank.domain.ingridient.IngredientServiceInDomain;
+import ee.recipebank.backrecipebank.domain.ingridient.IngredientServiceDomain;
 import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnit;
 import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnitService;
 import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroup;
@@ -31,7 +35,7 @@ public class IngredientService {
     private MeasurementUnitService measurementUnitService;
 
     @Resource
-    private IngredientServiceInDomain ingredientServiceInDomain;
+    private IngredientServiceDomain ingredientServiceDomain;
 
     @Resource
     private IngredientGroupService ingredientGroupService;
@@ -54,14 +58,14 @@ public class IngredientService {
     public void addIngredient(IngredientRequest request) {
         checkForDatabaseExistence(request);
         Ingredient ingredient = getIngredient(request);
-        ingredientServiceInDomain.saveIngredient(ingredient);
+        ingredientServiceDomain.saveIngredient(ingredient);
 
         List<AllowedMeasurementUnit> allowedMeasurementUnits = getAllowedMeasurementUnits(request, ingredient);
         allowedMeasurementUnitService.saveAllMeasurementUnits(allowedMeasurementUnits);
     }
 
     private void checkForDatabaseExistence(IngredientRequest ingredientRequest) {
-        Optional<Ingredient> optionalIngredient = ingredientServiceInDomain.getOptionalIngredient(ingredientRequest);
+        Optional<Ingredient> optionalIngredient = ingredientServiceDomain.getOptionalIngredient(ingredientRequest);
         Validation.validateIngredient(optionalIngredient);
     }
 
@@ -86,7 +90,7 @@ public class IngredientService {
     }
 
     public List<IngredientInfo> getAllIngredients() {
-        List<Ingredient> ingredients = ingredientServiceInDomain.getAllIngredients();
+        List<Ingredient> ingredients = ingredientServiceDomain.getAllIngredients();
         return ingredientMapper.toAwesomeDtos(ingredients);
     }
 }

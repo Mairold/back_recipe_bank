@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.business.recipe.recipeCategory.preparationTime;
+package ee.recipebank.backrecipebank.business.recipe.dto.recipeCategory.preparationTime;
 
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTime;
 import lombok.Data;

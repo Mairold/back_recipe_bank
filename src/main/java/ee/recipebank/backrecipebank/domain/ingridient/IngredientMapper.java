@@ -1,9 +1,9 @@
 package ee.recipebank.backrecipebank.domain.ingridient;
 
-import ee.recipebank.backrecipebank.business.ingredient.IngredientInfo;
+import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientInfo;
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnit;
-import ee.recipebank.backrecipebank.business.ingredient.IngredientRequest;
-import ee.recipebank.backrecipebank.business.ingredient.MeasurementDto;
+import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientRequest;
+import ee.recipebank.backrecipebank.business.ingredient.dto.MeasurementDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;

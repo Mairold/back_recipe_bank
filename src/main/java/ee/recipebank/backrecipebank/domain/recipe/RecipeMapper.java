@@ -1,7 +1,7 @@
 package ee.recipebank.backrecipebank.domain.recipe;
 
-import ee.recipebank.backrecipebank.business.recipe.RecipeRequestDto;
-import ee.recipebank.backrecipebank.business.recipe.RecipeToListDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeRequestDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeToListDto;
 import org.mapstruct.*;
 
 import java.util.List;

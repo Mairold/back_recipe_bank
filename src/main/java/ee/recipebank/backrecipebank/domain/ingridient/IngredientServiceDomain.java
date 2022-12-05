@@ -1,6 +1,6 @@
 package ee.recipebank.backrecipebank.domain.ingridient;
 
-import ee.recipebank.backrecipebank.business.ingredient.IngredientRequest;
+import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class IngredientServiceInDomain {
+public class IngredientServiceDomain {
     @Resource
     private IngredientRepository ingredientRepository;
 
