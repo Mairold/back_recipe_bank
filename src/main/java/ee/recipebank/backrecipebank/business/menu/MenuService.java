@@ -1,6 +1,6 @@
 package ee.recipebank.backrecipebank.business.menu;
 
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeRequest;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInSectionDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInsertRequest;
 import ee.recipebank.backrecipebank.domain.menu.Menu;
@@ -72,10 +72,6 @@ public class MenuService {
         return recipeInSectionMapper.toRecipeInSectionDtos(recipeInSectionServiceDomain.getAllRecipes(menuId));
     }
 
-    public void changeRecipeInMenu(RecipeChangeDto recipeUnderChangeDto) {
-
-    }
-
     public void saveRecipeInMenu(RecipeInsertRequest request) {
         Recipe recipe = recipeServiceDomain.findThisRecipeId(request); // selle küsib andmebaasist
         SectionInMenu section = sectionInMenuServiceDomain.findThisSectionId(request); // selle küsib andmebaasist
@@ -87,11 +83,15 @@ public class MenuService {
         // todo: teha ridadest 71-74 eraldi meetod siia samma publik meetodi sisse
     }
 
-
-    public RecipeChangeDto getRecipeInMenuById(Integer recipeInSectionId) {
+    public RecipeChangeRequest getRecipeInMenuById(Integer recipeInSectionId) {
         RecipeInSection recipeInSection = recipeInSectionServiceDomain.findRecipeInSectionById(recipeInSectionId);
-        RecipeChangeDto recipeChangeDto = recipeInSectionMapper.toDto(recipeInSection);
-        return recipeChangeDto;
+        RecipeChangeRequest recipeChangeRequest = recipeInSectionMapper.toDto(recipeInSection); // saadame kommi mäpperisse ja teeme sellest RecipeChangeRequest klassi objekti
+        return recipeChangeRequest; // tagastame mäpitud Dto kontrollerisse
+    }
+    public void changeRecipeInMenu(RecipeChangeRequest recipeChangeRequest) {
+        //Tegeleme siis, kui Rain sellest kõikidele räägib
+        RecipeInSection recipeInSection = recipeInSectionMapper.toChangeEntity(recipeChangeRequest);
+        recipeInSectionServiceDomain.updateRecipeInSection(recipeInSection);
     }
 
 }

@@ -2,7 +2,7 @@ package ee.recipebank.backrecipebank.domain.recipe.recipeInSection;
 
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInSectionDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInsertRequest;
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeRequest;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -23,13 +23,15 @@ public interface RecipeInSectionMapper {
     @Mapping(source = "commentToRecipe", target = "comment")
     RecipeInSection toEntity(RecipeInsertRequest request);
 
-    @Mapping(source = "recipeInSectionId", target = "id")
-    @Mapping(source = "servingSize", target = "plannedServingSize")
-    @Mapping(source = "commentToRecipe", target = "comment")
-    RecipeInSection toChangeEntity(RecipeChangeDto request);
     @Mapping(source = "id", target = "recipeInSectionId")
     @Mapping(source = "recipe.name", target = "recipeName")
     @Mapping(source = "comment", target = "commentToRecipe")
     @Mapping(source = "plannedServingSize", target = "servingSize")
-    RecipeChangeDto toDto(RecipeInSection recipeInSection);
+    RecipeChangeRequest toDto(RecipeInSection recipeInSection);
+
+    @Mapping(source = "recipeInSectionId", target = "id")
+    @Mapping(source = "recipeName", target = "recipe.name")
+    @Mapping(source = "servingSize", target = "plannedServingSize")
+    @Mapping(source = "commentToRecipe", target = "comment")
+    RecipeInSection toChangeEntity(RecipeChangeRequest request);
 }

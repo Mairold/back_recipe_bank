@@ -27,8 +27,13 @@ public class RecipeInSectionServiceDomain {
     }
 
     public RecipeInSection findRecipeInSectionById(Integer recipeInSectionId) {
-        Optional<RecipeInSection> optionalRecipeInSection = recipeInSectionRepository.findById(recipeInSectionId);
-        RecipeInSection recipeInSection = optionalRecipeInSection.get();
-        return recipeInSection;
+        Optional<RecipeInSection> optionalRecipeInSection = recipeInSectionRepository.findById(recipeInSectionId); //siin saame paberi sees kommi
+        RecipeInSection recipeInSection = optionalRecipeInSection.get(); // siin võtame kommi paberist lahti ja saame entity
+        return recipeInSection; // tagastame eelmisesse meetodisse paberist väljavõetud kommi
+    }
+
+    public void updateRecipeInSection(RecipeInSection recipeInSection) {
+        //Tegeleme siis, kui Rain sellest kõikidele räägib
+
     }
 }

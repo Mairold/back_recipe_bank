@@ -1,6 +1,6 @@
 package ee.recipebank.backrecipebank.business.menu;
 
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeRequest;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInSectionDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInsertRequest;
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,16 +34,16 @@ public class MenuController {
         return menuService.getAllSectionsInMenu(menuId);
     }
 
-
-    @GetMapping("/recipe-in-menu")
+    @GetMapping("/recipe-in-menu") // töötab
     @Operation(summary = "Toob fronti menüü sektsiooni salvestatud muudetava retsepti nime, sööjate arvu ja kommentaarid")
-    public RecipeChangeDto getRecipeInMenuById(@RequestParam Integer recipeInSectionId) {
-        return menuService.getRecipeInMenuById(recipeInSectionId);
+    public RecipeChangeRequest getRecipeInMenuById(@RequestParam Integer recipeInSectionId) {
+        return menuService.getRecipeInMenuById(recipeInSectionId); // tagastame Dto fronti
     }
     @PutMapping("/change-recipe-in-menu")
-    @Operation(summary = "Salvestab valitud retsepti juures tehtud muudatused")
-    public void changeRecipeInMenu(@RequestBody RecipeChangeDto recipeUnderChangeDto) {
-        menuService.changeRecipeInMenu(recipeUnderChangeDto);
+    @Operation(summary = "Salvestab sektsioonist valitud retsepti juures tehtud muudatused")
+    public void changeRecipeInMenu(@RequestBody RecipeChangeRequest recipeChangeRequest) {
+        //Tegeleme lõpuni siis, kui Rain sellest kõikidele räägib
+        menuService.changeRecipeInMenu(recipeChangeRequest);
     }
 
     @PostMapping("/add-recipe-to-section")

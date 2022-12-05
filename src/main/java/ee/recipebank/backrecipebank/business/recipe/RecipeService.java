@@ -1,11 +1,9 @@
 package ee.recipebank.backrecipebank.business.recipe;
 
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInsertRequest;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeRequest;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeToListDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.recipeCategory.preparationTime.PreparationTimeDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.recipeCategory.RecipeCategoryDto;
-import ee.recipebank.backrecipebank.domain.menu.SectionInMenu;
 import ee.recipebank.backrecipebank.domain.menu.SectionInMenuServiceDomain;
 import ee.recipebank.backrecipebank.domain.recipe.*;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTime;
@@ -14,13 +12,11 @@ import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTim
 import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategory;
 import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategoryMapper;
 import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategoryService;
-import ee.recipebank.backrecipebank.domain.recipe.recipeInSection.RecipeInSection;
 import ee.recipebank.backrecipebank.domain.recipe.recipeInSection.RecipeInSectionMapper;
 import ee.recipebank.backrecipebank.domain.recipe.recipeInSection.RecipeInSectionServiceDomain;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -67,7 +63,7 @@ public class RecipeService {
         return recipeMapper.toDtos(filteredRecipes);
     } // tagastab controllerisse filtreeritud retseptid
 
-    public void changeRecipeInMenu(RecipeChangeDto request) {
+    public void changeRecipeInMenu(RecipeChangeRequest request) {
         // muudatused on vaja teha recipe-in-section tabelis. Vaja on üle kirjutada senine retsept.
 
 

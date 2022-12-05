@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RecipeChangeDto extends RecipeInsertRequest {
+public class RecipeChangeRequest extends RecipeInsertRequest {
     private Integer recipeInSectionId;
     private String recipeName;
     private Integer servingSize;
