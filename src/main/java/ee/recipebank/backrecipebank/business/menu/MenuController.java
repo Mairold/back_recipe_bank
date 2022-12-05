@@ -51,7 +51,7 @@ public class MenuController {
     public void addRecipeToMenu(@RequestBody RecipeInsertRequest recipeRequest) {
         menuService.saveRecipeInMenu(recipeRequest);
     }
-    @GetMapping("/recipe/inSection")
+    @GetMapping("/section/recipe")
     @Operation(summary = "See teenus toob ära kõik retseptid, mis on seotud antud menüü plaani id-ga")
     public List<RecipeInSectionDto> getAllRecipeInSectionsInMenu(@RequestParam Integer menuId) {
         return menuService.getAllRecipeInSectionsInMenu(menuId);
