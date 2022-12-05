@@ -1,5 +1,8 @@
 package ee.recipebank.backrecipebank.business.menu;
 
+import ee.recipebank.backrecipebank.business.recipe.RecipeChangeDto;
+import ee.recipebank.backrecipebank.business.recipe.RecipeInSectionDto;
+import ee.recipebank.backrecipebank.business.recipe.RecipeInsertRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,4 +34,26 @@ public class MenuController {
         return menuService.getAllSectionsInMenu(menuId);
     }
 
+
+    @GetMapping("/recipe-in-menu")
+    @Operation(summary = "Toob fronti menüü sektsiooni salvestatud muudetava retsepti nime, sööjate arvu ja kommentaarid")
+    public RecipeChangeDto getRecipeInMenuById(@RequestParam Integer recipeInSectionId) {
+        return menuService.getRecipeInMenuById(recipeInSectionId);
+    }
+    @PutMapping("/change-recipe-in-menu")
+    @Operation(summary = "Salvestab valitud retsepti juures tehtud muudatused")
+    public void changeRecipeInMenu(@RequestBody RecipeChangeDto recipeUnderChangeDto) {
+        menuService.changeRecipeInMenu(recipeUnderChangeDto);
+    }
+
+    @PostMapping("/add-recipe-to-section")
+    @Operation(summary = "Valitud retsepti salvestamine menüü sektsiooni")
+    public void addRecipeToMenu(@RequestBody RecipeInsertRequest recipeRequest) {
+        menuService.saveRecipeInMenu(recipeRequest);
+    }
+    @GetMapping("/recipe/inSection")
+    @Operation(summary = "See teenus toob ära kõik retseptid, mis on seotud antud menüü plaani id-ga")
+    public List<RecipeInSectionDto> getAllRecipeInSectionsInMenu(@RequestParam Integer menuId) {
+        return menuService.getAllRecipeInSectionsInMenu(menuId);
+    }
 }

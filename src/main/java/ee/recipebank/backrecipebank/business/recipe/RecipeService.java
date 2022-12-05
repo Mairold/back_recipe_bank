@@ -11,9 +11,9 @@ import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTim
 import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategory;
 import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategoryMapper;
 import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategoryService;
-import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSection;
-import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionMapper;
-import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionServiceDomain;
+import ee.recipebank.backrecipebank.domain.recipe.recipeInSection.RecipeInSection;
+import ee.recipebank.backrecipebank.domain.recipe.recipeInSection.RecipeInSectionMapper;
+import ee.recipebank.backrecipebank.domain.recipe.recipeInSection.RecipeInSectionServiceDomain;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -62,18 +62,25 @@ public class RecipeService {
     public List<RecipeToListDto> getFilteredRecipes(Integer prepId, Integer catId, String name) {
         List<Recipe> filteredRecipes = recipeServiceInDomain.getFilteredRecipes(prepId, catId, name);
         return recipeMapper.toDtos(filteredRecipes);
-//        return recipeMapper.toDtos(recipeRepository.findFilteredRecipesBy(prepId, catId, name));
     } // tagastab controllerisse filtreeritud retseptid
 
-    public void saveRecipeInMenu(RecipeRequest request) {
+    public void saveRecipeInMenu(RecipeInsertRequest request) {
         Recipe recipe = recipeServiceInDomain.findThisRecipeId(request); // selle küsib andmebaasist
         SectionInMenu section = sectionInMenuService.findThisSectionId(request); // selle küsib andmebaasist
-        RecipeInSection recipeInSection = recipeInSectionMapper.toEntity(request); // mäpib 2 rida Entityks
-        recipeInSection.setRecipe(recipe); // lisab entityle andmebaasist küsitud retsepti
-        recipeInSection.setSectionInMenu(section); // lisab entityle andmebaasist küsitud section'i
+        RecipeInSection recipeInSection = recipeInSectionMapper.toEntity(request); // mäpib 2 ülejäänud rida Entityks
+        recipeInSection.setRecipe(recipe); // lisab entityle andmebaasist küsitud retsepti Id
+        recipeInSection.setSectionInMenu(section); // lisab entityle andmebaasist küsitud section'i id
         recipeInSection.setDateTimeAdded(Instant.now()); // lisab entityle Date&Time'i
         recipeInSectionServiceDomain.saveRecipeInSection(recipeInSection); // salvestab retsepti andmebaasi tabelisse recipeInSection
+        // todo: teha ridadest 71-74 eraldi meetod siia samma publik meetodi sisse
     }
-// todo: teha ridadest 71-74 eraldi meetod siia samma publik meetodi sisse
+    public void changeRecipeInMenu(RecipeChangeDto request) {
+        // muudatused on vaja teha recipe-in-section tabelis. Vaja on üle kirjutada senine retsept.
+
+
+
+//        RecipeInSection recipeInSection = recipeInSectionMapper.toChangeEntity(request);
+
+    }
 
 }

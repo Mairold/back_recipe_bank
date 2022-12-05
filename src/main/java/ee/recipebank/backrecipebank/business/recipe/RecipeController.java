@@ -15,9 +15,6 @@ public class RecipeController {
     @Resource
     private RecipeService recipeService;
 
-    @Resource
-    private RecipeInSectionService recipeInSectionService;
-
     @GetMapping("/category")
     @Operation(summary = "Selle teenuse abil tagastame retseptide kategooriate valikud frondi add-to-menu vaatesse")
     public List<RecipeCategoryDto> getAllCategories() {
@@ -44,24 +41,15 @@ public class RecipeController {
 //        return recipeService.addRecipe(request);
     }
 
-    @GetMapping("/filter-recipes")
+    @GetMapping("/filter-recipes") // urli nimes ei tohi olla tegusüna, vaja ära parandada
     @Operation(summary = "Selle teenuse abil tagastame filtreeritud retseptid frondi add-to-menu vaatesse")
     public List<RecipeToListDto> getFilteredRecipes(@RequestParam Integer prepTimeId, @RequestParam Integer categoryId, @RequestParam String searchBoxValue) {
-
         return recipeService.getFilteredRecipes(prepTimeId, categoryId, searchBoxValue);
     }
 
-    @PostMapping("/add-recipe-to-section")
-    @Operation(summary = "valitud retsepti salvestamine menüü sektsiooni")
-    public void addRecipeToMenu(@RequestBody RecipeRequest recipeRequest) {
-        recipeService.saveRecipeInMenu(recipeRequest);
-    }
 
-    @GetMapping("/recipe/inSection")
-    @Operation(summary = "See teenus toob ära kõik retseptid, mis on seotud antud menüü plaani id-ga")
-    public List<RecipeInSectionDto> getAllRecipeInSections(@RequestParam Integer menuId) {
-        return recipeInSectionService.getAllSectionsInMenu(menuId);
-    }
+
+
 }
 
 

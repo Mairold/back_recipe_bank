@@ -1,7 +1,7 @@
 package ee.recipebank.backrecipebank.domain.menu;
 
 import ee.recipebank.backrecipebank.Validation.Validation;
-import ee.recipebank.backrecipebank.business.recipe.RecipeRequest;
+import ee.recipebank.backrecipebank.business.recipe.RecipeInsertRequest;
 import ee.recipebank.backrecipebank.domain.user.User;
 import ee.recipebank.backrecipebank.domain.user.UserRepository;
 import lombok.Data;
@@ -47,7 +47,7 @@ public class SectionInMenuServiceDomain {
 
     }
 
-    public SectionInMenu findThisSectionId(RecipeRequest request) {
+    public SectionInMenu findThisSectionId(RecipeInsertRequest request) {
         return sectionInMenuRepository.findById(request.getSectionInMenuId()).get();
     }
 }

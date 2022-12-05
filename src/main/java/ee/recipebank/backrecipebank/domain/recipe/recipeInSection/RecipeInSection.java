@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.domain.recipe.recipeinsection;
+package ee.recipebank.backrecipebank.domain.recipe.recipeInSection;
 
 import ee.recipebank.backrecipebank.domain.menu.SectionInMenu;
 import ee.recipebank.backrecipebank.domain.recipe.Recipe;
