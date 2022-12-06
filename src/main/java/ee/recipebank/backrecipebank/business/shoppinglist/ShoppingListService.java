@@ -43,8 +43,14 @@ public class ShoppingListService {
         ShoppingList shoppingList = getShoppingList(menuServiceDomain.getValidMenuBy(menuId));
         Integer shoppingListId = shoppingListServiceDomain.saveNewShoppingList(shoppingList);
         List<ShoppingListIngredient> shoppingListIngredients = getShoppingListIngredients(menuId, shoppingList);
-        shoppingListServiceDomain.saveShoppingListIngredients(shoppingListIngredients);
+        List<ShoppingListIngredient> shoppingListIngredientsDuplicatesRemoved = removeDublicates(shoppingListIngredients);
+        shoppingListServiceDomain.saveShoppingListIngredients(shoppingListIngredientsDuplicatesRemoved);
+
         return shoppingListId;
+    }
+
+    private List<ShoppingListIngredient> removeDublicates(List<ShoppingListIngredient> shoppingListIngredients) {
+        return null;
     }
 
     private List<ShoppingListIngredient> getShoppingListIngredients(Integer menuId, ShoppingList shoppingList) {

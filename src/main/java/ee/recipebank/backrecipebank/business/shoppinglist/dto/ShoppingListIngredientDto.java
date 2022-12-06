@@ -17,20 +17,20 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ShoppingListIngredientDto implements Serializable {
-    private Integer id;
+    private Integer shoppingListIngredientId;
     @Size(max = 255)
     @NotNull
     private String customIngredientName;
     @NotNull
-    private Boolean isCustom = false;
+    private Boolean shoppingListIngredientIsCustom = false;
     @Size(max = 20)
     @NotNull
-    private String ingredientName;
+    private String shoppingListIngredientName;
     @Size(max = 255)
     @NotNull
     private String ingredientGroupName;
     @Size(max = 50)
     @NotNull
-    private String measurementUnitName;
+    private String measurementName;
     private BigDecimal quantity;
 }
