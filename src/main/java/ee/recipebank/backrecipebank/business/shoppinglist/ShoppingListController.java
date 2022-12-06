@@ -1,5 +1,6 @@
 package ee.recipebank.backrecipebank.business.shoppinglist;
 
+import ee.recipebank.backrecipebank.business.shoppinglist.dto.CustomShoppingListItem;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListIngredientDto;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,12 @@ public class ShoppingListController {
     @Operation(summary = "See teenus tagastab kõik ühe menüü komponendid shoppinglisti ID aluse.")
     public List<ShoppingListIngredientDto> getAllShoppingListIngredients(@RequestParam Integer shoppingListId) {
         return shoppingListService.getAllShoppingListIngredients(shoppingListId);
+    }
+
+    @PostMapping("/ingredient")
+    @Operation(summary = "See salvestab poenimekirja vaates lisatud tooted shoppinglisti nimekirja.")
+    public void saveCustomShoppingListItem(@RequestBody CustomShoppingListItem customItem) {
+        shoppingListService.saveCustomShoppingListItem(customItem);
     }
 
 }

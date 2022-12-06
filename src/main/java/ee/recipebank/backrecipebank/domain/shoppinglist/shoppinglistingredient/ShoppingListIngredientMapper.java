@@ -1,5 +1,6 @@
 package ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient;
 
+import ee.recipebank.backrecipebank.business.shoppinglist.dto.CustomShoppingListItem;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListIngredientDto;
 import org.mapstruct.*;
 
@@ -7,10 +8,11 @@ import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface ShoppingListIngredientMapper {
-    @Mapping(source = "shoppingListIngredientName", target = "ingredient.name")
-    @Mapping(source = "ingredientGroupName", target = "ingredientGroup.name")
-    @Mapping(source = "measurementName", target = "measurementUnit.name")
-    ShoppingListIngredient shoppingListIngredientDtoToShoppingListIngredient(ShoppingListIngredientDto shoppingListIngredientDto);
+
+    @Mapping(source = "shoppingListIngredientName", target = "name")
+    @Mapping(source = "shoppingListIngredientIsCustom", target = "isCustom")
+    @Mapping(source = "quantity", target = "quantity")
+    ShoppingListIngredient toEntity(CustomShoppingListItem customItem);
 
     @Mapping(source = "id", target = "shoppingListIngredientId")
     @Mapping(source = "name", target = "customIngredientName")
@@ -22,4 +24,6 @@ public interface ShoppingListIngredientMapper {
     ShoppingListIngredientDto toDto(ShoppingListIngredient shoppingListIngredient);
 
     List<ShoppingListIngredientDto> toDtos(List<ShoppingListIngredient> shoppingListIngredients);
+
+
 }

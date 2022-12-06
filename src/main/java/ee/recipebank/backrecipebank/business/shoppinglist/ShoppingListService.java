@@ -1,6 +1,9 @@
 package ee.recipebank.backrecipebank.business.shoppinglist;
 
+import ee.recipebank.backrecipebank.business.shoppinglist.dto.CustomShoppingListItem;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListIngredientDto;
+import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupService;
+import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnitService;
 import ee.recipebank.backrecipebank.domain.ingridient.recipeingredient.RecipeIngredient;
 import ee.recipebank.backrecipebank.domain.ingridient.recipeingredient.RecipeIngredientService;
 import ee.recipebank.backrecipebank.domain.menu.Menu;
@@ -15,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -26,6 +30,10 @@ public class ShoppingListService {
     @Resource
     private ShoppingListServiceDomain shoppingListServiceDomain;
     @Resource
+    private MeasurementUnitService measurementUnitService;
+    @Resource
+    private IngredientGroupService ingredientGroupService;
+    @Resource
     private RecipeInSectionServiceDomain recipeInSectionServiceDomain;
     @Resource
     private ShoppingListIngredientMapper shoppingListIngredientMapper;
@@ -36,8 +44,20 @@ public class ShoppingListService {
 
 
     public List<ShoppingListIngredientDto> getAllShoppingListIngredients(Integer shoppingListId) {
-        List<ShoppingListIngredientDto> shoppingListIngredientDtos = shoppingListIngredientMapper.toDtos(shoppingListServiceDomain.getShoppingIngredientListBy(shoppingListId));
-        return compoundQuantities(shoppingListIngredientDtos);
+        List<ShoppingListIngredient> shoppingIngredients = shoppingListServiceDomain.getShoppingIngredientListBy(shoppingListId, false);
+        List<ShoppingListIngredient> customShoppingIngredients = shoppingListServiceDomain.getShoppingIngredientListBy(shoppingListId, true);
+
+        List<ShoppingListIngredientDto> shoppingListIngredientDtos = shoppingListIngredientMapper.toDtos(shoppingIngredients);
+        List<ShoppingListIngredientDto> customShoppingListIngredientDtos = shoppingListIngredientMapper.toDtos(customShoppingIngredients);
+
+        List<ShoppingListIngredientDto> compoundQuantities = compoundQuantities(shoppingListIngredientDtos);
+
+        return joinTwoDtoLists(compoundQuantities,customShoppingListIngredientDtos);
+    }
+
+    private List<ShoppingListIngredientDto> joinTwoDtoLists(List<ShoppingListIngredientDto> compoundQuantities, List<ShoppingListIngredientDto> customShoppingListIngredientDtos) {
+        compoundQuantities.addAll(customShoppingListIngredientDtos);
+        return compoundQuantities;
     }
 
     public Integer generateNewShoppingList(Integer menuId) {
@@ -123,7 +143,9 @@ public class ShoppingListService {
     }
 
     private BigDecimal getAllShoppingListIngredientQuantity(BigDecimal quantity, Integer servingSize, Integer plannedServingSize) {
-        return quantity.divide(BigDecimal.valueOf(servingSize), 2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(plannedServingSize));
+        MathContext precision = new MathContext(6);
+        return quantity.divide(BigDecimal.valueOf(servingSize), 10, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(plannedServingSize)).round(precision);
+
     }
 
     private ShoppingList getShoppingList(Menu validMenuBy) {
@@ -131,6 +153,21 @@ public class ShoppingListService {
         shoppingList.setMenu(validMenuBy);
         shoppingList.setDateTimeAdded(Instant.now());
         return shoppingList;
+    }
+
+    public void saveCustomShoppingListItem(CustomShoppingListItem customItem) {
+        ShoppingListIngredient shoppingListIngredient = shoppingListIngredientMapper.toEntity(customItem);
+        shoppingListServiceDomain.saveCustomItem(getShoppingListItemProperties(customItem, shoppingListIngredient));
+
+    }
+
+    private ShoppingListIngredient getShoppingListItemProperties(CustomShoppingListItem customItem, ShoppingListIngredient shoppingListItem) {
+        shoppingListItem.setShoppingList(shoppingListServiceDomain.getShoppingListBy(customItem.getShoppingListId()));
+        shoppingListItem.setIngredientGroup(ingredientGroupService.getIngredientGroupBy(customItem.getIngredientGroupId()));
+        shoppingListItem.setMeasurementUnit(measurementUnitService.getMeasurementUnitBy(customItem.getMeasurementId()));
+        shoppingListItem.setStatus("A");
+        shoppingListItem.setDateTimeAdded(Instant.now());
+        return shoppingListItem;
     }
 }
 
