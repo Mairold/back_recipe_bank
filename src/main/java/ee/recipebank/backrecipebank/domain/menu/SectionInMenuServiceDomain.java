@@ -20,22 +20,7 @@ public class SectionInMenuServiceDomain {
     private MenuRepository menuRepository;
     @Resource
     SectionInMenuRepository sectionInMenuRepository;
-    public User getValidUser(Integer userId) {
-        Optional<User> optionalUser = userRepository.findById(userId);
-        Validation.validateUser(optionalUser);
-        return optionalUser.get();
-    }
 
-    public Integer saveMenu(Menu menu) {
-        menuRepository.save(menu);
-        return menu.getId();
-    }
-
-    public Menu getValidMenuBy(Integer menuId) {
-        Optional<Menu> menuById = menuRepository.findById(menuId);
-        Validation.validateMenu(menuById);
-        return menuById.get();
-    }
 
     public Integer saveSectionInMenu(SectionInMenu sectionInMenu) {
         sectionInMenuRepository.save(sectionInMenu);
@@ -44,7 +29,6 @@ public class SectionInMenuServiceDomain {
 
     public List<SectionInMenu> getAllSectionsInMenu(Integer menuId) {
         return sectionInMenuRepository.findBy(menuId);
-
     }
 
     public SectionInMenu findThisSectionId(RecipeInsertRequest request) {

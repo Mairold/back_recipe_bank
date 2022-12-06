@@ -1,6 +1,6 @@
-package ee.recipebank.backrecipebank.business.recipe.dto.recipeCategory;
+package ee.recipebank.backrecipebank.business.recipe.dto.recipecategory;
 
-import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategory;
+import ee.recipebank.backrecipebank.domain.recipe.recipecategory.RecipeCategory;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;

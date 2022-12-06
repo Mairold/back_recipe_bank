@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.domain.recipe.recipeInSection;
+package ee.recipebank.backrecipebank.domain.recipe.recipeinsection;
 
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInSectionDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInsertRequest;
@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface RecipeInSectionMapper {
 
-    @Mapping(source = "id", target = "id")
+    @Mapping(source = "id", target = "recipeInSectionId")
     @Mapping(source = "sectionInMenu.id", target = "sectionInMenuId")
     @Mapping(source = "recipe.name", target = "recipeName")
     @Mapping(source = "plannedServingSize", target = "plannedServingSize")

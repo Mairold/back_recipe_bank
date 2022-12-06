@@ -3,18 +3,18 @@ package ee.recipebank.backrecipebank.business.recipe;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeRequest;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeContentDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeToListDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.recipeCategory.preparationTime.PreparationTimeDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.recipeCategory.RecipeCategoryDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.recipecategory.preparationTime.PreparationTimeDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.recipecategory.RecipeCategoryDto;
 import ee.recipebank.backrecipebank.domain.menu.SectionInMenuServiceDomain;
 import ee.recipebank.backrecipebank.domain.recipe.*;
-import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTime;
-import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeMapper;
-import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeService;
-import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategory;
-import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategoryMapper;
-import ee.recipebank.backrecipebank.domain.recipe.recipeCategory.RecipeCategoryService;
-import ee.recipebank.backrecipebank.domain.recipe.recipeInSection.RecipeInSectionMapper;
-import ee.recipebank.backrecipebank.domain.recipe.recipeInSection.RecipeInSectionServiceDomain;
+import ee.recipebank.backrecipebank.domain.recipe.preparationtime.PreparationTime;
+import ee.recipebank.backrecipebank.domain.recipe.preparationtime.PreparationTimeMapper;
+import ee.recipebank.backrecipebank.domain.recipe.preparationtime.PreparationTimeService;
+import ee.recipebank.backrecipebank.domain.recipe.recipecategory.RecipeCategory;
+import ee.recipebank.backrecipebank.domain.recipe.recipecategory.RecipeCategoryMapper;
+import ee.recipebank.backrecipebank.domain.recipe.recipecategory.RecipeCategoryService;
+import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionMapper;
+import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionServiceDomain;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -43,6 +43,7 @@ public class RecipeService {
     private RecipeInSectionServiceDomain recipeInSectionServiceDomain;
 
 
+
     public List<RecipeCategoryDto> getAllCategories() {
         List<RecipeCategory> allCategories = recipeCategoryService.getAllCategories();
         return recipeCategoryMapper.toDtos(allCategories);
@@ -65,6 +66,7 @@ public class RecipeService {
 
     public void changeRecipeInMenu(RecipeChangeRequest request) {
         // muudatused on vaja teha recipe-in-section tabelis. Vaja on üle kirjutada senine retsept.
+
 
 
 //        RecipeInSection recipeInSection = recipeInSectionMapper.toChangeEntity(request);

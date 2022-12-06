@@ -1,6 +1,6 @@
 package ee.recipebank.backrecipebank.business.recipe.dto;
 
-import ee.recipebank.backrecipebank.domain.recipe.recipeInSection.RecipeInSection;
+import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSection;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +16,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RecipeInSectionDto implements Serializable {
-    private Integer id;
+    private Integer recipeInSectionId;
     private Integer sectionInMenuId;
     @Size(max = 255)
     @NotNull

@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.domain.recipe.preparationTime;
+package ee.recipebank.backrecipebank.domain.recipe.preparationtime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.domain.recipe.recipeInSection;
+package ee.recipebank.backrecipebank.domain.recipe.recipeinsection;
 
 import org.springframework.stereotype.Service;
 
@@ -35,5 +35,9 @@ public class RecipeInSectionServiceDomain {
     public void updateRecipeInSection(RecipeInSection recipeInSection) {
         //Tegeleme siis, kui Rain sellest kõikidele räägib
 
+    }
+
+    public List<RecipeInSection> findRecipeInSectionBy(Integer menuId) {
+        return recipeInSectionRepository.findRecipeInSectionBy(menuId);
     }
 }

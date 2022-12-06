@@ -22,5 +22,7 @@ public class IngredientGroupService {
     }
 
 
-
+    public IngredientGroup getIngredientGroupBy(Integer ingredientGroupId) {
+        return ingredientGroupRepository.findById(ingredientGroupId).get();
+    }
 }

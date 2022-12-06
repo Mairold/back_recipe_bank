@@ -1,6 +1,6 @@
-package ee.recipebank.backrecipebank.domain.recipe.preparationTime;
+package ee.recipebank.backrecipebank.domain.recipe.preparationtime;
 
-import ee.recipebank.backrecipebank.business.recipe.dto.recipeCategory.preparationTime.PreparationTimeDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.recipecategory.preparationTime.PreparationTimeDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
