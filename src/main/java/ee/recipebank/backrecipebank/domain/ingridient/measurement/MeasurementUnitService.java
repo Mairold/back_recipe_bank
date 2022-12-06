@@ -19,4 +19,8 @@ public class MeasurementUnitService {
     public MeasurementUnit getAllowedMeasurementUnit(MeasurementDto unit) { //unit asemel võib olla ükskõik mis nimi
         return measurementUnitRepository.findById(unit.getMeasurementId()).get();
     }
+
+    public MeasurementUnit getMeasurementUnitBy(Integer measurementUnitId) {
+        return measurementUnitRepository.findById(measurementUnitId).get();
+    }
 }

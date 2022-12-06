@@ -24,5 +24,9 @@ public class IngredientServiceDomain {
     public List<Ingredient> getAllIngredients() {
         return ingredientRepository.findAll();
     }
+
+    public Ingredient getIngredientBy(Integer ingredientId) {
+        return ingredientRepository.findById(ingredientId).get();
+    }
 }
 

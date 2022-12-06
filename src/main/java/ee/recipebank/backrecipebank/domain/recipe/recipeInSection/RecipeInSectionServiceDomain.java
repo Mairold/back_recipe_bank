@@ -31,4 +31,8 @@ public class RecipeInSectionServiceDomain {
         RecipeInSection recipeInSection = optionalRecipeInSection.get();
         return recipeInSection;
     }
+
+    public List<TempEntity> getAllMenuRecipeIngredientsBy(Integer menuId) {
+        return recipeInSectionRepository.findAllNeededInfoBy(menuId);
+    }
 }

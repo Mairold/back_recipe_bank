@@ -26,12 +26,16 @@ public class UserService {
     // meetodil on alati keha.
     //findByUsernameAndPassowrdi meetod, millega kaasa antakse username, password suglustest ja selle abil otsib/ tagastab useri.
 
-
     public void getUserName(User user) {
         boolean userExists = userRepository.existsBy(user.getUsername());
         Validation.validateUser(userExists); //see on username'i kontrollimise meetod
         userRepository.save(user); //see on useri andmebaasi lisamise meetod
+    }
 
+    public User getValidUser(Integer userId) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+        Validation.validateUser(optionalUser);
+        return optionalUser.get();
     }
 
 }

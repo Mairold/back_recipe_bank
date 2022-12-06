@@ -3,16 +3,14 @@ package ee.recipebank.backrecipebank.business.menu;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInSectionDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInsertRequest;
-import ee.recipebank.backrecipebank.domain.menu.Menu;
-import ee.recipebank.backrecipebank.domain.menu.SectionInMenu;
-import ee.recipebank.backrecipebank.domain.menu.SectionInMenuMapper;
-import ee.recipebank.backrecipebank.domain.menu.SectionInMenuServiceDomain;
+import ee.recipebank.backrecipebank.domain.menu.*;
 import ee.recipebank.backrecipebank.domain.recipe.Recipe;
 import ee.recipebank.backrecipebank.domain.recipe.RecipeServiceDomain;
 import ee.recipebank.backrecipebank.domain.recipe.recipeInSection.RecipeInSection;
 import ee.recipebank.backrecipebank.domain.recipe.recipeInSection.RecipeInSectionMapper;
 import ee.recipebank.backrecipebank.domain.recipe.recipeInSection.RecipeInSectionServiceDomain;
 import ee.recipebank.backrecipebank.domain.user.User;
+import ee.recipebank.backrecipebank.domain.user.UserService;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
@@ -24,22 +22,23 @@ import java.util.List;
 @Service
 public class MenuService {
     @Resource
-    private SectionInMenuServiceDomain menuPlanService;
+    private SectionInMenuServiceDomain sectionInMenuServiceDomain;
+    @Resource
+    private MenuServiceDomain menuServiceDomain;
     @Resource
     private SectionInMenuMapper sectionInMenuMapper;
-
+    @Resource
+    private UserService userService;
     @Resource
     private RecipeServiceDomain recipeServiceDomain;
     @Resource
     private RecipeInSectionServiceDomain recipeInSectionServiceDomain;
     @Resource
     private RecipeInSectionMapper recipeInSectionMapper;
-    @Resource
-    private SectionInMenuServiceDomain sectionInMenuServiceDomain;
 
     public Integer addNewMenu(Integer userId) {
-        Menu menu = getMenu(menuPlanService.getValidUser(userId));
-        return menuPlanService.saveMenu(menu);
+        Menu menu = getMenu(userService.getValidUser(userId));
+        return menuServiceDomain.saveMenu(menu);
     }
 
     private Menu getMenu(User validUser) {
@@ -52,20 +51,18 @@ public class MenuService {
 
     public Integer addNewSectionInMenu(Integer menuId, String sectionInMenuName) {
         SectionInMenu sectionInMenu = getSectionInMenu(menuId, sectionInMenuName);
-        return menuPlanService.saveSectionInMenu(sectionInMenu);
+        return sectionInMenuServiceDomain.saveSectionInMenu(sectionInMenu);
     }
 
     private SectionInMenu getSectionInMenu(Integer menuId, String sectionInMenuName) {
         SectionInMenu sectionInMenu = new SectionInMenu();
-        sectionInMenu.setMenu(menuPlanService.getValidMenuBy(menuId));
+        sectionInMenu.setMenu(menuServiceDomain.getValidMenuBy(menuId));
         sectionInMenu.setName(sectionInMenuName);
         return sectionInMenu;
     }
 
     public List<SectionInMenuDto> getAllSectionsInMenu(Integer menuId) {
-        return sectionInMenuMapper.toSectionInMenuDtos(menuPlanService.getAllSectionsInMenu(menuId));
-
-
+        return sectionInMenuMapper.toSectionInMenuDtos(sectionInMenuServiceDomain.getAllSectionsInMenu(menuId));
     }
 
     public List<RecipeInSectionDto> getAllRecipeInSectionsInMenu(Integer menuId) {
@@ -86,7 +83,6 @@ public class MenuService {
         recipeInSectionServiceDomain.saveRecipeInSection(recipeInSection); // salvestab retsepti andmebaasi tabelisse recipeInSection
         // todo: teha ridadest 71-74 eraldi meetod siia samma publik meetodi sisse
     }
-
 
     public RecipeChangeDto getRecipeInMenuById(Integer recipeInSectionId) {
         RecipeInSection recipeInSection = recipeInSectionServiceDomain.findRecipeInSectionById(recipeInSectionId);
