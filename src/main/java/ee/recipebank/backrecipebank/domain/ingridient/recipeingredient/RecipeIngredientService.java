@@ -10,7 +10,11 @@ public class RecipeIngredientService {
 
     @Resource
     private RecipeIngredientRepository recipeIngredientRepository;
+
     public List<RecipeIngredient> findRecipeIngredientsBy(Integer recipeId) {
-        return recipeIngredientRepository.findRecipeIngredientsBy(recipeId);
+        return recipeIngredientRepository.
+    }
+
+    public void findRecipeIngredientsByRecipeId(Integer recipeId) {
     }
 }

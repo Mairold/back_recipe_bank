@@ -10,14 +10,14 @@ import java.util.Optional;
 public class RecipeInSectionServiceDomain {
 
     @Resource
-    private RecipeInSectionRepository recipeInSectionRepository;
+    private ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionRepository recipeInSectionRepository;
 
-    public List<RecipeInSection> getAllRecipes(Integer menuId)
+    public List<ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSection> getAllRecipes(Integer menuId)
     {
         return recipeInSectionRepository.findBy(menuId);
     }
 
-    public void saveRecipeInSection(RecipeInSection recipeInSection) {
+    public void saveRecipeInSection(ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSection recipeInSection) {
         recipeInSectionRepository.save(recipeInSection);
     }
 

@@ -15,6 +15,7 @@ import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupMappe
 import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupService;
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnit;
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnitService;
+import ee.recipebank.backrecipebank.domain.ingridient.recipeingredient.RecipeIngredientService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -42,6 +43,9 @@ public class IngredientService {
 
     @Resource
     private AllowedMeasurementUnitService allowedMeasurementUnitService;
+
+    @Resource
+    private RecipeIngredientService recipeIngredientService;
 
     public List<MeasurementDto> getAllMeasurements() {
         List<MeasurementUnit> allMeasurementUnits = measurementUnitService.getAllMeasurements();
@@ -92,5 +96,22 @@ public class IngredientService {
     public List<IngredientInfo> getAllIngredients() {
         List<Ingredient> ingredients = ingredientServiceDomain.getAllIngredients();
         return ingredientMapper.toAwesomeDtos(ingredients);
+    }
+
+    public List<IngredientsInRecipe> getIngredientsInRecipe(Integer recipeId) {
+        recipeIngredientService.findAllRecipeIngredientsByRecipeId(recipeId);
+
+//        return;
+
+
+        //    ingredients: [
+//    {
+//        ingredientName: '',
+//                ingredientId: 0,
+//            quantity: 0,
+//            measurementUnit: ''
+//    }
+//      ],
+
     }
 }

@@ -28,5 +28,6 @@ public class IngredientServiceDomain {
     public Ingredient getIngredientBy(Integer ingredientId) {
         return ingredientRepository.findById(ingredientId).get();
     }
+
 }
 

@@ -80,7 +80,6 @@ public class MenuService {
         // todo: teha ridadest 71-74 eraldi meetod siia samma publik meetodi sisse
     }
 
-    public RecipeChangeDto getRecipeInMenuById(Integer recipeInSectionId) {
     public RecipeChangeRequest getRecipeInMenuById(Integer recipeInSectionId) {
         RecipeInSection recipeInSection = recipeInSectionServiceDomain.findRecipeInSectionById(recipeInSectionId);
         RecipeChangeRequest recipeChangeRequest = recipeInSectionMapper.toDto(recipeInSection); // saadame kommi mäpperisse ja teeme sellest RecipeChangeRequest klassi objekti
@@ -88,8 +87,8 @@ public class MenuService {
     }
     public void changeRecipeInMenu(RecipeChangeRequest recipeChangeRequest) {
         //Tegeleme siis, kui Rain sellest kõikidele räägib
-        RecipeInSection recipeInSection = recipeInSectionMapper.toChangeEntity(recipeChangeRequest);
-        recipeInSectionServiceDomain.updateRecipeInSection(recipeInSection);
+//        RecipeInSection recipeInSection = recipeInSectionMapper.toChangeEntity(recipeChangeRequest);
+//        recipeInSectionServiceDomain.updateRecipeInSection(recipeInSection);
     }
 
 }
