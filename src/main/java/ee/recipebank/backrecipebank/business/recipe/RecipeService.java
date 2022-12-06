@@ -1,13 +1,14 @@
 package ee.recipebank.backrecipebank.business.recipe;
 
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInsertRequest;
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeToListDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.recipeCategory.preparationTime.PreparationTimeDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.*;
 import ee.recipebank.backrecipebank.business.recipe.dto.recipeCategory.RecipeCategoryDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.recipeCategory.preparationTime.PreparationTimeDto;
+import ee.recipebank.backrecipebank.domain.ingridient.recipeIngredient.RecipeIngredient;
 import ee.recipebank.backrecipebank.domain.menu.SectionInMenu;
 import ee.recipebank.backrecipebank.domain.menu.SectionInMenuServiceDomain;
-import ee.recipebank.backrecipebank.domain.recipe.*;
+import ee.recipebank.backrecipebank.domain.recipe.Recipe;
+import ee.recipebank.backrecipebank.domain.recipe.RecipeMapper;
+import ee.recipebank.backrecipebank.domain.recipe.RecipeServiceDomain;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTime;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeMapper;
 import ee.recipebank.backrecipebank.domain.recipe.preparationTime.PreparationTimeService;
@@ -46,7 +47,6 @@ public class RecipeService {
     private RecipeInSectionServiceDomain recipeInSectionServiceDomain;
 
 
-
     public List<RecipeCategoryDto> getAllCategories() {
         List<RecipeCategory> allCategories = recipeCategoryService.getAllCategories();
         return recipeCategoryMapper.toDtos(allCategories);
@@ -77,13 +77,20 @@ public class RecipeService {
         recipeInSectionServiceDomain.saveRecipeInSection(recipeInSection); // salvestab retsepti andmebaasi tabelisse recipeInSection
         // todo: teha ridadest 71-74 eraldi meetod siia samma publik meetodi sisse
     }
+
     public void changeRecipeInMenu(RecipeChangeDto request) {
         // muudatused on vaja teha recipe-in-section tabelis. Vaja on üle kirjutada senine retsept.
-
-
-
 //        RecipeInSection recipeInSection = recipeInSectionMapper.toChangeEntity(request);
+
 
     }
 
+    //Hetkel add recipe andmebaasi, sest ta ei näita inspectis id'd.
+    public RecipeResponseDto addRecipe(RecipeRequestDto newRecipe) {
+        RecipeResponseDto suvalineNimi = recipeServiceDomain.addRecipe(newRecipe);
+
+        //  recipeServiceDomain.addRecipe(newRecipe); //recipeService domain siin tagastab RecipeResponseDto, teha
+        // sellest muutuja
+        return suvalineNimi;
+    }
 }

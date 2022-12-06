@@ -24,19 +24,21 @@ public interface RecipeMapper {
 
     List<RecipeToListDto> toDtos(List<Recipe> recipe);
 
-    @InheritInverseConfiguration(name = "toDto")
+//    @InheritInverseConfiguration(name = "toDto")
+//
+//    @InheritConfiguration(name = "toEntity")
+//    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+//    Recipe updateRecipeFromRecipeToListDto(RecipeToListDto recipeToListDto, @MappingTarget Recipe recipe);
 
-    @InheritConfiguration(name = "toEntity")
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Recipe updateRecipeFromRecipeToListDto(RecipeToListDto recipeToListDto, @MappingTarget Recipe recipe);
-
+    @Mapping(source = "recipeName", target = "name") //RecipeRequestDtost võtame recipename, Targeti Recipe'st
+    @Mapping(source = "recipeCategoryId", target = "recipeCategory.id")
+    @Mapping(source = "preparationTimeId", target = "preparationTime.id")
+    @Mapping(constant = "", target = "instructions")
+    @Mapping(source = "servingSize", target = "servingSize")
+    Recipe recipeRequestDtoToRecipe(RecipeRequestDto request);
 
     // Recipe
 //    private LocalDate dateFrom;
 //    private LocalDate dateTo;
 
-
-    @Mapping(source = "recipeName", target = "name")
-    @Mapping(constant = "", target = "instructions")
-    Recipe toEntity(RecipeRequestDto request);
 }

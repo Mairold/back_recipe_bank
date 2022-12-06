@@ -18,4 +18,16 @@ public class AllowedMeasurementUnitService {
     public void saveAllMeasurementUnits(List<AllowedMeasurementUnit> allowedMeasurementUnits) {
         allowedMeasurementUnitRepository.saveAll(allowedMeasurementUnits);
     }
+
+
+    public List<AllowedMeasurementUnit> findByIngredientId (Integer ingredientId) {
+        List<AllowedMeasurementUnit> allowedMeasurementsUnits = allowedMeasurementUnitRepository.findByIngredientId(ingredientId);
+        return allowedMeasurementsUnits;
+
+
+
+
+
+    }
+
 }

@@ -39,9 +39,8 @@ public class RecipeController {
 
     @PostMapping("/recipe")
     @Operation(summary = "Selle teenuse abil lisame uue retsepti")
-    public RecipeResponseDto addRecipe(@RequestBody RecipeRequestDto request) {
-        return null;
-//        return recipeService.addRecipe(request);
+    public RecipeResponseDto addRecipe(@RequestBody RecipeRequestDto newRecipe) {
+        return recipeService.addRecipe(newRecipe);
     }
 
     @GetMapping("/filter-recipes") // urli nimes ei tohi olla tegusüna, vaja ära parandada
@@ -49,8 +48,6 @@ public class RecipeController {
     public List<RecipeToListDto> getFilteredRecipes(@RequestParam Integer prepTimeId, @RequestParam Integer categoryId, @RequestParam String searchBoxValue) {
         return recipeService.getFilteredRecipes(prepTimeId, categoryId, searchBoxValue);
     }
-
-
 
 
 }

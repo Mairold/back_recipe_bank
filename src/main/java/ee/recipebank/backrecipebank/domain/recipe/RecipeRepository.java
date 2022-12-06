@@ -42,4 +42,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
             nativeQuery = true)
     List<Recipe> findFilteredRecipesBy(Integer prepId, Integer catId, String name);
 
+    // kui siia queryt lisada soovin Recipe kohta, siis seal ei ole. Kas oleks vaja teha uue nimega Recipe
+
+
 }
