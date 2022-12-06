@@ -36,22 +36,62 @@ public class ShoppingListService {
 
 
     public List<ShoppingListIngredientDto> getAllShoppingListIngredients(Integer shoppingListId) {
-        return shoppingListIngredientMapper.toDtos(shoppingListServiceDomain.getShoppingIngredientListBy(shoppingListId));
+        List<ShoppingListIngredientDto> shoppingListIngredientDtos = shoppingListIngredientMapper.toDtos(shoppingListServiceDomain.getShoppingIngredientListBy(shoppingListId));
+        return compoundQuantities(shoppingListIngredientDtos);
     }
 
     public Integer generateNewShoppingList(Integer menuId) {
         ShoppingList shoppingList = getShoppingList(menuServiceDomain.getValidMenuBy(menuId));
         Integer shoppingListId = shoppingListServiceDomain.saveNewShoppingList(shoppingList);
         List<ShoppingListIngredient> shoppingListIngredients = getShoppingListIngredients(menuId, shoppingList);
-        List<ShoppingListIngredient> shoppingListIngredientsDuplicatesRemoved = removeDublicates(shoppingListIngredients);
-        shoppingListServiceDomain.saveShoppingListIngredients(shoppingListIngredientsDuplicatesRemoved);
-
+        shoppingListServiceDomain.saveShoppingListIngredients(shoppingListIngredients);
         return shoppingListId;
     }
 
-    private List<ShoppingListIngredient> removeDublicates(List<ShoppingListIngredient> shoppingListIngredients) {
-        return null;
+    private List<ShoppingListIngredientDto> compoundQuantities(List<ShoppingListIngredientDto> listIngredients) {
+        List<ShoppingListIngredientDto> finalList = new ArrayList<>();
+        List<ShoppingListIngredientDto> duplicates = new ArrayList<>();
+        for (ShoppingListIngredientDto listIngredient : listIngredients) {
+            int counter = 0;
+            for (ShoppingListIngredientDto ingredient : listIngredients) {
+                if (listIngredient.getShoppingListIngredientName().equals(ingredient.getShoppingListIngredientName()) &&
+                        listIngredient.getMeasurementName().equals(ingredient.getMeasurementName())) {
+
+                    if (checkIfPresentInFinalList(finalList, listIngredient.getShoppingListIngredientName(), listIngredient.getMeasurementName()))
+                    {
+                        counter++;
+                        if (counter == 1) {
+                            duplicates.add(listIngredient);
+                        }
+                    } else {
+                        finalList.add(listIngredient);
+                    }
+                }
+            }
+        }
+        //        Remove double occurrences in two Lists
+        for (ShoppingListIngredientDto finalItem : finalList) {
+            duplicates.removeIf(duplicate -> finalItem.getShoppingListIngredientId().equals(duplicate.getShoppingListIngredientId()));
+        }
+
+        //        Add quantities to finalList
+        for (ShoppingListIngredientDto duplicate : duplicates) {
+            for (ShoppingListIngredientDto shoppingListIngredient : finalList) {
+                if (shoppingListIngredient.getShoppingListIngredientName().equals(duplicate.getShoppingListIngredientName()) &
+                        shoppingListIngredient.getMeasurementName().equals(duplicate.getMeasurementName())) {
+                    shoppingListIngredient.addToQuantity(duplicate.getQuantity());
+                }
+            }
+        }
+
+        return finalList;
     }
+
+
+    private boolean checkIfPresentInFinalList(List<ShoppingListIngredientDto> finalList,String value ,String name) {
+        return finalList.stream().anyMatch(ingredient -> value.equals(ingredient.getShoppingListIngredientName()) && name.equals(ingredient.getMeasurementName()));
+    }
+
 
     private List<ShoppingListIngredient> getShoppingListIngredients(Integer menuId, ShoppingList shoppingList) {
         List<ShoppingListIngredient> shoppingListIngredients = new ArrayList<>();
@@ -83,7 +123,7 @@ public class ShoppingListService {
     }
 
     private BigDecimal getAllShoppingListIngredientQuantity(BigDecimal quantity, Integer servingSize, Integer plannedServingSize) {
-        return quantity.divide(BigDecimal.valueOf(servingSize),2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(plannedServingSize));
+        return quantity.divide(BigDecimal.valueOf(servingSize), 2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(plannedServingSize));
     }
 
     private ShoppingList getShoppingList(Menu validMenuBy) {
@@ -93,3 +133,5 @@ public class ShoppingListService {
         return shoppingList;
     }
 }
+
+
