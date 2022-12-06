@@ -12,9 +12,6 @@ public class RecipeIngredientService {
     private RecipeIngredientRepository recipeIngredientRepository;
 
     public List<RecipeIngredient> findRecipeIngredientsBy(Integer recipeId) {
-        return recipeIngredientRepository.
-    }
-
-    public void findRecipeIngredientsByRecipeId(Integer recipeId) {
+        return recipeIngredientRepository.findRecipeIngredientsBy(recipeId);
     }
 }

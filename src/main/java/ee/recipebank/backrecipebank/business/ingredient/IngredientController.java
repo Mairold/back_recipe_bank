@@ -4,6 +4,7 @@ import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientGroupDto;
 import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientInfo;
 import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientRequest;
 import ee.recipebank.backrecipebank.business.ingredient.dto.MeasurementDto;
+import ee.recipebank.backrecipebank.domain.ingridient.recipeingredient.RecipeIngredientDto;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,8 +41,8 @@ public class IngredientController {
 
     @GetMapping("/in-recipe")
     @Operation(summary = "Tagastab fronti konkreetse retsepti koostisosad koos koguste ja ühikutega")
-    public List<IngredientsInRecipe> getRecipeIngredients(@RequestParam Integer recipeId){
-        return ingredientService.getIngredientsInRecipe(recipeId);
+    public List<RecipeIngredientDto> getRecipeIngredients(@RequestParam Integer recipeId){
+        return ingredientService.getRecipeIngredients(recipeId);
 
     }
 
