@@ -60,7 +60,7 @@ INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'tl
 INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'spl', 'supilusikas');
 INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'pudel', 'valmis toote pudel');
 INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'purk', 'valmis toote purk');
-INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'purk', 'valmis toote purk');
+INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'maitse järgi', 'vastavalt koka maitsele');
 INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'küünt', 'üks osa tervikust');
 
 INSERT INTO public.preparation_time (id, prep_time) VALUES (DEFAULT, '0-15 min');
@@ -106,6 +106,7 @@ INSERT INTO public.recipe (id, recipe_category_id, preparation_time_id, name, se
 'Sega kuivained omavahel. Lisa külmad või-tükid ning näpi sõrmedega purutaoliseks massiks. Sega omavahel vesi ja äädikas ning lisa tainale. Sõtku tainas ühtlaseks pehmeks tainapalliks. Tõsta tainas külmkappi täidise valmistamise ajaks.
 Koori ja viiluta õunad. ja lõika need neljaks. Eemalda südamik. Lõika õunesektorist õhukesed viilud. Sega täidise jaoks omavahel kuivained ning sega seejärel segu kokku õunaviiludega. Jaga külmkapis seisnud tainas kaheks, jättes ühe tainaosa pisut suuremaks. Rulli suurem tainapall jahusel pinnal õhukeseks. Otsi välja koogivorm (Ø21-22cm) ning määri see võiga kokku. Tõsta tainas koogivormi.
 Lõika üle koogivormi ulatuvad tainaääred ühtlaseks. Vajadusel vormi ja silu tainas ühtlaseks. Lisa tainapõhjale õunad ning selle peale tõsta või-tükid. Võta teine tainapall ning rulli see samuti õhukeseks. Tõsta pirukale katteks ning eemalda üle ääre ulatuvad tainaääred. Suru ülemise pirukaketta ääred alumisega omavahel korralikult kokku. Tee noaga tainale peale 2 sisselõiget ja määri pirukas pealt lahtiklopitud munaga. Küpseta pirukat pöördõhurežiimil 180 kraadi juures 30-40minutit.', DEFAULT, null);
+INSERT INTO public.recipe (id, recipe_category_id, preparation_time_id, name, serving_size, instructions, date_from, date_to) VALUES (DEFAULT, 16, 3, 'Kuldne kalasupp', 5, 'Pese ja viilusta porrulauk. Koori ja haki sibul. Sulata või potipõhjas ja hauta sibul selles läbipaistvaks. Lisa tomatipüree, purustatud küüslauk ja maitseained. Keeda pisut kaaneta potis. Lisa vein ja puljongikuubikud ning lase korraks keema tõusta. Sega juurde rõõsk koor, prantuses koor, vesi, safran ja riis. Keeda puljongit nõrgal tulel 15 minutit kaane all. Lõika kala ribadeks, lisa puljongile ja keeda nõrgal tulel 7 minutit. Lisa krevetid ja teod ning lase supil uuesti keema tõusta. Kaunista supp õhukeste porrurõngastega ja paku kuumalt. Soovi korral paku supi juurde kausiga prantsuse koort, mida on maitsestatud tilga sidrunimahlaga, purustatud küüslaugu ja terakese cayanne-i pipraga. Retsept on pärit Kodukiri 1/98.', DEFAULT, null);
 
 INSERT INTO public."user" (id, username, password) VALUES (DEFAULT, 'Mairold', '123');
 INSERT INTO public."user" (id, username, password) VALUES (DEFAULT, 'Kristiina', '123');
@@ -144,7 +145,19 @@ INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DE
 INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 1, 'Õun', 'A');
 INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 15, 'Kaneel', 'A');
 INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 15, 'Kardemon', 'A');
-INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 17, 'Oliiviõli', 'A');
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 3, 'Tursafilee', 'A');
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 3, 'Lõhefilee', 'A');
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 1, 'Porrulauk', 'A');
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 13, 'Tomatipüree', 'A');
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 15, 'Tüümian (kuivatatud)', 'A');
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 22, 'Kuiv valge vein', 'A');
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 16, 'Kalapuljongikuubik', 'A');
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 4, 'Rõõsk koor 10%', 'A');
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 15, 'Safran', 'A');
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 11, 'Riis', 'A');
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 3, 'Kooritud krevetid', 'A');
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 13, 'Teod soolvees', 'A');
+INSERT INTO public.ingredient (id, ingredient_group_id, name, status) VALUES (DEFAULT, 4, 'Prantsuse koor', 'A');
 
 INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 33, 5);
 INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 33, 7);
@@ -194,6 +207,65 @@ INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit
 INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 24, 6);
 INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 24, 7);
 INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 24, 8);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 34, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 34, 6);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 35, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 35, 6);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 36, 1);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 36, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 37, 3);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 37, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 37, 8);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 38, 7);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 38, 11);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 39, 3);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 39, 9);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 40, 1);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 41, 3);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 41, 4);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 42, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 42, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 42, 7);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 43, 3);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 43, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 44, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 44, 10);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 45, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 45, 10);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 13, 1);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 13, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 14, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 14, 12);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 14, 1);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 18, 11);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 18, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 18, 7);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 18, 8);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 21, 7);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 11, 1);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 11, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 11, 6);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 12, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 12, 6);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 17, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 19, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 19, 7);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 19, 11);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 15, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 15, 7);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 15, 11);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 20, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 20, 7);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 20, 8);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 20, 11);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 22, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 22, 6);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 23, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 21, 5);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 21, 7);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 21, 8);
+INSERT INTO public.allowed_measurement_unit (id, ingredient_id, measurement_unit_id) VALUES (DEFAULT, 21, 11);
+
 
 INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 3, 24, 5, 500.00, DEFAULT, null);
 INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 3, 25, 5, 20.00, DEFAULT, null);
@@ -216,6 +288,38 @@ INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit
 INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 9, 33, 7, 1.00, DEFAULT, null);
 INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 9, 29, 8, 2.00, DEFAULT, null);
 INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 9, 4, 1, 1.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 10, 34, 5, 400.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 10, 35, 5, 300.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 10, 36, 1, 0.50, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 10, 13, 1, 0.50, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 10, 29, 8, 1.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 10, 37, 8, 1.50, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 10, 14, 12, 1.50, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 10, 18, 7, 1.50, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 10, 38, 7, 1.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 10, 21, 7, 1.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 10, 39, 3, 2.50, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 10, 40, 1, 1.50, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 10, 41, 3, 2.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 10, 42, 5, 1.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 10, 28, 3, 5.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 10, 43, 3, 1.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 10, 44, 5, 150.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 10, 45, 10, 1.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 10, 46, 3, 1.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 7, 11, 1, 10.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 7, 12, 6, 1.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 7, 13, 1, 2.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 7, 14, 12, 4.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 7, 15, 11, 1.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 7, 16, 3, 1.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 7, 17, 5, 800.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 7, 18, 11, 1.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 7, 19, 11, 1.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 7, 20, 8, 2.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 7, 21, 7, 2.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 7, 22, 5, 200.00, DEFAULT, null);
+INSERT INTO public.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity, date_from, date_to) VALUES (DEFAULT, 7, 23, 5, 200.00, DEFAULT, null);
 
 
 
