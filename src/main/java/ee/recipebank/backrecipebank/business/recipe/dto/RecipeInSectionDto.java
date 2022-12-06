@@ -1,6 +1,6 @@
 package ee.recipebank.backrecipebank.business.recipe.dto;
 
-import ee.recipebank.backrecipebank.domain.recipe.recipeInSection.RecipeInSection;
+import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSection;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

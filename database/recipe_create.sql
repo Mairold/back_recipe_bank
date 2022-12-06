@@ -122,7 +122,7 @@ CREATE TABLE shopping_list (
 -- Table: shopping_list_ingredient
 CREATE TABLE shopping_list_ingredient (
                                           id serial  NOT NULL,
-                                          name varchar(255)  NOT NULL,
+                                          name varchar(255)  NULL,
                                           is_custom boolean  NOT NULL DEFAULT false,
                                           ingredient_id int  NULL,
                                           ingredient_group_id int  NULL,

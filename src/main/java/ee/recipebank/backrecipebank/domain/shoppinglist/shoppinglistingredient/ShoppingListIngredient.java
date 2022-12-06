@@ -24,7 +24,6 @@ public class ShoppingListIngredient {
     private Integer id;
 
     @Size(max = 255)
-    @NotNull
     @Column(name = "name", nullable = false)
     private String name;
 

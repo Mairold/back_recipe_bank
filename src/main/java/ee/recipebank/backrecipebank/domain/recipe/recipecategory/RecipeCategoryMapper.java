@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.domain.recipe.recipeCategory;
+package ee.recipebank.backrecipebank.domain.recipe.recipecategory;
 
 import ee.recipebank.backrecipebank.business.recipe.dto.recipeCategory.RecipeCategoryDto;
 import org.mapstruct.Mapper;

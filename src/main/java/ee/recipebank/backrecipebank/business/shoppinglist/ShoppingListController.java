@@ -17,7 +17,7 @@ public class ShoppingListController {
     @PostMapping("")
     @Operation(summary = "See teenus loob uue shoppinglisti ja tagastab ID")
     public Integer saveNewShoppingList(@RequestParam Integer menuId) {
-        return shoppingListService.saveNewShoppingList(menuId);
+        return shoppingListService.generateNewShoppingList(menuId);
     }
 
     @GetMapping("/ingredients")

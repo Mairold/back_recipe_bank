@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.domain.recipe.preparationTime;
+package ee.recipebank.backrecipebank.domain.recipe.preparationtime;
 
 import ee.recipebank.backrecipebank.business.recipe.dto.recipeCategory.preparationTime.PreparationTimeDto;
 import org.mapstruct.Mapper;

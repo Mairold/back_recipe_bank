@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.domain.recipe.recipeInSection;
+package ee.recipebank.backrecipebank.domain.recipe.recipeinsection;
 
 import org.springframework.stereotype.Service;
 
@@ -32,7 +32,7 @@ public class RecipeInSectionServiceDomain {
         return recipeInSection;
     }
 
-    public List<TempEntity> getAllMenuRecipeIngredientsBy(Integer menuId) {
-        return recipeInSectionRepository.findAllNeededInfoBy(menuId);
+    public List<RecipeInSection> findRecipeInSectionBy(Integer menuId) {
+        return recipeInSectionRepository.findRecipeInSectionBy(menuId);
     }
 }

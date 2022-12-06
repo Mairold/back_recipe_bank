@@ -28,4 +28,5 @@ public class ShoppingListServiceDomain {
     public void saveShoppingListIngredients(List<ShoppingListIngredient> shoppingListIngredients) {
         shoppingListIngredientRepository.saveAll(shoppingListIngredients);
     }
+
 }
