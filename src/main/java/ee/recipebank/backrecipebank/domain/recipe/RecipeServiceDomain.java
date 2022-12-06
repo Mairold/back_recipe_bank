@@ -1,7 +1,6 @@
 package ee.recipebank.backrecipebank.domain.recipe;
 
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeRequest;
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInsertRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,13 +19,8 @@ public class RecipeServiceDomain {
         return recipeRepository.findFilteredRecipesBy(prepId, catId, name);
     }
 
-    public Recipe findThisRecipeId(RecipeInsertRequest request) {
-        return recipeRepository.findById(request.getRecipeId()).get();
+    public Recipe findRecipeById(Integer recipeId) {
+        return recipeRepository.findById(recipeId).get();
     }
-
-    public Recipe findRecipeId(RecipeChangeRequest request) {
-        return recipeRepository.findById(request.getRecipeId()).get();
-    }
-
 
 }

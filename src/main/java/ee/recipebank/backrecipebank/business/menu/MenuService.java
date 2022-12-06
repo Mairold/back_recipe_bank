@@ -73,7 +73,7 @@ public class MenuService {
     }
 
     public void saveRecipeInMenu(RecipeInsertRequest request) {
-        Recipe recipe = recipeServiceDomain.findThisRecipeId(request); // selle küsib andmebaasist
+        Recipe recipe = recipeServiceDomain.findRecipeById(request.getRecipeId()); // selle küsib andmebaasist
         SectionInMenu section = sectionInMenuServiceDomain.findThisSectionId(request); // selle küsib andmebaasist
         RecipeInSection recipeInSection = recipeInSectionMapper.toEntity(request); // mäpib 2 ülejäänud rida Entityks
         recipeInSection.setRecipe(recipe); // lisab entityle andmebaasist küsitud retsepti Id

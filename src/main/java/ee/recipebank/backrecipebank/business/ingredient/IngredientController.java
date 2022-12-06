@@ -38,5 +38,8 @@ public class IngredientController {
     @Operation(summary = "See teenus tagastab kõik toiduained")
     public List<IngredientInfo> getAllIngredients() {return ingredientService.getAllIngredients(); }
 
+//    @GetMapping("/ingredient/inRecipe")
+//    @Operation(summary = "Tagastab fronto konkreetse retsepti koostisosad koos koguste ja ühikutega")
+//    public List<In
     }
 

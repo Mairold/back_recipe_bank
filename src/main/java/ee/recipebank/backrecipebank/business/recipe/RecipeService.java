@@ -1,6 +1,7 @@
 package ee.recipebank.backrecipebank.business.recipe;
 
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeRequest;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeContentDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeToListDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.recipeCategory.preparationTime.PreparationTimeDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.recipeCategory.RecipeCategoryDto;
@@ -42,7 +43,6 @@ public class RecipeService {
     private RecipeInSectionServiceDomain recipeInSectionServiceDomain;
 
 
-
     public List<RecipeCategoryDto> getAllCategories() {
         List<RecipeCategory> allCategories = recipeCategoryService.getAllCategories();
         return recipeCategoryMapper.toDtos(allCategories);
@@ -67,9 +67,12 @@ public class RecipeService {
         // muudatused on vaja teha recipe-in-section tabelis. Vaja on üle kirjutada senine retsept.
 
 
-
 //        RecipeInSection recipeInSection = recipeInSectionMapper.toChangeEntity(request);
 
     }
 
+    public RecipeContentDto getRecipeContent(Integer recipeId) {
+        Recipe recipe = recipeServiceDomain.findRecipeById(recipeId);
+        return recipeMapper.toRecipeDto(recipe);
+    } // tagastab controllerisse väljaotsitud retsepti
 }

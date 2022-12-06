@@ -1,6 +1,7 @@
 package ee.recipebank.backrecipebank.business.recipe;
 
 
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeContentDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeRequestDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeResponseDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeToListDto;
@@ -44,11 +45,19 @@ public class RecipeController {
 //        return recipeService.addRecipe(request);
     }
 
-    @GetMapping("/filter-recipes") // urli nimes ei tohi olla tegusüna, vaja ära parandada
+    @GetMapping("/filter-recipes") // urli nimes ei tohi olla tegusõna, vaja ära parandada
     @Operation(summary = "Selle teenuse abil tagastame filtreeritud retseptid frondi add-to-menu vaatesse")
     public List<RecipeToListDto> getFilteredRecipes(@RequestParam Integer prepTimeId, @RequestParam Integer categoryId, @RequestParam String searchBoxValue) {
         return recipeService.getFilteredRecipes(prepTimeId, categoryId, searchBoxValue);
     }
+
+    @GetMapping("/recipe/content")
+    @Operation(summary = "Toob fronti retsepti sisu")
+    public RecipeContentDto getRecipeContent(@RequestParam Integer recipeId){
+      return recipeService.getRecipeContent(recipeId);
+    }
+
+
 
 
 
