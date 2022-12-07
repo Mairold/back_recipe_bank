@@ -8,4 +8,9 @@ public interface ShoppingListMapper {
 
     @Mapping(source = "shoppingListComment", target = "comment")
     void updateEntity(ShoppingListDto shoppingListDto, @MappingTarget ShoppingList shoppingList);
+
+    @Mapping(source = "id", target = "shoppingListId")
+    @Mapping(source = "dateTimeAdded", target = "shoppingListTimeAdded")
+    @Mapping(source = "comment", target = "shoppingListComment")
+    ShoppingListDto toDto(ShoppingList shoppingList);
 }
