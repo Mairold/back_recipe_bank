@@ -1,11 +1,8 @@
-package ee.recipebank.backrecipebank.domain.ingridient.recipeingredient;
+package ee.recipebank.backrecipebank.domain.ingridient.recipeIngredient;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -13,15 +10,11 @@ import java.math.BigDecimal;
  * A DTO for the {@link RecipeIngredient} entity
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class RecipeIngredientDto implements Serializable {
-    @Size(max = 20)
+    private final Integer recipeId;
+    private final Integer ingredientId;
+    private final Integer measurementId;
     @NotNull
-    private String ingredientName;
-    @Size(max = 50)
-    @NotNull
-    private String measureUnitName;
-    @NotNull
-    private BigDecimal quantity;
+    private final BigDecimal ingredientQuantity; // Kas peaks jätma alles ainult selle Quantity rea?
 }
+
