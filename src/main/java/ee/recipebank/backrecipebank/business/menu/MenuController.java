@@ -57,4 +57,15 @@ public class MenuController {
     public List<RecipeInSectionDto> getAllRecipeInSectionsInMenu(@RequestParam Integer menuId) {
         return menuService.getAllRecipeInSectionsInMenu(menuId);
     }
+
+    @DeleteMapping("/section/recipe")
+    @Operation(summary = "See teenus kustutab ära retsepti menüü väljas.")
+    public void deleteRecipeInSection(@RequestParam Integer recipeInSectionId) {
+        menuService.deleteRecipeInSection(recipeInSectionId);
+    }
+    @DeleteMapping("/section")
+    @Operation(summary = "See teenus kustutab ära menüü välja ja kõik retseptid menüü väljas.")
+    public void deleteSection(@RequestParam Integer menuSectionId) {
+        menuService.deleteSection(menuSectionId);
+    }
 }

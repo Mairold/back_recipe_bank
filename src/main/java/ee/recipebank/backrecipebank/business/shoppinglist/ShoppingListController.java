@@ -33,4 +33,16 @@ public class ShoppingListController {
         shoppingListService.saveCustomShoppingListItem(customItem);
     }
 
+    @DeleteMapping("/ingredient")
+    @Operation(summary = "See teenus kustutab ingredienti")
+    public void deleteShoppingListItem(@RequestParam Integer ingredientId) {
+//        shoppingListService.deleteShoppingListItem(ingredientId);
+    }
+    @PutMapping("")
+    @Operation(summary = "See lisab kommentaari shoppiListi alla")
+    public void updateShoppingList(@RequestParam Integer shoppingListId, @RequestParam String shoppingListComment) {
+         shoppingListService.updateShoppingList(shoppingListId,shoppingListComment);
+    }
+
+
 }

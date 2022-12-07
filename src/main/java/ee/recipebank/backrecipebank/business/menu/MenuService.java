@@ -95,4 +95,12 @@ public class MenuService {
 
     }
 
+    public void deleteRecipeInSection(Integer recipeInSectionId) {
+        recipeInSectionServiceDomain.deleteRecipeInSection(recipeInSectionId);
+    }
+
+    public void deleteSection(Integer menuSectionId) {
+        recipeInSectionServiceDomain.deleteRecipesInSectionBy(menuSectionId);
+        sectionInMenuServiceDomain.deleteSectionBy(menuSectionId);
+    }
 }

@@ -10,7 +10,7 @@ import java.util.Optional;
 public class RecipeInSectionServiceDomain {
 
     @Resource
-    private ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionRepository recipeInSectionRepository;
+    private RecipeInSectionRepository recipeInSectionRepository;
 
     public List<ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSection> getAllRecipes(Integer menuId)
     {
@@ -38,5 +38,13 @@ public class RecipeInSectionServiceDomain {
 
     public List<RecipeInSection> findRecipeInSectionBy(Integer menuId) {
         return recipeInSectionRepository.findRecipeInSectionBy(menuId);
+    }
+
+    public void deleteRecipeInSection(Integer recipeInSectionId) {
+        recipeInSectionRepository.deleteById(recipeInSectionId);
+    }
+
+    public void deleteRecipesInSectionBy(Integer menuSectionId) {
+        recipeInSectionRepository.deleteBy(menuSectionId);
     }
 }

@@ -1,5 +1,6 @@
 package ee.recipebank.backrecipebank.business.shoppinglist;
 
+import ee.recipebank.backrecipebank.business.ingredient.dto.ShoppingListDto;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.CustomShoppingListItem;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListIngredientDto;
 import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupService;
@@ -12,6 +13,7 @@ import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectio
 import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionServiceDomain;
 import ee.recipebank.backrecipebank.domain.shoppinglist.ShoppingListServiceDomain;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingList;
+import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingListMapper;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredient;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredientMapper;
 import org.springframework.stereotype.Service;
@@ -37,6 +39,8 @@ public class ShoppingListService {
     private RecipeInSectionServiceDomain recipeInSectionServiceDomain;
     @Resource
     private ShoppingListIngredientMapper shoppingListIngredientMapper;
+    @Resource
+    private ShoppingListMapper shoppingListMapper;
     @Resource
     private MenuServiceDomain menuServiceDomain;
     @Resource
@@ -168,6 +172,14 @@ public class ShoppingListService {
         shoppingListItem.setStatus("A");
         shoppingListItem.setDateTimeAdded(Instant.now());
         return shoppingListItem;
+    }
+
+    public void updateShoppingList(Integer shoppingListId, String shoppingListComment) {
+        ShoppingListDto shoppingListDto = new ShoppingListDto();
+        shoppingListDto.setShoppingListComment(shoppingListComment);
+        ShoppingList shoppingList = shoppingListServiceDomain.getShoppingListBy(shoppingListId);
+        shoppingListMapper.updateEntity(shoppingListDto,shoppingList);
+        shoppingListServiceDomain.updateShoppingList(shoppingList);
     }
 }
 
