@@ -10,7 +10,13 @@ public interface ShoppingListIngredientRepository extends JpaRepository<Shopping
     @Query("select s from ShoppingListIngredient s where s.shoppingList.id = ?1 order by s.ingredientGroup.name")
     List<ShoppingListIngredient> findAllBy(Integer id);
 
-    @Query("select distinct s from ShoppingListIngredient s where s.shoppingList.id = ?1 order by s.ingredientGroup.name")
-    List<ShoppingListIngredient> findAllDistinctBy(Integer id);
+    @Query("""
+            select s from ShoppingListIngredient s
+            where s.shoppingList.id = ?1 and s.isCustom = ?2
+            order by s.ingredientGroup.name""")
+    List<ShoppingListIngredient> findShoppingListIngredientBy(Integer id, Boolean isCustom);
+
+
+
 
 }

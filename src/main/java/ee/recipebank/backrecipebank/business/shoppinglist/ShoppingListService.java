@@ -1,6 +1,9 @@
 package ee.recipebank.backrecipebank.business.shoppinglist;
 
+import ee.recipebank.backrecipebank.business.shoppinglist.dto.CustomShoppingListItem;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListIngredientDto;
+import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupService;
+import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnitService;
 import ee.recipebank.backrecipebank.domain.ingridient.recipeingredient.RecipeIngredient;
 import ee.recipebank.backrecipebank.domain.ingridient.recipeingredient.RecipeIngredientService;
 import ee.recipebank.backrecipebank.domain.menu.Menu;
@@ -15,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -26,6 +30,10 @@ public class ShoppingListService {
     @Resource
     private ShoppingListServiceDomain shoppingListServiceDomain;
     @Resource
+    private MeasurementUnitService measurementUnitService;
+    @Resource
+    private IngredientGroupService ingredientGroupService;
+    @Resource
     private RecipeInSectionServiceDomain recipeInSectionServiceDomain;
     @Resource
     private ShoppingListIngredientMapper shoppingListIngredientMapper;
@@ -36,22 +44,74 @@ public class ShoppingListService {
 
 
     public List<ShoppingListIngredientDto> getAllShoppingListIngredients(Integer shoppingListId) {
-        return shoppingListIngredientMapper.toDtos(shoppingListServiceDomain.getShoppingIngredientListBy(shoppingListId));
+        List<ShoppingListIngredient> shoppingIngredients = shoppingListServiceDomain.getShoppingIngredientListBy(shoppingListId, false);
+        List<ShoppingListIngredient> customShoppingIngredients = shoppingListServiceDomain.getShoppingIngredientListBy(shoppingListId, true);
+
+        List<ShoppingListIngredientDto> shoppingListIngredientDtos = shoppingListIngredientMapper.toDtos(shoppingIngredients);
+        List<ShoppingListIngredientDto> customShoppingListIngredientDtos = shoppingListIngredientMapper.toDtos(customShoppingIngredients);
+
+        List<ShoppingListIngredientDto> compoundQuantities = compoundQuantities(shoppingListIngredientDtos);
+
+        return joinTwoDtoLists(compoundQuantities,customShoppingListIngredientDtos);
+    }
+
+    private List<ShoppingListIngredientDto> joinTwoDtoLists(List<ShoppingListIngredientDto> compoundQuantities, List<ShoppingListIngredientDto> customShoppingListIngredientDtos) {
+        compoundQuantities.addAll(customShoppingListIngredientDtos);
+        return compoundQuantities;
     }
 
     public Integer generateNewShoppingList(Integer menuId) {
         ShoppingList shoppingList = getShoppingList(menuServiceDomain.getValidMenuBy(menuId));
         Integer shoppingListId = shoppingListServiceDomain.saveNewShoppingList(shoppingList);
         List<ShoppingListIngredient> shoppingListIngredients = getShoppingListIngredients(menuId, shoppingList);
-        List<ShoppingListIngredient> shoppingListIngredientsDuplicatesRemoved = removeDublicates(shoppingListIngredients);
-        shoppingListServiceDomain.saveShoppingListIngredients(shoppingListIngredientsDuplicatesRemoved);
-
+        shoppingListServiceDomain.saveShoppingListIngredients(shoppingListIngredients);
         return shoppingListId;
     }
 
-    private List<ShoppingListIngredient> removeDublicates(List<ShoppingListIngredient> shoppingListIngredients) {
-        return null;
+    private List<ShoppingListIngredientDto> compoundQuantities(List<ShoppingListIngredientDto> listIngredients) {
+        List<ShoppingListIngredientDto> finalList = new ArrayList<>();
+        List<ShoppingListIngredientDto> duplicates = new ArrayList<>();
+        for (ShoppingListIngredientDto listIngredient : listIngredients) {
+            int counter = 0;
+            for (ShoppingListIngredientDto ingredient : listIngredients) {
+                if (listIngredient.getShoppingListIngredientName().equals(ingredient.getShoppingListIngredientName()) &&
+                        listIngredient.getMeasurementName().equals(ingredient.getMeasurementName())) {
+
+                    if (checkIfPresentInFinalList(finalList, listIngredient.getShoppingListIngredientName(), listIngredient.getMeasurementName()))
+                    {
+                        counter++;
+                        if (counter == 1) {
+                            duplicates.add(listIngredient);
+                        }
+                    } else {
+                        finalList.add(listIngredient);
+                    }
+                }
+            }
+        }
+        //        Remove double occurrences in two Lists
+        for (ShoppingListIngredientDto finalItem : finalList) {
+            duplicates.removeIf(duplicate -> finalItem.getShoppingListIngredientId().equals(duplicate.getShoppingListIngredientId()));
+        }
+
+        //        Add quantities to finalList
+        for (ShoppingListIngredientDto duplicate : duplicates) {
+            for (ShoppingListIngredientDto shoppingListIngredient : finalList) {
+                if (shoppingListIngredient.getShoppingListIngredientName().equals(duplicate.getShoppingListIngredientName()) &
+                        shoppingListIngredient.getMeasurementName().equals(duplicate.getMeasurementName())) {
+                    shoppingListIngredient.addToQuantity(duplicate.getQuantity());
+                }
+            }
+        }
+
+        return finalList;
     }
+
+
+    private boolean checkIfPresentInFinalList(List<ShoppingListIngredientDto> finalList,String value ,String name) {
+        return finalList.stream().anyMatch(ingredient -> value.equals(ingredient.getShoppingListIngredientName()) && name.equals(ingredient.getMeasurementName()));
+    }
+
 
     private List<ShoppingListIngredient> getShoppingListIngredients(Integer menuId, ShoppingList shoppingList) {
         List<ShoppingListIngredient> shoppingListIngredients = new ArrayList<>();
@@ -83,7 +143,9 @@ public class ShoppingListService {
     }
 
     private BigDecimal getAllShoppingListIngredientQuantity(BigDecimal quantity, Integer servingSize, Integer plannedServingSize) {
-        return quantity.divide(BigDecimal.valueOf(servingSize),2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(plannedServingSize));
+        MathContext precision = new MathContext(6);
+        return quantity.divide(BigDecimal.valueOf(servingSize), 10, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(plannedServingSize)).round(precision);
+
     }
 
     private ShoppingList getShoppingList(Menu validMenuBy) {
@@ -92,4 +154,21 @@ public class ShoppingListService {
         shoppingList.setDateTimeAdded(Instant.now());
         return shoppingList;
     }
+
+    public void saveCustomShoppingListItem(CustomShoppingListItem customItem) {
+        ShoppingListIngredient shoppingListIngredient = shoppingListIngredientMapper.toEntity(customItem);
+        shoppingListServiceDomain.saveCustomItem(getShoppingListItemProperties(customItem, shoppingListIngredient));
+
+    }
+
+    private ShoppingListIngredient getShoppingListItemProperties(CustomShoppingListItem customItem, ShoppingListIngredient shoppingListItem) {
+        shoppingListItem.setShoppingList(shoppingListServiceDomain.getShoppingListBy(customItem.getShoppingListId()));
+        shoppingListItem.setIngredientGroup(ingredientGroupService.getIngredientGroupBy(customItem.getIngredientGroupId()));
+        shoppingListItem.setMeasurementUnit(measurementUnitService.getMeasurementUnitBy(customItem.getMeasurementId()));
+        shoppingListItem.setStatus("A");
+        shoppingListItem.setDateTimeAdded(Instant.now());
+        return shoppingListItem;
+    }
 }
+
+

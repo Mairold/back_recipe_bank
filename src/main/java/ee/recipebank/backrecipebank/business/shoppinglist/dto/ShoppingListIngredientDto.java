@@ -33,4 +33,8 @@ public class ShoppingListIngredientDto implements Serializable {
     @NotNull
     private String measurementName;
     private BigDecimal quantity;
+
+    public void addToQuantity(BigDecimal amount) {
+        this.quantity = this.quantity.add(amount);
+    }
 }

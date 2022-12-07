@@ -1,5 +1,6 @@
 package ee.recipebank.backrecipebank.domain.shoppinglist;
 
+import ee.recipebank.backrecipebank.Validation.Validation;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingList;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingListRepository;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredient;
@@ -16,8 +17,8 @@ public class ShoppingListServiceDomain {
     private ShoppingListIngredientRepository shoppingListIngredientRepository;
     @Resource
     private ShoppingListRepository shoppingListRepository;
-    public List<ShoppingListIngredient> getShoppingIngredientListBy(Integer shoppingListId) {
-        return shoppingListIngredientRepository.findAllBy(shoppingListId);
+    public List<ShoppingListIngredient> getShoppingIngredientListBy(Integer shoppingListId, Boolean isCustom) {
+        return shoppingListIngredientRepository.findShoppingListIngredientBy(shoppingListId, isCustom);
 
     }
 
@@ -29,4 +30,12 @@ public class ShoppingListServiceDomain {
         shoppingListIngredientRepository.saveAll(shoppingListIngredients);
     }
 
+    public void saveCustomItem(ShoppingListIngredient shoppingListIngredient) {
+        shoppingListIngredientRepository.save(shoppingListIngredient);
+    }
+
+    public ShoppingList getShoppingListBy(Integer shoppingListId) {
+        Validation.validateShoppingList(shoppingListRepository.findById(shoppingListId));
+        return shoppingListRepository.findById(shoppingListId).get();
+    }
 }
