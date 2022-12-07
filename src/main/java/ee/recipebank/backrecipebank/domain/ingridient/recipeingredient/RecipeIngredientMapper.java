@@ -1,6 +1,7 @@
 package ee.recipebank.backrecipebank.domain.ingridient.recipeingredient;
 
 import ee.recipebank.backrecipebank.business.ingredient.dto.RecipeIngredientDto;
+import ee.recipebank.backrecipebank.business.ingredient.dto.RecipeIngredientRequest;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -25,5 +26,6 @@ public interface RecipeIngredientMapper {
 
     List<RecipeIngredientDto> toDtos(List<RecipeIngredient> recipeIngredients);
 
-
+@Mapping(source = "ingredientQuantity", target = "quantity")
+    RecipeIngredient toEntity(RecipeIngredientRequest recipeIngredient);
 }
