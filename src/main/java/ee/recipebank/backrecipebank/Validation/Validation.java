@@ -2,6 +2,7 @@ package ee.recipebank.backrecipebank.Validation;
 
 import ee.recipebank.backrecipebank.domain.menu.Menu;
 import ee.recipebank.backrecipebank.domain.ingridient.Ingredient;
+import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingList;
 import ee.recipebank.backrecipebank.domain.user.User;
 import ee.recipebank.backrecipebank.infrastructure.exception.BusinessException;
 
@@ -33,6 +34,11 @@ public class Validation {
     public static void validateMenu(Optional<Menu> byMenuId) {
         if (byMenuId.isEmpty()) {
             throw new BusinessException(LoginError.MENU_DOES_NOT_EXIST.getMessage(), LoginError.MENU_DOES_NOT_EXIST.getErrorCode());
+        }
+    }
+    public static void validateShoppingList(Optional<ShoppingList> shoppingList) {
+        if (shoppingList.isEmpty()) {
+            throw new BusinessException(ShoppingListError.SHOPPING_LIST_NOT_FOUND.getMessage(), ShoppingListError.SHOPPING_LIST_NOT_FOUND.getErrorCode());
         }
     }
 }
