@@ -12,6 +12,7 @@ public interface RecipeInSectionMapper {
 
     @Mapping(source = "id", target = "recipeInSectionId")
     @Mapping(source = "sectionInMenu.id", target = "sectionInMenuId")
+    @Mapping(source = "recipe.id", target = "recipeId")
     @Mapping(source = "recipe.name", target = "recipeName")
     @Mapping(source = "plannedServingSize", target = "plannedServingSize")
     @Mapping(source = "comment", target = "comment")

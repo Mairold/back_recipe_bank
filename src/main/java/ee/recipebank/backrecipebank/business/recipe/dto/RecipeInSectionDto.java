@@ -18,6 +18,7 @@ import java.io.Serializable;
 public class RecipeInSectionDto implements Serializable {
     private Integer recipeInSectionId;
     private Integer sectionInMenuId;
+    private Integer recipeId;
     @Size(max = 255)
     @NotNull
     private String recipeName;
