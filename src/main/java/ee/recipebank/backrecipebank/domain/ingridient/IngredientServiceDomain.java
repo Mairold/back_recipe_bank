@@ -39,23 +39,4 @@ public class IngredientServiceDomain {
         return ingredientRepository.findById(ingredientId).get();
     }
 
-
-
-
-
-    public RecipeIngredientDto addRecipeIngredientToRecipe(RecipeIngredientDto recipeIngredient) {
-        recipeServiceDomain.getRecipeById(recipeIngredient.getRecipeId());
-
-
-        RecipeIngredientDto response = new RecipeIngredientDto();
-
-//        Ingredient ingredient = ingredientMapper.ingredientRequestToRecipeIngredient(recipeIngredient);
-        return null;
-    }
-
-    public List<AllowedMeasurementUnit> getAllowedMeasurementUnits(Integer ingredientId) {
-        List<AllowedMeasurementUnit> allowedMeasurementUnitByIngredientId = allowedMeasurementUnitService.findByIngredientId(ingredientId);
-        return allowedMeasurementUnitByIngredientId;
-
-    }
 }

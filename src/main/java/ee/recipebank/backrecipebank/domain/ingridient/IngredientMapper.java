@@ -1,9 +1,9 @@
 package ee.recipebank.backrecipebank.domain.ingridient;
 
 import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientInfo;
-import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnit;
 import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientRequest;
 import ee.recipebank.backrecipebank.business.ingredient.dto.MeasurementDto;
+import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnit;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
@@ -29,7 +29,5 @@ public interface IngredientMapper {
     IngredientInfo toDto(Ingredient ingredient);
     List<IngredientInfo> toAwesomeDtos(List<Ingredient> ingredients);
 
-    /*
-    @Mapping(source = "ingredientName", target = "ingredient.id") //??? Kuhu see tuleks targetid?
-    Ingredient ingredientRequestToRecipeIngredient(IngredientRequest recipeIngredient);*/
+
 }

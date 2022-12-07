@@ -1,14 +1,12 @@
 package ee.recipebank.backrecipebank.business.ingredient;
 
 import ee.recipebank.backrecipebank.Validation.Validation;
-import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientGroupDto;
-import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientInfo;
-import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientRequest;
-import ee.recipebank.backrecipebank.business.ingredient.dto.MeasurementDto;
+import ee.recipebank.backrecipebank.business.ingredient.dto.*;
 import ee.recipebank.backrecipebank.domain.ingridient.Ingredient;
 import ee.recipebank.backrecipebank.domain.ingridient.IngredientMapper;
 import ee.recipebank.backrecipebank.domain.ingridient.IngredientServiceDomain;
 import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnit;
+import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnitMapper;
 import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnitService;
 import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroup;
 import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupMapper;
@@ -16,13 +14,14 @@ import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupServi
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnit;
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnitService;
 import ee.recipebank.backrecipebank.domain.ingridient.recipeingredient.RecipeIngredient;
-import ee.recipebank.backrecipebank.business.ingredient.dto.RecipeIngredientDto;
 import ee.recipebank.backrecipebank.domain.ingridient.recipeingredient.RecipeIngredientMapper;
 import ee.recipebank.backrecipebank.domain.ingridient.recipeingredient.RecipeIngredientService;
+import ee.recipebank.backrecipebank.domain.recipe.RecipeServiceDomain;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,24 +33,22 @@ public class IngredientService {
     private IngredientMapper ingredientMapper;
     @Resource
     private IngredientGroupMapper ingredientGroupMapper;
-
+    @Resource
+    private RecipeServiceDomain recipeServiceDomain;
     @Resource
     private MeasurementUnitService measurementUnitService;
-
     @Resource
     private IngredientServiceDomain ingredientServiceDomain;
-
     @Resource
     private IngredientGroupService ingredientGroupService;
-
     @Resource
     private AllowedMeasurementUnitService allowedMeasurementUnitService;
-
     @Resource
     private RecipeIngredientService recipeIngredientService;
-
     @Resource
     private RecipeIngredientMapper recipeIngredientMapper;
+    @Resource
+    private AllowedMeasurementUnitMapper allowedMeasurementUnitMapper;
 
     public List<MeasurementDto> getAllMeasurements() {
         List<MeasurementUnit> allMeasurementUnits = measurementUnitService.getAllMeasurements();
@@ -121,13 +118,21 @@ public class IngredientService {
 
     }
 
-    public RecipeIngredientDto addRecipeIngredientToRecipe(RecipeIngredientDto recipeIngredient) {
-        return ingredientServiceDomain.addRecipeIngredientToRecipe(recipeIngredient);
+    public void addRecipeIngredientToRecipe(RecipeIngredientRequest request) {
+        RecipeIngredient recipeIngredient = recipeIngredientMapper.toEntity(request);
+
+        recipeIngredient.setIngredient(ingredientServiceDomain.getIngredientBy(request.getIngredientId()));
+        recipeIngredient.setRecipe(recipeServiceDomain.getRecipeById(request.getRecipeId()));
+        recipeIngredient.setMeasureUnit(measurementUnitService.getMeasurementUnitBy(request.getMeasurementUnitId()));
+        recipeIngredient.setDateFrom(Instant.now());
+
+        recipeIngredientService.saveRecipeIngredient(recipeIngredient);
     }
 
-    public List<AllowedMeasurementUnit> getAllowedMeasurementUnits(Integer ingredientId) {
-        List<AllowedMeasurementUnit> allowedMeasurementUnits = ingredientServiceDomain.getAllowedMeasurementUnits(ingredientId);
-        return allowedMeasurementUnits;
+    public List<AllowedMeasurementUnitDto> getAllowedMeasurementUnits(Integer ingredientId) {
+        List<AllowedMeasurementUnit> allowedMeasurementUnits = allowedMeasurementUnitService.findByIngredientId(ingredientId);
+
+        return allowedMeasurementUnitMapper.toDtos(allowedMeasurementUnits);
     }
     //todo Quantity
 //    public void

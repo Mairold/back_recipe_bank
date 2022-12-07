@@ -20,6 +20,6 @@ public class RecipeIngredientDto implements Serializable {
     private String ingredientName;
     private String measureUnitName;
     @NotNull
-    private BigDecimal quantity; // Kas peaks jätma alles ainult selle Quantity rea?
+    private BigDecimal quantity;
 }
 
