@@ -65,7 +65,7 @@ public class ShoppingListService {
     }
 
     public Integer generateNewShoppingList(Integer menuId) {
-        ShoppingList shoppingList = getShoppingList(menuServiceDomain.getValidMenuBy(menuId));
+        ShoppingList shoppingList = generateShoppingList(menuServiceDomain.getValidMenuBy(menuId));
         Integer shoppingListId = shoppingListServiceDomain.saveNewShoppingList(shoppingList);
         List<ShoppingListIngredient> shoppingListIngredients = getShoppingListIngredients(menuId, shoppingList);
         shoppingListServiceDomain.saveShoppingListIngredients(shoppingListIngredients);
@@ -152,7 +152,7 @@ public class ShoppingListService {
 
     }
 
-    private ShoppingList getShoppingList(Menu validMenuBy) {
+    private ShoppingList generateShoppingList(Menu validMenuBy) {
         ShoppingList shoppingList = new ShoppingList();
         shoppingList.setMenu(validMenuBy);
         shoppingList.setDateTimeAdded(Instant.now());
@@ -180,6 +180,11 @@ public class ShoppingListService {
         ShoppingList shoppingList = shoppingListServiceDomain.getShoppingListBy(shoppingListId);
         shoppingListMapper.updateEntity(shoppingListDto,shoppingList);
         shoppingListServiceDomain.updateShoppingList(shoppingList);
+    }
+
+    public ShoppingListDto getShoppingList(Integer shoppingListId) {
+        ShoppingList shoppingList = shoppingListServiceDomain.getShoppingListBy(shoppingListId);
+        return shoppingListMapper.toDto(shoppingList);
     }
 }
 

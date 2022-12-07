@@ -18,7 +18,7 @@ import java.time.Instant;
 @NoArgsConstructor
 public class ShoppingListDto implements Serializable {
     private Integer shoppingListId;
-    private Integer menuMenuId;
+    private Instant shoppingListTimeAdded;
     @Size(max = 255)
     private String shoppingListComment;
 }
