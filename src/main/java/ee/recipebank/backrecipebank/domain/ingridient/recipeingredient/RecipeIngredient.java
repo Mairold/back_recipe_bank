@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.domain.ingridient.recipeIngredient;
+package ee.recipebank.backrecipebank.domain.ingridient.recipeingredient;
 
 import ee.recipebank.backrecipebank.domain.ingridient.Ingredient;
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnit;
