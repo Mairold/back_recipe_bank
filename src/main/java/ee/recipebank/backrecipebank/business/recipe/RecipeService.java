@@ -1,8 +1,6 @@
 package ee.recipebank.backrecipebank.business.recipe;
 
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeRequest;
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeContentDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeToListDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.*;
 import ee.recipebank.backrecipebank.business.recipe.dto.recipecategory.preparationTime.PreparationTimeDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.recipecategory.RecipeCategoryDto;
 import ee.recipebank.backrecipebank.domain.menu.SectionInMenuServiceDomain;
@@ -77,4 +75,29 @@ public class RecipeService {
         Recipe recipe = recipeServiceDomain.findRecipeById(recipeId);
         return recipeMapper.toRecipeDto(recipe);
     } // tagastab controllerisse väljaotsitud retsepti
+
+
+    public void saveRecipeInMenu(RecipeInsertRequest request) {
+        Recipe recipe = recipeServiceDomain.findThisRecipeId(request); // selle küsib andmebaasist
+        SectionInMenu section = sectionInMenuService.findThisSectionId(request); // selle küsib andmebaasist
+        RecipeInSection recipeInSection = recipeInSectionMapper.toEntity(request); // mäpib 2 ülejäänud rida Entityks
+        recipeInSection.setRecipe(recipe); // lisab entityle andmebaasist küsitud retsepti Id
+        recipeInSection.setSectionInMenu(section); // lisab entityle andmebaasist küsitud section'i id
+        recipeInSection.setDateTimeAdded(Instant.now()); // lisab entityle Date&Time'i
+        recipeInSectionServiceDomain.saveRecipeInSection(recipeInSection); // salvestab retsepti andmebaasi tabelisse recipeInSection
+        // todo: teha ridadest 71-74 eraldi meetod siia samma publik meetodi sisse
+    }
+
+    public void changeRecipeInMenu(RecipeChangeDto request) {
+        // muudatused on vaja teha recipe-in-section tabelis. Vaja on üle kirjutada senine retsept.
+//        RecipeInSection recipeInSection = recipeInSectionMapper.toChangeEntity(request);
+
+    }
+    public RecipeResponseDto addRecipe(RecipeRequestDto newRecipe) {
+        RecipeResponseDto suvalineNimi = recipeServiceDomain.addRecipe(newRecipe);
+
+        //  recipeServiceDomain.addRecipe(newRecipe); //recipeService domain siin tagastab RecipeResponseDto, teha
+        // sellest muutuja
+        return suvalineNimi;
+    }
 }

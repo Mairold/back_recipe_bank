@@ -121,4 +121,22 @@ public class IngredientService {
 //      ],
 
     }
+
+    public RecipeIngredientDto addRecipeIngredientToRecipe(RecipeIngredientDto recipeIngredient) {
+        return ingredientServiceDomain.addRecipeIngredientToRecipe(recipeIngredient);
+    }
+
+    public List<AllowedMeasurementUnit> getAllowedMeasurementUnits(Integer ingredientId) {
+        List<AllowedMeasurementUnit> allowedMeasurementUnits = ingredientServiceDomain.getAllowedMeasurementUnits(ingredientId);
+        return allowedMeasurementUnits;
+    }
+    //todo Quantity
+//    public void
+
+//    public void addQuantity(RecipeIngredientDto recipeIngredientDto) {
+//        RecipeIngredient quantity = getQuantity (recipeIngredientDto);
+//    }
+//
+//    private RecipeIngredient getQuantity(RecipeIngredientDto recipeIngredientDto) {
+//    }
 }

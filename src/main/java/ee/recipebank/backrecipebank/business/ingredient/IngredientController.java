@@ -4,6 +4,7 @@ import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientGroupDto;
 import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientInfo;
 import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientRequest;
 import ee.recipebank.backrecipebank.business.ingredient.dto.MeasurementDto;
+import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnit;
 import ee.recipebank.backrecipebank.domain.ingridient.recipeingredient.RecipeIngredientDto;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
@@ -45,10 +46,25 @@ public class IngredientController {
         return ingredientService.getRecipeIngredients(recipeId);
 
     }
+    //    @PostMapping("/quantity")
+//    @Operation(summary = "See teenus saadame backi retseptireale lisatud ühiku koguse")
+//    public void addQuantity(@RequestBody RecipeIngredientDto recipeIngredientDto) {
+//        ingredientService.addQuantity(recipeIngredientDto);
+    //
+    @PostMapping("/ingredientToRecipe")
+    @Operation(summary = "See teenus salvestab/püüab kinni valitud ingredienti.")
+    public RecipeIngredientDto addRecipeIngredientToRecipe(@RequestBody RecipeIngredientDto recipeIngredient) {
+        return ingredientService.addRecipeIngredientToRecipe(recipeIngredient);
+    }
 
+    @GetMapping("/recipeAllowedMeasurement")
+    @Operation(summary = "See teenus kuvab valitud ingredienti allowed measurementsid.")
+    public List<AllowedMeasurementUnit> getAllowedMeasurementUnits(@RequestBody Integer ingredientId) {
+        List<AllowedMeasurementUnit> allowedMeasurementUnits = ingredientService.getAllowedMeasurementUnits(ingredientId);
+        return allowedMeasurementUnits;
 
-
-
-
+        // introduce local variable
+        // alt+enter => make .....return....
+    }
 }
 

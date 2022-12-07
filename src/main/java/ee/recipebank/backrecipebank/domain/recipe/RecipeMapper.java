@@ -45,4 +45,13 @@ public interface RecipeMapper {
     @Mapping(source = "recipeCategory.name", target = "categoryName")
     @Mapping(source = "preparationTime.prepTime", target = "prepTime")
     RecipeContentDto toRecipeDto(Recipe recipe);
+
+
+    @Mapping(source = "recipeName", target = "name") //RecipeRequestDtost võtame recipename, Targeti Recipe'st
+    @Mapping(source = "recipeCategoryId", target = "recipeCategory.id")
+    @Mapping(source = "preparationTimeId", target = "preparationTime.id")
+    @Mapping(constant = "", target = "instructions")
+    @Mapping(source = "servingSize", target = "servingSize")
+    Recipe recipeRequestDtoToRecipe(RecipeRequestDto request);
+
 }

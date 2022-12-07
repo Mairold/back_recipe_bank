@@ -28,4 +28,8 @@ public interface IngredientMapper {
     @Mapping(source = "id", target = "ingredientId")
     IngredientInfo toDto(Ingredient ingredient);
     List<IngredientInfo> toAwesomeDtos(List<Ingredient> ingredients);
+
+    /*
+    @Mapping(source = "ingredientName", target = "ingredient.id") //??? Kuhu see tuleks targetid?
+    Ingredient ingredientRequestToRecipeIngredient(IngredientRequest recipeIngredient);*/
 }
