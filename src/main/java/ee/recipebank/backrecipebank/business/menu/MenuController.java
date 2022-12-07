@@ -39,12 +39,13 @@ public class MenuController {
     public RecipeChangeRequest getRecipeInMenuById(@RequestParam Integer recipeInSectionId) {
         return menuService.getRecipeInMenuById(recipeInSectionId); // tagastame Dto fronti
     }
-//    @PutMapping("/change-recipe-in-menu")
-//    @Operation(summary = "Salvestab sektsioonist valitud retsepti juures tehtud muudatused")
-//    public void changeRecipeInMenu(@RequestBody RecipeChangeRequest recipeChangeRequest) {
-//        //Teeme lõpuni siis, kui Rain sellest kõikidele räägib
-//        menuService.changeRecipeInMenu(recipeChangeRequest);
-//    }
+
+
+    @PutMapping("/change-recipe-info")
+    @Operation(summary = "Salvestab menüü sektsioonist valitud retsepti juures tehtud muudatused")
+    public void changeRecipeInMenu(@RequestBody RecipeChangeRequest recipeChangeRequest) {
+        menuService.changeRecipeInMenu(recipeChangeRequest);
+    }
 
     @PostMapping("/add-recipe-to-section")
     @Operation(summary = "Valitud retsepti salvestamine menüü sektsiooni")

@@ -33,8 +33,7 @@ public class RecipeInSectionServiceDomain {
     }
 
     public void updateRecipeInSection(RecipeInSection recipeInSection) {
-        //Tegeleme siis, kui Rain sellest kõikidele räägib
-
+        recipeInSectionRepository.save(recipeInSection);
     }
 
     public List<RecipeInSection> findRecipeInSectionBy(Integer menuId) {

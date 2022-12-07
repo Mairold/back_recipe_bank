@@ -33,5 +33,6 @@ public interface RecipeInSectionMapper {
     @Mapping(source = "recipeName", target = "recipe.name")
     @Mapping(source = "servingSize", target = "plannedServingSize")
     @Mapping(source = "commentToRecipe", target = "comment")
-    RecipeInSection toChangeEntity(RecipeChangeRequest request);
+    RecipeInSection updateRecipeInSection(RecipeChangeRequest recipeChangeRequest, @MappingTarget RecipeInSection recipeInSection);
+
 }

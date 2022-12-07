@@ -86,9 +86,13 @@ public class MenuService {
         return recipeChangeRequest; // tagastame mäpitud Dto kontrollerisse
     }
     public void changeRecipeInMenu(RecipeChangeRequest recipeChangeRequest) {
-        //Tegeleme siis, kui Rain sellest kõikidele räägib
-//        RecipeInSection recipeInSection = recipeInSectionMapper.toChangeEntity(recipeChangeRequest);
-//        recipeInSectionServiceDomain.updateRecipeInSection(recipeInSection);
+        RecipeInSection recipeInSectionById = recipeInSectionServiceDomain.findRecipeInSectionById(recipeChangeRequest.getRecipeInSectionId());
+        // Objekt, mida hakkan üle kirjutama, tuleb kõigepealt RecipeInSection tabelist kätte saada. Dto'st Id kättesaamiseks kasutan getterit:
+        RecipeInSection recipeInSection = recipeInSectionMapper.updateRecipeInSection(recipeChangeRequest, recipeInSectionById);
+        // Sissetuleva dto muutmine entity'ks:
+        recipeInSectionServiceDomain.updateRecipeInSection(recipeInSection);
+        // suunan edasi domeeni servicesse
+
     }
 
 }
