@@ -3,8 +3,8 @@ package ee.recipebank.backrecipebank.domain.ingridient;
 import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientRequest;
 import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnit;
 import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnitService;
-import ee.recipebank.backrecipebank.business.ingredient.dto.RecipeIngredientDto;
 import ee.recipebank.backrecipebank.domain.recipe.RecipeServiceDomain;
+import ee.recipebank.backrecipebank.business.ingredient.dto.RecipeIngredientDto;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

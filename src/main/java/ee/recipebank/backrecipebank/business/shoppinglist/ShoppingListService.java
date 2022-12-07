@@ -14,6 +14,7 @@ import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectio
 import ee.recipebank.backrecipebank.domain.shoppinglist.ShoppingListServiceDomain;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingList;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingListMapper;
+import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingListRequest;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredient;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredientMapper;
 import org.springframework.stereotype.Service;
@@ -180,6 +181,12 @@ public class ShoppingListService {
         ShoppingList shoppingList = shoppingListServiceDomain.getShoppingListBy(shoppingListId);
         shoppingListMapper.updateEntity(shoppingListDto,shoppingList);
         shoppingListServiceDomain.updateShoppingList(shoppingList);
+    }
+
+    public List<ShoppingListRequest> getAllShoppingLists(Integer menuId) {
+        List<ShoppingList> allShoppingLists = shoppingListServiceDomain.getAllShoppingLists(menuId);
+        List<ShoppingListRequest> shoppingListRequests = shoppingListMapper.toShoppingListResponses(allShoppingLists);
+        return shoppingListRequests;
     }
 }
 

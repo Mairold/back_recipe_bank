@@ -1,6 +1,9 @@
-package ee.recipebank.backrecipebank.domain.user;
+package ee.recipebank.backrecipebank.business.user;
 
 import ee.recipebank.backrecipebank.Validation.Validation;
+import ee.recipebank.backrecipebank.business.user.User;
+import ee.recipebank.backrecipebank.domain.user.UserRepository;
+import ee.recipebank.backrecipebank.domain.user.UserServiceDomain;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -11,6 +14,9 @@ public class UserService {
 
     @Resource
     private UserRepository userRepository;
+
+    @Resource
+    private UserServiceDomain userServiceDomain;
 
     public Integer getValidUserId(String username, String password) {
        return getValidUser(username, password).getId();
@@ -38,4 +44,8 @@ public class UserService {
         return optionalUser.get();
     }
 
+    public String getUsername(Integer userId) {
+       String userName = userServiceDomain.getUserName(userId);
+        return userName;
+    }
 }

@@ -4,6 +4,7 @@ import ee.recipebank.backrecipebank.Validation.Validation;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,5 +21,10 @@ public class MenuServiceDomain {
         Optional<Menu> menuById = menuRepository.findById(menuId);
         Validation.validateMenu(menuById);
         return menuById.get();
+    }
+
+    public List<Menu> getAllMenusByUserId(Integer userId) {
+        List<Menu> allByUserId = menuRepository.findAllByUserId(userId);
+        return allByUserId;
     }
 }

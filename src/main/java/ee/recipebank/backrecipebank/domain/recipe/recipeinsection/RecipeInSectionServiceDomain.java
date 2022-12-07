@@ -12,12 +12,12 @@ public class RecipeInSectionServiceDomain {
     @Resource
     private RecipeInSectionRepository recipeInSectionRepository;
 
-    public List<ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSection> getAllRecipes(Integer menuId)
+    public List<RecipeInSection> getAllRecipes(Integer menuId)
     {
         return recipeInSectionRepository.findBy(menuId);
     }
 
-    public void saveRecipeInSection(ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSection recipeInSection) {
+    public void saveRecipeInSection(RecipeInSection recipeInSection) {
         recipeInSectionRepository.save(recipeInSection);
     }
 

@@ -6,7 +6,6 @@ import ee.recipebank.backrecipebank.business.recipe.dto.RecipeResponseDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeToListDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.recipecategory.RecipeCategoryDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.recipecategory.preparationTime.PreparationTimeDto;
-import ee.recipebank.backrecipebank.domain.menu.SectionInMenuServiceDomain;
 import ee.recipebank.backrecipebank.domain.recipe.Recipe;
 import ee.recipebank.backrecipebank.domain.recipe.RecipeMapper;
 import ee.recipebank.backrecipebank.domain.recipe.RecipeServiceDomain;
@@ -16,8 +15,6 @@ import ee.recipebank.backrecipebank.domain.recipe.preparationtime.PreparationTim
 import ee.recipebank.backrecipebank.domain.recipe.recipecategory.RecipeCategory;
 import ee.recipebank.backrecipebank.domain.recipe.recipecategory.RecipeCategoryMapper;
 import ee.recipebank.backrecipebank.domain.recipe.recipecategory.RecipeCategoryService;
-import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionMapper;
-import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionServiceDomain;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

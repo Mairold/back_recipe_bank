@@ -3,6 +3,7 @@ package ee.recipebank.backrecipebank.business.menu;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeRequest;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInSectionDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInsertRequest;
+import ee.recipebank.backrecipebank.domain.menu.MenuResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -68,4 +69,12 @@ public class MenuController {
     public void deleteSection(@RequestParam Integer menuSectionId) {
         menuService.deleteSection(menuSectionId);
     }
+
+    @GetMapping("/menus")
+    @Operation(summary = "See teenus toob fronti kõik kasutaja menüüd.")
+    public List<MenuResponse> getAllMenus(@RequestParam Integer userId) {
+        List<MenuResponse> allMenusByUserId = menuService.getAllMenusByUserId(userId);
+        return allMenusByUserId;
+    }
+
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShoppingListServiceDomain {
@@ -41,5 +42,10 @@ public class ShoppingListServiceDomain {
 
     public void updateShoppingList(ShoppingList shoppingList) {
         shoppingListRepository.save(shoppingList);
+    }
+
+    public List<ShoppingList> getAllShoppingLists(Integer menuId) {
+        List<ShoppingList> allByMenuId = shoppingListRepository.findAllByMenuId(menuId);
+        return allByMenuId;
     }
 }

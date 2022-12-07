@@ -2,7 +2,6 @@ package ee.recipebank.backrecipebank.domain.recipe;
 
 import ee.recipebank.backrecipebank.domain.recipe.preparationtime.PreparationTime;
 import ee.recipebank.backrecipebank.domain.recipe.recipecategory.RecipeCategory;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
