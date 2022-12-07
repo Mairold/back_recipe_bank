@@ -38,4 +38,8 @@ public class ShoppingListServiceDomain {
         Validation.validateShoppingList(shoppingListRepository.findById(shoppingListId));
         return shoppingListRepository.findById(shoppingListId).get();
     }
+
+    public void updateShoppingList(ShoppingList shoppingList) {
+        shoppingListRepository.save(shoppingList);
+    }
 }

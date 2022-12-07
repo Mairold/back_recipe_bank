@@ -91,4 +91,12 @@ public class MenuService {
 //        recipeInSectionServiceDomain.updateRecipeInSection(recipeInSection);
     }
 
+    public void deleteRecipeInSection(Integer recipeInSectionId) {
+        recipeInSectionServiceDomain.deleteRecipeInSection(recipeInSectionId);
+    }
+
+    public void deleteSection(Integer menuSectionId) {
+        recipeInSectionServiceDomain.deleteRecipesInSectionBy(menuSectionId);
+        sectionInMenuServiceDomain.deleteSectionBy(menuSectionId);
+    }
 }

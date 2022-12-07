@@ -34,4 +34,8 @@ public class SectionInMenuServiceDomain {
     public SectionInMenu findThisSectionId(RecipeInsertRequest request) {
         return sectionInMenuRepository.findById(request.getSectionInMenuId()).get();
     }
+
+    public void deleteSectionBy(Integer menuSectionId) {
+        sectionInMenuRepository.deleteById(menuSectionId);
+    }
 }
