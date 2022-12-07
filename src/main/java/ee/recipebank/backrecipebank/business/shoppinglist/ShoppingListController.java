@@ -1,5 +1,6 @@
 package ee.recipebank.backrecipebank.business.shoppinglist;
 
+import ee.recipebank.backrecipebank.business.ingredient.dto.ShoppingListDto;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.CustomShoppingListItem;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListIngredientDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,6 +15,12 @@ public class ShoppingListController {
 
     @Resource
     private ShoppingListService shoppingListService;
+
+    @GetMapping("")
+    @Operation(summary = "See teenus tagastab shoppilisti")
+    public ShoppingListDto getShoppingList(@RequestParam Integer shoppingListId) {
+        return shoppingListService.getShoppingList(shoppingListId);
+    }
 
     @PostMapping("")
     @Operation(summary = "See teenus loob uue shoppinglisti ja tagastab ID")
