@@ -17,9 +17,6 @@ public class IngredientServiceDomain {
     private IngredientRepository ingredientRepository;
 
     @Resource
-    private IngredientMapper ingredientMapper;
-
-    @Resource
     private RecipeServiceDomain recipeServiceDomain;
 
     @Resource
