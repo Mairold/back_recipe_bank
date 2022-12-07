@@ -3,7 +3,7 @@ package ee.recipebank.backrecipebank.domain.ingridient;
 import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientRequest;
 import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnit;
 import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnitService;
-import ee.recipebank.backrecipebank.domain.ingridient.recipeIngredient.RecipeIngredientDto;
+import ee.recipebank.backrecipebank.business.ingredient.dto.RecipeIngredientDto;
 import ee.recipebank.backrecipebank.domain.recipe.RecipeServiceDomain;
 import org.springframework.stereotype.Service;
 
@@ -52,8 +52,8 @@ public class IngredientServiceDomain {
 
         RecipeIngredientDto response = new RecipeIngredientDto();
 
-        Ingredient ingredient = ingredientMapper.ingredientRequestToRecipeIngredient(recipeIngredient);
-
+//        Ingredient ingredient = ingredientMapper.ingredientRequestToRecipeIngredient(recipeIngredient);
+        return null;
     }
 
     public List<AllowedMeasurementUnit> getAllowedMeasurementUnits(Integer ingredientId) {

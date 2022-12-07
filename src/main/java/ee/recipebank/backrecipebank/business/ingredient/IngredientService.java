@@ -16,7 +16,7 @@ import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupServi
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnit;
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnitService;
 import ee.recipebank.backrecipebank.domain.ingridient.recipeingredient.RecipeIngredient;
-import ee.recipebank.backrecipebank.domain.ingridient.recipeingredient.RecipeIngredientDto;
+import ee.recipebank.backrecipebank.business.ingredient.dto.RecipeIngredientDto;
 import ee.recipebank.backrecipebank.domain.ingridient.recipeingredient.RecipeIngredientMapper;
 import ee.recipebank.backrecipebank.domain.ingridient.recipeingredient.RecipeIngredientService;
 import org.springframework.stereotype.Service;
@@ -108,7 +108,6 @@ public class IngredientService {
         List<RecipeIngredient> recipeIngredients = recipeIngredientService.findRecipeIngredientsBy(recipeId);
         List<RecipeIngredientDto> recipeIngredientDtos = recipeIngredientMapper.toDtos(recipeIngredients);
         return recipeIngredientDtos;
-
 
 
         //    ingredients: [
