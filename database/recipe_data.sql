@@ -58,10 +58,11 @@ INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'g'
 INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'kg', 'kilogramm');
 INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'tl', 'teelusikas');
 INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'spl', 'supilusikas');
-INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'pudel', 'valmis toote pudel');
+INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'pdl', 'valmis toote pudel');
 INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'purk', 'valmis toote purk');
 INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'maitse järgi', 'vastavalt koka maitsele');
 INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'küünt', 'üks osa tervikust');
+INSERT INTO public.measurement_unit (id, name, description) VALUES (DEFAULT, 'pk', 'pakk');
 
 INSERT INTO public.preparation_time (id, prep_time) VALUES (DEFAULT, '0-15 min');
 INSERT INTO public.preparation_time (id, prep_time) VALUES (DEFAULT, '16-30 min');
