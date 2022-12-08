@@ -50,74 +50,35 @@ public class ShoppingListService {
 
 
     public List<ShoppingListIngredientDto> getAllShoppingListIngredients(Integer shoppingListId) {
-        List<ShoppingListIngredient> shoppingIngredients = shoppingListServiceDomain.getShoppingIngredientListBy(shoppingListId, false);
-        List<ShoppingListIngredient> customShoppingIngredients = shoppingListServiceDomain.getShoppingIngredientListBy(shoppingListId, true);
-
-        List<ShoppingListIngredientDto> shoppingListIngredientDtos = shoppingListIngredientMapper.toDtos(shoppingIngredients);
-        List<ShoppingListIngredientDto> customShoppingListIngredientDtos = shoppingListIngredientMapper.toDtos(customShoppingIngredients);
-
-        List<ShoppingListIngredientDto> compoundQuantities = compoundQuantities(shoppingListIngredientDtos);
-
-        return joinTwoDtoLists(compoundQuantities,customShoppingListIngredientDtos);
-    }
-
-    private List<ShoppingListIngredientDto> joinTwoDtoLists(List<ShoppingListIngredientDto> compoundQuantities, List<ShoppingListIngredientDto> customShoppingListIngredientDtos) {
-        compoundQuantities.addAll(customShoppingListIngredientDtos);
-        return compoundQuantities;
+        List<ShoppingListIngredient> shoppingIngredients = shoppingListServiceDomain.getShoppingIngredientListBy(shoppingListId);
+        return shoppingListIngredientMapper.toDtos(shoppingIngredients);
     }
 
     public Integer generateNewShoppingList(Integer menuId) {
         ShoppingList shoppingList = generateShoppingList(menuServiceDomain.getValidMenuBy(menuId));
         Integer shoppingListId = shoppingListServiceDomain.saveNewShoppingList(shoppingList);
         List<ShoppingListIngredient> shoppingListIngredients = getShoppingListIngredients(menuId, shoppingList);
-        shoppingListServiceDomain.saveShoppingListIngredients(shoppingListIngredients);
+
+        List<ShoppingListIngredient> shoppingListIngredientsWithoutDuplicates = removeDuplicatesAndSumQuantity(shoppingListIngredients);
+        shoppingListServiceDomain.saveShoppingListIngredients(shoppingListIngredientsWithoutDuplicates);
         return shoppingListId;
     }
 
-    private List<ShoppingListIngredientDto> compoundQuantities(List<ShoppingListIngredientDto> listIngredients) {
-        List<ShoppingListIngredientDto> finalList = new ArrayList<>();
-        List<ShoppingListIngredientDto> duplicates = new ArrayList<>();
-        for (ShoppingListIngredientDto listIngredient : listIngredients) {
-            int counter = 0;
-            for (ShoppingListIngredientDto ingredient : listIngredients) {
-                if (listIngredient.getShoppingListIngredientName().equals(ingredient.getShoppingListIngredientName()) &&
-                        listIngredient.getMeasurementName().equals(ingredient.getMeasurementName())) {
+    private List<ShoppingListIngredient> removeDuplicatesAndSumQuantity(List<ShoppingListIngredient> shoppingListIngredients) {
 
-                    if (checkIfPresentInFinalList(finalList, listIngredient.getShoppingListIngredientName(), listIngredient.getMeasurementName()))
-                    {
-                        counter++;
-                        if (counter == 1) {
-                            duplicates.add(listIngredient);
-                        }
-                    } else {
-                        finalList.add(listIngredient);
-                    }
+        for (int i = 0; i < shoppingListIngredients.size(); i++) {
+            ShoppingListIngredient original = shoppingListIngredients.get(i);
+            for (int j = i + 1; j < shoppingListIngredients.size(); j++) {
+                ShoppingListIngredient compare = shoppingListIngredients.get(j);
+                if (original.getIngredient().getId().equals(compare.getIngredient().getId()) &&
+                        original.getMeasurementUnit().getId().equals(compare.getMeasurementUnit().getId())) {
+                    original.addToQuantity(compare.getQuantity());
+                    shoppingListIngredients.remove(compare);
                 }
             }
         }
-        //        Remove double occurrences in two Lists
-        for (ShoppingListIngredientDto finalItem : finalList) {
-            duplicates.removeIf(duplicate -> finalItem.getShoppingListIngredientId().equals(duplicate.getShoppingListIngredientId()));
-        }
-
-        //        Add quantities to finalList
-        for (ShoppingListIngredientDto duplicate : duplicates) {
-            for (ShoppingListIngredientDto shoppingListIngredient : finalList) {
-                if (shoppingListIngredient.getShoppingListIngredientName().equals(duplicate.getShoppingListIngredientName()) &
-                        shoppingListIngredient.getMeasurementName().equals(duplicate.getMeasurementName())) {
-                    shoppingListIngredient.addToQuantity(duplicate.getQuantity());
-                }
-            }
-        }
-
-        return finalList;
+        return shoppingListIngredients;
     }
-
-
-    private boolean checkIfPresentInFinalList(List<ShoppingListIngredientDto> finalList,String value ,String name) {
-        return finalList.stream().anyMatch(ingredient -> value.equals(ingredient.getShoppingListIngredientName()) && name.equals(ingredient.getMeasurementName()));
-    }
-
 
     private List<ShoppingListIngredient> getShoppingListIngredients(Integer menuId, ShoppingList shoppingList) {
         List<ShoppingListIngredient> shoppingListIngredients = new ArrayList<>();
@@ -180,7 +141,7 @@ public class ShoppingListService {
         ShoppingListDto shoppingListDto = new ShoppingListDto();
         shoppingListDto.setShoppingListComment(shoppingListComment);
         ShoppingList shoppingList = shoppingListServiceDomain.getShoppingListBy(shoppingListId);
-        shoppingListMapper.updateEntity(shoppingListDto,shoppingList);
+        shoppingListMapper.updateEntity(shoppingListDto, shoppingList);
         shoppingListServiceDomain.updateShoppingList(shoppingList);
     }
 
