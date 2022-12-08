@@ -1,9 +1,7 @@
 package ee.recipebank.backrecipebank.business.shoppinglist;
 
 import ee.recipebank.backrecipebank.business.ingredient.dto.ShoppingListDto;
-import ee.recipebank.backrecipebank.business.shoppinglist.dto.CustomShoppingListItem;
-import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListIngredientDto;
-import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListRequest;
+import ee.recipebank.backrecipebank.business.shoppinglist.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,11 +38,16 @@ public class ShoppingListController {
     public void saveCustomShoppingListItem(@RequestBody CustomShoppingListItem customItem) {
         shoppingListService.saveCustomShoppingListItem(customItem);
     }
+    @GetMapping("/ingredient")
+    @Operation(summary = "See teenus tagastab ühe menüü ühe komponendid  ID alusel.")
+    public ShoppingListIngredientChange getShoppingListItem(@RequestParam Integer shoppingListItemId) {
+        return shoppingListService.getShoppingListItem(shoppingListItemId);
+    }
 
     @DeleteMapping("/ingredient")
     @Operation(summary = "See teenus kustutab ingredienti")
     public void deleteShoppingListItem(@RequestParam Integer ingredientId) {
-//        shoppingListService.deleteShoppingListItem(ingredientId);
+        shoppingListService.deleteShoppingListItem(ingredientId);
     }
 
     @PutMapping("")
@@ -58,6 +61,12 @@ public class ShoppingListController {
     public List<ShoppingListRequest> getAllShoppingListsByUserId(@RequestParam Integer userId) {
         List<ShoppingListRequest> aLlShoppingListsByUserId = shoppingListService.getALlShoppingListsByUserId(userId);
         return aLlShoppingListsByUserId;
+    }
+
+    @PutMapping("/ingredient")
+    @Operation(summary = "See teenus uuendab poenimekirja komponendi infot")
+    public void updateShoppingListItem(@RequestBody ShoppingListIngredientRequest request) {
+
     }
 
 }

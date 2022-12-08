@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShoppingListServiceDomain {
@@ -50,5 +51,15 @@ public class ShoppingListServiceDomain {
     public List<ShoppingList> getAllShoppingListsByUserId(Integer userId) {
         List<ShoppingList> allByUserId = shoppingListRepository.findAllByUserId(userId);
         return allByUserId;
+    }
+
+    public void deleteItemBy(Integer ingredientId) {
+        shoppingListIngredientRepository.deleteById(ingredientId);
+    }
+
+    public ShoppingListIngredient getShoppingIngredientBy(Integer shoppingListItemId) {
+        Optional<ShoppingListIngredient> shoppingListIngredient = shoppingListIngredientRepository.findById(shoppingListItemId);
+        Validation.validateShoppingListIngredient(shoppingListIngredient);
+        return shoppingListIngredient.get();
     }
 }

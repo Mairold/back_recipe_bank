@@ -2,6 +2,7 @@ package ee.recipebank.backrecipebank.business.shoppinglist;
 
 import ee.recipebank.backrecipebank.business.ingredient.dto.ShoppingListDto;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.CustomShoppingListItem;
+import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListIngredientChange;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListIngredientDto;
 import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupService;
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnitService;
@@ -153,6 +154,16 @@ public class ShoppingListService {
         List<ShoppingList> allShoppingListsByUserId = shoppingListServiceDomain.getAllShoppingListsByUserId(userId);
         List<ShoppingListRequest> shoppingListRequests1 = shoppingListMapper.toShoppingListRequests1(allShoppingListsByUserId);
         return shoppingListRequests1;
+    }
+
+    public void deleteShoppingListItem(Integer ingredientId) {
+        shoppingListServiceDomain.deleteItemBy(ingredientId);
+    }
+
+    public ShoppingListIngredientChange getShoppingListItem(Integer shoppingListItemId) {
+        ShoppingListIngredient shoppingListIngredient = shoppingListServiceDomain.getShoppingIngredientBy(shoppingListItemId);
+        return shoppingListIngredientMapper.toChangeDto(shoppingListIngredient);
+
     }
 }
 

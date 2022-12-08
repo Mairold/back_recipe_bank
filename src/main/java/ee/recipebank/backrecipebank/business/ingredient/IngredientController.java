@@ -57,9 +57,6 @@ public class IngredientController {
     public List<AllowedMeasurementUnitDto> getAllowedMeasurementUnits(@RequestParam Integer ingredientId) {
         List<AllowedMeasurementUnitDto> allowedMeasurementUnits = ingredientService.getAllowedMeasurementUnits(ingredientId);
         return allowedMeasurementUnits;
-
-        // introduce local variable
-        // alt+enter => make .....return....
     }
 }
 

@@ -1,6 +1,7 @@
 package ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient;
 
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.CustomShoppingListItem;
+import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListIngredientChange;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListIngredientDto;
 import org.mapstruct.*;
 
@@ -25,5 +26,13 @@ public interface ShoppingListIngredientMapper {
 
     List<ShoppingListIngredientDto> toDtos(List<ShoppingListIngredient> shoppingListIngredients);
 
+    @Mapping(source = "id", target = "shoppingListIngredientId")
+    @Mapping(source = "name", target = "customIngredientName")
+    @Mapping(source = "ingredient.name", target = "shoppingListIngredientName")
+    @Mapping(source = "ingredientGroup.id", target = "ingredientGroupId")
+    @Mapping(source = "quantity", target = "quantity")
+    @Mapping(source = "measurementUnit.id", target = "ingredientMeasurementId")
+    @Mapping(source = "isCustom", target = "shoppingListIngredientIsCustom")
+    ShoppingListIngredientChange toChangeDto(ShoppingListIngredient shoppingListIngredient);
 
 }

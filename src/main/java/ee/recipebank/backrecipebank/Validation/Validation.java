@@ -4,6 +4,7 @@ import ee.recipebank.backrecipebank.domain.menu.Menu;
 import ee.recipebank.backrecipebank.domain.ingridient.Ingredient;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingList;
 import ee.recipebank.backrecipebank.business.user.User;
+import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredient;
 import ee.recipebank.backrecipebank.infrastructure.exception.BusinessException;
 
 import java.util.Optional;
@@ -39,6 +40,11 @@ public class Validation {
     public static void validateShoppingList(Optional<ShoppingList> shoppingList) {
         if (shoppingList.isEmpty()) {
             throw new BusinessException(ShoppingListError.SHOPPING_LIST_NOT_FOUND.getMessage(), ShoppingListError.SHOPPING_LIST_NOT_FOUND.getErrorCode());
+        }
+    }
+    public static void validateShoppingListIngredient(Optional<ShoppingListIngredient> shoppingListItem) {
+        if (shoppingListItem.isEmpty()) {
+            throw new BusinessException(ShoppingListError.SHOPPING_LIST_ITEM_NOT_FOUND.getMessage(), ShoppingListError.SHOPPING_LIST_ITEM_NOT_FOUND.getErrorCode());
         }
     }
 }
