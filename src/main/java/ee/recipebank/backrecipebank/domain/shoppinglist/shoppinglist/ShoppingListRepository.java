@@ -8,6 +8,6 @@ import java.util.List;
 public interface ShoppingListRepository extends JpaRepository<ShoppingList, Integer> {
 
 
-    @Query("select s from ShoppingList s where s.menu.id = ?1")
-    List<ShoppingList> findAllByMenuId(Integer id);
+    @Query("select s from ShoppingList s where s.menu.user.id = ?1")
+    List<ShoppingList> findAllByUserId(Integer id);
 }

@@ -2,7 +2,7 @@ package ee.recipebank.backrecipebank.business.shoppinglist;
 
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.CustomShoppingListItem;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListIngredientDto;
-import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingListRequest;
+import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +23,7 @@ public class ShoppingListController {
     }
 
     @GetMapping("/ingredients")
-    @Operation(summary = "See teenus tagastab kõik ühe menüü komponendid shoppinglisti ID aluse.")
+    @Operation(summary = "See teenus tagastab kõik ühe menüü komponendid shoppinglisti ID alusel.")
     public List<ShoppingListIngredientDto> getAllShoppingListIngredients(@RequestParam Integer shoppingListId) {
         return shoppingListService.getAllShoppingListIngredients(shoppingListId);
     }
@@ -39,18 +39,18 @@ public class ShoppingListController {
     public void deleteShoppingListItem(@RequestParam Integer ingredientId) {
 //        shoppingListService.deleteShoppingListItem(ingredientId);
     }
+
     @PutMapping("")
     @Operation(summary = "See lisab kommentaari shoppiListi alla")
     public void updateShoppingList(@RequestParam Integer shoppingListId, @RequestParam String shoppingListComment) {
-         shoppingListService.updateShoppingList(shoppingListId,shoppingListComment);
+        shoppingListService.updateShoppingList(shoppingListId, shoppingListComment);
     }
 
-    @GetMapping("")
-    @Operation(summary = "Toob kõik kasutaja ostunimekirjad")
-    public List<ShoppingListRequest> getAllShoppingLists(@RequestParam Integer menuId) {
-        List<ShoppingListRequest> allShoppingLists = shoppingListService.getAllShoppingLists(menuId);
-        return allShoppingLists;
+    @GetMapping("/menus")
+    @Operation(summary = "See teenus toob fronti kõik kasutaja shoppinglistid ja menüüd.")
+    public List<ShoppingListRequest> getAllShoppingListsByUserId(@RequestParam Integer userId) {
+        List<ShoppingListRequest> aLlShoppingListsByUserId = shoppingListService.getALlShoppingListsByUserId(userId);
+        return aLlShoppingListsByUserId;
     }
-
 
 }

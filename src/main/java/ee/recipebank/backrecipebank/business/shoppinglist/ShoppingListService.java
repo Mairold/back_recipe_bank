@@ -14,7 +14,7 @@ import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectio
 import ee.recipebank.backrecipebank.domain.shoppinglist.ShoppingListServiceDomain;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingList;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingListMapper;
-import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingListRequest;
+import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListRequest;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredient;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredientMapper;
 import org.springframework.stereotype.Service;
@@ -57,7 +57,7 @@ public class ShoppingListService {
 
         List<ShoppingListIngredientDto> compoundQuantities = compoundQuantities(shoppingListIngredientDtos);
 
-        return joinTwoDtoLists(compoundQuantities,customShoppingListIngredientDtos);
+        return joinTwoDtoLists(compoundQuantities, customShoppingListIngredientDtos);
     }
 
     private List<ShoppingListIngredientDto> joinTwoDtoLists(List<ShoppingListIngredientDto> compoundQuantities, List<ShoppingListIngredientDto> customShoppingListIngredientDtos) {
@@ -82,8 +82,7 @@ public class ShoppingListService {
                 if (listIngredient.getShoppingListIngredientName().equals(ingredient.getShoppingListIngredientName()) &&
                         listIngredient.getMeasurementName().equals(ingredient.getMeasurementName())) {
 
-                    if (checkIfPresentInFinalList(finalList, listIngredient.getShoppingListIngredientName(), listIngredient.getMeasurementName()))
-                    {
+                    if (checkIfPresentInFinalList(finalList, listIngredient.getShoppingListIngredientName(), listIngredient.getMeasurementName())) {
                         counter++;
                         if (counter == 1) {
                             duplicates.add(listIngredient);
@@ -113,7 +112,7 @@ public class ShoppingListService {
     }
 
 
-    private boolean checkIfPresentInFinalList(List<ShoppingListIngredientDto> finalList,String value ,String name) {
+    private boolean checkIfPresentInFinalList(List<ShoppingListIngredientDto> finalList, String value, String name) {
         return finalList.stream().anyMatch(ingredient -> value.equals(ingredient.getShoppingListIngredientName()) && name.equals(ingredient.getMeasurementName()));
     }
 
@@ -179,14 +178,14 @@ public class ShoppingListService {
         ShoppingListDto shoppingListDto = new ShoppingListDto();
         shoppingListDto.setShoppingListComment(shoppingListComment);
         ShoppingList shoppingList = shoppingListServiceDomain.getShoppingListBy(shoppingListId);
-        shoppingListMapper.updateEntity(shoppingListDto,shoppingList);
+        shoppingListMapper.updateEntity(shoppingListDto, shoppingList);
         shoppingListServiceDomain.updateShoppingList(shoppingList);
     }
 
-    public List<ShoppingListRequest> getAllShoppingLists(Integer menuId) {
-        List<ShoppingList> allShoppingLists = shoppingListServiceDomain.getAllShoppingLists(menuId);
-        List<ShoppingListRequest> shoppingListRequests = shoppingListMapper.toShoppingListResponses(allShoppingLists);
-        return shoppingListRequests;
+    public List<ShoppingListRequest> getALlShoppingListsByUserId(Integer userId) {
+        List<ShoppingList> allShoppingListsByUserId = shoppingListServiceDomain.getAllShoppingListsByUserId(userId);
+        List<ShoppingListRequest> shoppingListRequests1 = shoppingListMapper.toShoppingListRequests1(allShoppingListsByUserId);
+        return shoppingListRequests1;
     }
 }
 

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ShoppingListServiceDomain {
@@ -18,6 +17,7 @@ public class ShoppingListServiceDomain {
     private ShoppingListIngredientRepository shoppingListIngredientRepository;
     @Resource
     private ShoppingListRepository shoppingListRepository;
+
     public List<ShoppingListIngredient> getShoppingIngredientListBy(Integer shoppingListId, Boolean isCustom) {
         return shoppingListIngredientRepository.findShoppingListIngredientBy(shoppingListId, isCustom);
 
@@ -44,8 +44,8 @@ public class ShoppingListServiceDomain {
         shoppingListRepository.save(shoppingList);
     }
 
-    public List<ShoppingList> getAllShoppingLists(Integer menuId) {
-        List<ShoppingList> allByMenuId = shoppingListRepository.findAllByMenuId(menuId);
-        return allByMenuId;
+    public List<ShoppingList> getAllShoppingListsByUserId(Integer userId) {
+        List<ShoppingList> allByUserId = shoppingListRepository.findAllByUserId(userId);
+        return allByUserId;
     }
 }
