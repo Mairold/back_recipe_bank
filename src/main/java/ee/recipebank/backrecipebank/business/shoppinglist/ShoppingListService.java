@@ -16,6 +16,8 @@ import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingLis
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingListMapper;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredient;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredientMapper;
+import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListRequest;
+
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -186,6 +188,12 @@ public class ShoppingListService {
         ShoppingList shoppingList = shoppingListServiceDomain.getShoppingListBy(shoppingListId);
         return shoppingListMapper.toDto(shoppingList);
     }
+    public List<ShoppingListRequest> getALlShoppingListsByUserId(Integer userId) {
+        List<ShoppingList> allShoppingListsByUserId = shoppingListServiceDomain.getAllShoppingListsByUserId(userId);
+        List<ShoppingListRequest> shoppingListRequests1 = shoppingListMapper.toShoppingListRequests1(allShoppingListsByUserId);
+        return shoppingListRequests1;
+    }
 }
+
 
 

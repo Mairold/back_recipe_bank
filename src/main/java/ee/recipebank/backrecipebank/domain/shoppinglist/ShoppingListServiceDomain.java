@@ -17,6 +17,7 @@ public class ShoppingListServiceDomain {
     private ShoppingListIngredientRepository shoppingListIngredientRepository;
     @Resource
     private ShoppingListRepository shoppingListRepository;
+
     public List<ShoppingListIngredient> getShoppingIngredientListBy(Integer shoppingListId, Boolean isCustom) {
         return shoppingListIngredientRepository.findShoppingListIngredientBy(shoppingListId, isCustom);
 
@@ -41,5 +42,10 @@ public class ShoppingListServiceDomain {
 
     public void updateShoppingList(ShoppingList shoppingList) {
         shoppingListRepository.save(shoppingList);
+    }
+
+    public List<ShoppingList> getAllShoppingListsByUserId(Integer userId) {
+        List<ShoppingList> allByUserId = shoppingListRepository.findAllByUserId(userId);
+        return allByUserId;
     }
 }

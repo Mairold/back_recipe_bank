@@ -9,8 +9,8 @@ import ee.recipebank.backrecipebank.domain.recipe.RecipeServiceDomain;
 import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSection;
 import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionMapper;
 import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionServiceDomain;
-import ee.recipebank.backrecipebank.domain.user.User;
-import ee.recipebank.backrecipebank.domain.user.UserService;
+import ee.recipebank.backrecipebank.business.user.User;
+import ee.recipebank.backrecipebank.business.user.UserService;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +35,8 @@ public class MenuService {
     private RecipeInSectionServiceDomain recipeInSectionServiceDomain;
     @Resource
     private RecipeInSectionMapper recipeInSectionMapper;
+    @Resource
+    private MenuMapper menuMapper;
 
     public Integer addNewMenu(Integer userId) {
         Menu menu = getMenu(userService.getValidUser(userId));
@@ -85,6 +87,7 @@ public class MenuService {
         RecipeChangeRequest recipeChangeRequest = recipeInSectionMapper.toDto(recipeInSection); // saadame kommi mäpperisse ja teeme sellest RecipeChangeRequest klassi objekti
         return recipeChangeRequest; // tagastame mäpitud Dto kontrollerisse
     }
+
     public void changeRecipeInMenu(RecipeChangeRequest recipeChangeRequest) {
         RecipeInSection recipeInSectionById = recipeInSectionServiceDomain.findRecipeInSectionById(recipeChangeRequest.getRecipeInSectionId());
         // Objekt, mida hakkan üle kirjutama, tuleb kõigepealt RecipeInSection tabelist kätte saada. Dto'st Id kättesaamiseks kasutan getterit:
@@ -102,5 +105,11 @@ public class MenuService {
     public void deleteSection(Integer menuSectionId) {
         recipeInSectionServiceDomain.deleteRecipesInSectionBy(menuSectionId);
         sectionInMenuServiceDomain.deleteSectionBy(menuSectionId);
+    }
+
+    public List<MenuResponse> getAllMenusByUserId(Integer userId) {
+        List<Menu> allMenusByUserId = menuServiceDomain.getAllMenusByUserId(userId);
+        List<MenuResponse> menuResponses = menuMapper.toMenuRequest(allMenusByUserId);
+        return menuResponses;
     }
 }
