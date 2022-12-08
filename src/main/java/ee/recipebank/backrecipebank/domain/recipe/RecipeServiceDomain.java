@@ -51,4 +51,7 @@ public class RecipeServiceDomain {
 
     }
 
+    public void save(Recipe recipe) {
+        recipeRepository.save(recipe);
+    }
 }

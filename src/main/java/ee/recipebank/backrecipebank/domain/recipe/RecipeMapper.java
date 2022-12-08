@@ -1,6 +1,7 @@
 package ee.recipebank.backrecipebank.domain.recipe;
 
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeContentDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInstructionsDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeRequestDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeToListDto;
 import org.mapstruct.*;
@@ -53,5 +54,11 @@ public interface RecipeMapper {
     @Mapping(constant = "", target = "instructions")
     @Mapping(source = "servingSize", target = "servingSize")
     Recipe recipeRequestDtoToRecipe(RecipeRequestDto request);
+
+
+    @Mapping(source = "instructions",target = "instructions")
+    Recipe toRecipe(RecipeInstructionsDto instructions);
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    Recipe updateRecipeWithInstructions(RecipeInstructionsDto recipeInstructionsDto, @MappingTarget Recipe recipe);
 
 }
