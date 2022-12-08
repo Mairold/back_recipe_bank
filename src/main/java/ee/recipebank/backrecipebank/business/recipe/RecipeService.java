@@ -62,11 +62,11 @@ public class RecipeService {
     } // tagastab controllerisse väljaotsitud retsepti
 
     public RecipeResponseDto addRecipe(RecipeRequestDto newRecipe) {
-        RecipeResponseDto suvalineNimi = recipeServiceDomain.addRecipe(newRecipe);
+        RecipeResponseDto recipeResponseDto = recipeServiceDomain.addRecipe(newRecipe);
 
         //  recipeServiceDomain.addRecipe(newRecipe); //recipeService domain siin tagastab RecipeResponseDto, teha
         // sellest muutuja
-        return suvalineNimi;
+        return recipeResponseDto;
     }
 
 
@@ -88,5 +88,9 @@ public class RecipeService {
         recipeServiceDomain.addInstructionsToRecipe(recipe);
 
 
+    }
+
+    public RecipeResponseDto getRecipeGeneralInfo(Integer recipeId) {
+        return recipeMapper.toResponseDto(recipeServiceDomain.getRecipeById(recipeId));
     }
 }

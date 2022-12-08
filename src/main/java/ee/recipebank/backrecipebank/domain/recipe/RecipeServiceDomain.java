@@ -39,9 +39,7 @@ public class RecipeServiceDomain {
         // ja siis tekib:  Recipe recipe = recipeMapper.recipeRequestDtoToRecipe(newRecipe);
         recipe.setDateFrom(LocalDate.now()); // kuna see on NotNull, siis paneme niiviisi kaasa
         recipeRepository.save(recipe); //selle liigutusega on see retsept andmebaasi lisatud.
-        RecipeResponseDto response = new RecipeResponseDto();
-        response.setRecipeId(recipe.getId()); //küsisime recipeID ja panime responsi külge. Ja nüüd on response olemas.
-        return response;
+        return recipeMapper.toResponseDto(recipe);
         //sammud samamoodi, alguses         new RecipeResponseDto(); ja siis introduce local variable.
     }
 

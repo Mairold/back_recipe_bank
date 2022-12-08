@@ -1,9 +1,6 @@
 package ee.recipebank.backrecipebank.domain.recipe;
 
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeContentDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInstructionsDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeRequestDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeToListDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.*;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -23,6 +20,10 @@ public interface RecipeMapper {
     @Mapping(source = "preparationTime.prepTime", target = "prepTime")
     @Mapping(source = "name", target = "recipeName")
     RecipeToListDto toDto(Recipe recipe);
+
+    @Mapping(source = "id", target = "recipeId")
+    @Mapping(source = "name", target = "recipeName")
+    RecipeResponseDto toResponseDto(Recipe recipe);
 
     List<RecipeToListDto> toDtos(List<Recipe> recipe);
 

@@ -9,4 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class RecipeResponseDto {
     private Integer recipeId;
+    private String recipeName;
 }
