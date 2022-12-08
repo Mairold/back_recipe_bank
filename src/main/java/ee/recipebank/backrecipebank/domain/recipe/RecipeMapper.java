@@ -56,9 +56,9 @@ public interface RecipeMapper {
     Recipe recipeRequestDtoToRecipe(RecipeRequestDto request);
 
 
-    @Mapping(source = "instructions",target = "instructions")
-    Recipe toRecipe(RecipeInstructionsDto instructions);
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Recipe updateRecipeWithInstructions(RecipeInstructionsDto recipeInstructionsDto, @MappingTarget Recipe recipe);
+    @Mapping(source = "recipeId",target = "id")
+    @Mapping(source = "recipeComment",target = "instructions")
+
+    Recipe updateRecipeWithInstructions(RecipeDto recipeDto, @MappingTarget Recipe recipe);
 
 }

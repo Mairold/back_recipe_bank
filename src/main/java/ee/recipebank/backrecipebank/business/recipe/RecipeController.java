@@ -4,6 +4,7 @@ package ee.recipebank.backrecipebank.business.recipe;
 import ee.recipebank.backrecipebank.business.recipe.dto.*;
 import ee.recipebank.backrecipebank.business.recipe.dto.recipecategory.preparationTime.PreparationTimeDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.recipecategory.RecipeCategoryDto;
+import ee.recipebank.backrecipebank.domain.recipe.RecipeDto;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,8 +58,8 @@ public class RecipeController {
 
     @PutMapping("/recipe")
     @Operation(summary = "Selle teenusega uuendatakse retsepti lisades valmistamise juhendi.")
-    public void saveRecipeComment(@RequestParam Integer recipeId, @RequestBody RecipeInstructionsDto request) {
-        recipeService.saveRecipeComment(recipeId, request);
+    public void saveRecipeComment(@RequestBody RecipeDto recipeComment) {
+        recipeService.saveRecipeComment(recipeComment);
     }
 }
 
