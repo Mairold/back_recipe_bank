@@ -19,7 +19,10 @@ public class ShoppingListServiceDomain {
     private ShoppingListRepository shoppingListRepository;
 
     public List<ShoppingListIngredient> getShoppingIngredientListBy(Integer shoppingListId) {
-        return shoppingListIngredientRepository.findAllBy(shoppingListId);
+        List<ShoppingListIngredient> allBy = shoppingListIngredientRepository.findAllWhereIngredientGroupIsNotNullBy(shoppingListId);
+        List<ShoppingListIngredient> allCustomBy = shoppingListIngredientRepository.findAllWhereIngredientGroupIsNullBy(shoppingListId);
+        allBy.addAll(allCustomBy);
+        return allBy;
 
     }
 

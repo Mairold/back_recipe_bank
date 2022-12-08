@@ -14,7 +14,9 @@ public class IngredientGroupService {
 
 
     public IngredientGroup getIngredientGroup(IngredientRequest ingredientRequest) {
-        return ingredientGroupRepository.findById(ingredientRequest.getIngredientGroupId()).get();
+        return ingredientGroupRepository.findById(ingredientRequest.getIngredientGroupId()).isPresent() ?
+                ingredientGroupRepository.findById(ingredientRequest.getIngredientGroupId()).get() : null;
+
     }
 
     public List<IngredientGroup> getAllGroups() {
@@ -23,6 +25,7 @@ public class IngredientGroupService {
 
 
     public IngredientGroup getIngredientGroupBy(Integer ingredientGroupId) {
-        return ingredientGroupRepository.findById(ingredientGroupId).get();
+        return ingredientGroupRepository.findById(ingredientGroupId).isPresent() ?
+                ingredientGroupRepository.findById(ingredientGroupId).get() : null;
     }
 }

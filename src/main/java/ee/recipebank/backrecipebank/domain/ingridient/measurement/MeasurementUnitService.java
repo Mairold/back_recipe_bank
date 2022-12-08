@@ -17,10 +17,12 @@ public class MeasurementUnitService {
 
 
     public MeasurementUnit getAllowedMeasurementUnit(MeasurementDto unit) { //unit asemel võib olla ükskõik mis nimi
-        return measurementUnitRepository.findById(unit.getMeasurementId()).get();
+        return measurementUnitRepository.findById(unit.getMeasurementId()).isPresent() ?
+                measurementUnitRepository.findById(unit.getMeasurementId()).get() : null;
     }
 
     public MeasurementUnit getMeasurementUnitBy(Integer measurementUnitId) {
-        return measurementUnitRepository.findById(measurementUnitId).get();
+        return measurementUnitRepository.findById(measurementUnitId).isPresent() ?
+                measurementUnitRepository.findById(measurementUnitId).get() : null;
     }
 }
