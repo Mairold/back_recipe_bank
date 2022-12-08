@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RecipeIngredientDto implements Serializable {
-    private Integer recipeId;
+    private Integer recipeIngredientId;
     private String ingredientName;
     private String measureUnitName;
     @NotNull

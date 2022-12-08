@@ -134,6 +134,10 @@ public class IngredientService {
 
         return allowedMeasurementUnitMapper.toDtos(allowedMeasurementUnits);
     }
+
+    public void deleteRecipeIngredient(Integer recipeIngredientId) {
+        recipeIngredientService.deleteBy(recipeIngredientId);
+    }
     //todo Quantity
 //    public void
 

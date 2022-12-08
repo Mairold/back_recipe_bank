@@ -20,6 +20,7 @@ public interface RecipeIngredientMapper {
 //    RecipeIngredient updateRecipeIngredientFromRecipeIngredientDto(RecipeIngredientDto recipeIngredientDto, @MappingTarget RecipeIngredient recipeIngredient);
 
     @Mapping(source = "ingredient.name", target = "ingredientName")
+    @Mapping(source = "id", target = "recipeIngredientId")
     @Mapping(source = "quantity", target = "quantity")
     @Mapping(source = "measureUnit.name", target = "measureUnitName")
     RecipeIngredientDto toDto(RecipeIngredient recipeIngredient);

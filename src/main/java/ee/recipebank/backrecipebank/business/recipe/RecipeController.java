@@ -63,7 +63,6 @@ public class RecipeController {
         return recipeService.getRecipeContent(recipeId);
     }
 
-
     @PutMapping("/recipe")
     @Operation(summary = "Selle teenusega uuendatakse retsepti lisades valmistamise juhendi.")
     public void saveRecipeComment(@RequestBody RecipeDto recipeComment) {

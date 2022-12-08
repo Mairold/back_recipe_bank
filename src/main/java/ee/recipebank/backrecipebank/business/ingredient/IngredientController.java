@@ -39,8 +39,14 @@ public class IngredientController {
     @Operation(summary = "Tagastab fronti konkreetse retsepti koostisosad koos koguste ja ühikutega")
     public List<RecipeIngredientDto> getRecipeIngredients(@RequestParam Integer recipeId){
         return ingredientService.getRecipeIngredients(recipeId);
-
     }
+
+    @DeleteMapping("/in-recipe")
+    @Operation(summary = "See teenus kustutab lisatud koostisosa retsepti lisamise ajal")
+    public void deleteRecipeIngredient(@RequestParam Integer recipeIngredientId) {
+        ingredientService.deleteRecipeIngredient(recipeIngredientId);
+    }
+
     //    @PostMapping("/quantity")
 //    @Operation(summary = "See teenus saadame backi retseptireale lisatud ühiku koguse")
 //    public void addQuantity(@RequestBody RecipeIngredientDto recipeIngredientDto) {
