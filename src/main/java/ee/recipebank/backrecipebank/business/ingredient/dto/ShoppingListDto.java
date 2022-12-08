@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.Instant;
 
 /**
  * A DTO for the {@link ShoppingList} entity
