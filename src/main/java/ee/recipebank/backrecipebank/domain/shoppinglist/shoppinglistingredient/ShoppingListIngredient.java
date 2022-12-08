@@ -4,6 +4,7 @@ import ee.recipebank.backrecipebank.domain.ingridient.Ingredient;
 import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroup;
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnit;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingList;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,8 +14,7 @@ import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "shopping_list_ingredient")
 public class ShoppingListIngredient {
@@ -63,4 +63,7 @@ public class ShoppingListIngredient {
     @Column(name = "status", nullable = false, length = 1)
     private String status;
 
+    public void addToQuantity(BigDecimal amount) {
+        this.quantity = this.quantity.add(amount);
+    }
 }

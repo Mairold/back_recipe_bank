@@ -17,8 +17,8 @@ public class ShoppingListServiceDomain {
     private ShoppingListIngredientRepository shoppingListIngredientRepository;
     @Resource
     private ShoppingListRepository shoppingListRepository;
-    public List<ShoppingListIngredient> getShoppingIngredientListBy(Integer shoppingListId, Boolean isCustom) {
-        return shoppingListIngredientRepository.findShoppingListIngredientBy(shoppingListId, isCustom);
+    public List<ShoppingListIngredient> getShoppingIngredientListBy(Integer shoppingListId) {
+        return shoppingListIngredientRepository.findAllBy(shoppingListId);
 
     }
 
