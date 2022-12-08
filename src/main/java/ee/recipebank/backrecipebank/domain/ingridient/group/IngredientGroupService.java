@@ -25,6 +25,8 @@ public class IngredientGroupService {
 
 
     public IngredientGroup getIngredientGroupBy(Integer ingredientGroupId) {
+        if (ingredientGroupId == null)
+        { return null; }
         return ingredientGroupRepository.findById(ingredientGroupId).isPresent() ?
                 ingredientGroupRepository.findById(ingredientGroupId).get() : null;
     }

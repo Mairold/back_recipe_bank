@@ -22,6 +22,8 @@ public class MeasurementUnitService {
     }
 
     public MeasurementUnit getMeasurementUnitBy(Integer measurementUnitId) {
+        if (measurementUnitId == null)
+        { return null; }
         return measurementUnitRepository.findById(measurementUnitId).isPresent() ?
                 measurementUnitRepository.findById(measurementUnitId).get() : null;
     }

@@ -65,8 +65,8 @@ public class ShoppingListController {
 
     @PutMapping("/ingredient")
     @Operation(summary = "See teenus uuendab poenimekirja komponendi infot")
-    public void updateShoppingListItem(@RequestBody ShoppingListIngredientRequest request) {
-
+    public void updateShoppingListItem(@RequestBody ShoppingListIngredientChange request) {
+        shoppingListService.updateShoppingItem(request);
     }
 
 }

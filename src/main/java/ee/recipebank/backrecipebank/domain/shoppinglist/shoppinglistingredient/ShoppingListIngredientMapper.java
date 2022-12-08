@@ -15,6 +15,10 @@ public interface ShoppingListIngredientMapper {
     @Mapping(source = "quantity", target = "quantity")
     ShoppingListIngredient toEntity(CustomShoppingListItem customItem);
 
+    @Mapping(source = "customIngredientName", target = "name")
+    @Mapping(source = "quantity", target = "quantity")
+    ShoppingListIngredient changeRequestToEntity(ShoppingListIngredientChange request, @MappingTarget ShoppingListIngredient ingredient);
+
     @Mapping(source = "id", target = "shoppingListIngredientId")
     @Mapping(source = "name", target = "customIngredientName")
     @Mapping(source = "ingredient.name", target = "shoppingListIngredientName")
@@ -28,11 +32,10 @@ public interface ShoppingListIngredientMapper {
 
     @Mapping(source = "id", target = "shoppingListIngredientId")
     @Mapping(source = "name", target = "customIngredientName")
-    @Mapping(source = "ingredient.name", target = "shoppingListIngredientName")
     @Mapping(source = "ingredientGroup.id", target = "ingredientGroupId")
+    @Mapping(source = "ingredient.name", target = "shoppingListIngredientName")
     @Mapping(source = "quantity", target = "quantity")
     @Mapping(source = "measurementUnit.id", target = "ingredientMeasurementId")
-    @Mapping(source = "isCustom", target = "shoppingListIngredientIsCustom")
     ShoppingListIngredientChange toChangeDto(ShoppingListIngredient shoppingListIngredient);
 
 }

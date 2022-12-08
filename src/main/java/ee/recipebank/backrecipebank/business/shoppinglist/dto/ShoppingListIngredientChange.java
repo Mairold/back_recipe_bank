@@ -14,7 +14,6 @@ public class ShoppingListIngredientChange implements Serializable {
     private Integer shoppingListIngredientId;
     private String customIngredientName;
     private String shoppingListIngredientName;
-    private Boolean shoppingListIngredientIsCustom = false;
     private Integer ingredientGroupId;
     private Integer ingredientMeasurementId;
     private BigDecimal quantity;

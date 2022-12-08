@@ -1,9 +1,7 @@
 package ee.recipebank.backrecipebank.business.shoppinglist;
 
 import ee.recipebank.backrecipebank.business.ingredient.dto.ShoppingListDto;
-import ee.recipebank.backrecipebank.business.shoppinglist.dto.CustomShoppingListItem;
-import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListIngredientChange;
-import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListIngredientDto;
+import ee.recipebank.backrecipebank.business.shoppinglist.dto.*;
 import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupService;
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnitService;
 import ee.recipebank.backrecipebank.domain.ingridient.recipeingredient.RecipeIngredient;
@@ -17,7 +15,6 @@ import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingLis
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingListMapper;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredient;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredientMapper;
-import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListRequest;
 
 import org.springframework.stereotype.Service;
 
@@ -164,6 +161,19 @@ public class ShoppingListService {
         ShoppingListIngredient shoppingListIngredient = shoppingListServiceDomain.getShoppingIngredientBy(shoppingListItemId);
         return shoppingListIngredientMapper.toChangeDto(shoppingListIngredient);
 
+    }
+
+    public void updateShoppingItem(ShoppingListIngredientChange request) {
+        ShoppingListIngredient ingredient = shoppingListServiceDomain.getShoppingIngredientBy(request.getShoppingListIngredientId());
+        shoppingListIngredientMapper.changeRequestToEntity(request,ingredient);
+        shoppingListServiceDomain.saveCustomItem(setIngredient(request, ingredient));
+    }
+
+    private ShoppingListIngredient setIngredient(ShoppingListIngredientChange request, ShoppingListIngredient ingredient) {
+        ingredient.setIngredientGroup(ingredientGroupService.getIngredientGroupBy(request.getIngredientGroupId()));
+        ingredient.setMeasurementUnit(measurementUnitService.getMeasurementUnitBy(request.getIngredientMeasurementId()));
+        ingredient.setDateTimeModified(Instant.now());
+        return ingredient;
     }
 }
 
