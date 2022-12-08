@@ -48,7 +48,10 @@ public class RecipeServiceDomain {
     public Recipe getRecipeById(Integer recipeId) {
         Recipe recipe = recipeRepository.findById(recipeId).get();
         return recipe;
-
     }
 
+    public void addInstructionsToRecipe(Recipe recipe) {
+        recipeRepository.save(recipe);
+
+    }
 }

@@ -1,12 +1,10 @@
 package ee.recipebank.backrecipebank.business.recipe;
 
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeContentDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeRequestDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeResponseDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeToListDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.*;
 import ee.recipebank.backrecipebank.business.recipe.dto.recipecategory.RecipeCategoryDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.recipecategory.preparationTime.PreparationTimeDto;
 import ee.recipebank.backrecipebank.domain.recipe.Recipe;
+import ee.recipebank.backrecipebank.domain.recipe.RecipeDto;
 import ee.recipebank.backrecipebank.domain.recipe.RecipeMapper;
 import ee.recipebank.backrecipebank.domain.recipe.RecipeServiceDomain;
 import ee.recipebank.backrecipebank.domain.recipe.preparationtime.PreparationTime;
@@ -69,5 +67,26 @@ public class RecipeService {
         //  recipeServiceDomain.addRecipe(newRecipe); //recipeService domain siin tagastab RecipeResponseDto, teha
         // sellest muutuja
         return suvalineNimi;
+    }
+
+
+//    public void saveRecipeComment(Integer recipeId, RecipeInstructionsDto request) {
+//        Recipe recipe = recipeServiceDomain.findRecipeById(recipeId);
+//        recipeMapper.updateRecipeWithInstructions(request, recipe);
+//        recipeServiceDomain.save(recipe);
+//    }
+
+//    public void saveRecipeComment(Integer recipeId, RecipeInstructionsDto request) {
+//        Recipe recipe = recipeServiceDomain.findRecipeById(recipeId);
+//        recipeMapper.updateRecipeWithInstructions(request, recipe);
+//        recipeServiceDomain.save(recipe);
+//    }
+
+    public void saveRecipeComment(RecipeDto recipeDto) {
+        Recipe recipeById = recipeServiceDomain.findRecipeById(recipeDto.getRecipeId());
+        Recipe recipe = recipeMapper.updateRecipeWithInstructions(recipeDto, recipeById);
+        recipeServiceDomain.addInstructionsToRecipe(recipe);
+
+
     }
 }
