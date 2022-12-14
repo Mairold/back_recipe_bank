@@ -3,7 +3,10 @@ package ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.CustomShoppingListItem;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListIngredientChange;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListIngredientDto;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
@@ -37,5 +40,4 @@ public interface ShoppingListIngredientMapper {
     @Mapping(source = "quantity", target = "quantity")
     @Mapping(source = "measurementUnit.id", target = "ingredientMeasurementId")
     ShoppingListIngredientChange toChangeDto(ShoppingListIngredient shoppingListIngredient);
-
 }

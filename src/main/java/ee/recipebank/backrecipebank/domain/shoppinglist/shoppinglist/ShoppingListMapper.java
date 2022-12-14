@@ -2,7 +2,10 @@ package ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist;
 
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.MainViewInfoRequest;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListDto;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
@@ -25,7 +28,6 @@ public interface ShoppingListMapper {
     MainViewInfoRequest toMainViewInfoRequest(ShoppingList allShoppingListsByUserId);
 
     List<MainViewInfoRequest> toMainViewInfoRequests(List<ShoppingList> allShoppingListsByUserId);
-
 }
 
 

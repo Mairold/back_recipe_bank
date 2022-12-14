@@ -12,6 +12,7 @@ import ee.recipebank.backrecipebank.domain.user.User;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredient;
 import ee.recipebank.backrecipebank.infrastructure.exception.BusinessException;
 
+import java.util.List;
 import java.util.Optional;
 
 public class Validation {

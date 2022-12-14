@@ -19,7 +19,4 @@ public interface RecipeInSectionRepository extends JpaRepository<RecipeInSection
     @Modifying
     @Query("delete from RecipeInSection r where r.sectionInMenu.id = ?1")
     void deleteBy(Integer menuSectionId);
-
-
-
 }

@@ -14,6 +14,7 @@ import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingLis
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingListServiceDomain;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredient;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredientMapper;
+import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredientService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -30,36 +31,37 @@ public class ShoppingListService {
     @Resource
     private ShoppingListServiceDomain shoppingListServiceDomain;
     @Resource
+    private ShoppingListIngredientService shoppingListIngredientService;
+    @Resource
     private MeasurementUnitService measurementUnitService;
     @Resource
     private IngredientGroupService ingredientGroupService;
+    @Resource
+    private MenuServiceDomain menuServiceDomain;
+    @Resource
+    private RecipeIngredientService recipeIngredientService;
     @Resource
     private RecipeInSectionServiceDomain recipeInSectionServiceDomain;
     @Resource
     private ShoppingListIngredientMapper shoppingListIngredientMapper;
     @Resource
     private ShoppingListMapper shoppingListMapper;
-    @Resource
-    private MenuServiceDomain menuServiceDomain;
-    @Resource
-    private RecipeIngredientService recipeIngredientService;
-
 
     public List<ShoppingListIngredientDto> getAllShoppingListIngredients(Integer shoppingListId) {
-        return shoppingListIngredientMapper.toDtos(shoppingListServiceDomain.getShoppingIngredientListBy(shoppingListId));
+        return shoppingListIngredientMapper.toDtos(shoppingListIngredientService.getShoppingIngredientListBy(shoppingListId));
     }
 
     public Integer generateNewShoppingList(Integer menuId) {
         ShoppingList shoppingList = generateShoppingList(menuServiceDomain.getValidMenuBy(menuId));
         Integer shoppingListId = shoppingListServiceDomain.saveNewShoppingList(shoppingList);
         List<ShoppingListIngredient> shoppingListIngredients = getShoppingListIngredients(menuId, shoppingList);
-        shoppingListServiceDomain.saveShoppingListIngredients(removeDuplicatesAndSumQuantity(shoppingListIngredients));
+        shoppingListIngredientService.saveShoppingListIngredients(removeDuplicatesAndSumQuantity(shoppingListIngredients));
         return shoppingListId;
     }
 
     public void saveCustomShoppingListItem(CustomShoppingListItem customItem) {
         ShoppingListIngredient shoppingListIngredient = shoppingListIngredientMapper.toEntity(customItem);
-        shoppingListServiceDomain.saveCustomItem(getShoppingListItemProperties(customItem, shoppingListIngredient));
+        shoppingListIngredientService.saveCustomItem(getShoppingListItemProperties(customItem, shoppingListIngredient));
     }
 
     public void updateShoppingList(Integer shoppingListId, String shoppingListComment) {
@@ -75,17 +77,17 @@ public class ShoppingListService {
     }
 
     public void deleteShoppingListItem(Integer ingredientId) {
-        shoppingListServiceDomain.deleteItemBy(ingredientId);
+        shoppingListIngredientService.deleteItemBy(ingredientId);
     }
 
     public ShoppingListIngredientChange getShoppingListItem(Integer shoppingListItemId) {
-        return shoppingListIngredientMapper.toChangeDto(shoppingListServiceDomain.getShoppingIngredientBy(shoppingListItemId));
+        return shoppingListIngredientMapper.toChangeDto(shoppingListIngredientService.getShoppingIngredientBy(shoppingListItemId));
     }
 
     public void updateShoppingItem(ShoppingListIngredientChange request) {
-        ShoppingListIngredient ingredient = shoppingListServiceDomain.getShoppingIngredientBy(request.getShoppingListIngredientId());
+        ShoppingListIngredient ingredient = shoppingListIngredientService.getShoppingIngredientBy(request.getShoppingListIngredientId());
         shoppingListIngredientMapper.changeRequestToEntity(request, ingredient);
-        shoppingListServiceDomain.saveCustomItem(setIngredient(request, ingredient));
+        shoppingListIngredientService.saveCustomItem(setIngredient(request, ingredient));
     }
 
     private ShoppingList generateShoppingList(Menu validMenuBy) {

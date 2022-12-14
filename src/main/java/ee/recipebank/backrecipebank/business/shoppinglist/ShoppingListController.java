@@ -1,6 +1,5 @@
 package ee.recipebank.backrecipebank.business.shoppinglist;
 
-import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListDto;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +37,7 @@ public class ShoppingListController {
     public void saveCustomShoppingListItem(@RequestBody CustomShoppingListItem customItem) {
         shoppingListService.saveCustomShoppingListItem(customItem);
     }
+
     @GetMapping("/ingredient")
     @Operation(summary = "See teenus tagastab ühe menüü ühe komponendid  ID alusel.")
     public ShoppingListIngredientChange getShoppingListItem(@RequestParam Integer shoppingListItemId) {
@@ -67,5 +67,4 @@ public class ShoppingListController {
     public void updateShoppingListItem(@RequestBody ShoppingListIngredientChange request) {
         shoppingListService.updateShoppingItem(request);
     }
-
 }

@@ -9,5 +9,4 @@ public interface MenuRepository extends JpaRepository<Menu, Integer> {
 
     @Query("select m from Menu m where m.user.id = ?1 order by m.dateTimeAdded DESC")
     List<Menu> findAllByUserId(Integer id);
-
 }

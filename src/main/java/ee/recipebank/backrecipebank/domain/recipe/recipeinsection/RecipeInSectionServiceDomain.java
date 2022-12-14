@@ -21,8 +21,8 @@ public class RecipeInSectionServiceDomain {
     }
 
     public RecipeInSection findRecipeInSectionById(Integer recipeInSectionId) {
-            Validation.validateRecipeInSection(recipeInSectionRepository.findById(recipeInSectionId));
-            return recipeInSectionRepository.findById(recipeInSectionId).get();
+        Validation.validateRecipeInSection(recipeInSectionRepository.findById(recipeInSectionId));
+        return recipeInSectionRepository.findById(recipeInSectionId).get();
     }
 
     public void updateRecipeInSection(RecipeInSection recipeInSection) {
