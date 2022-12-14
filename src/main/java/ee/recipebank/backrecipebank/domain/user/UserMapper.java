@@ -7,7 +7,5 @@ import org.mapstruct.ReportingPolicy;
 public interface UserMapper {
 
     User toUser(String username, String password);
-
-
 }
 

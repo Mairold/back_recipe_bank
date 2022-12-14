@@ -18,6 +18,7 @@ import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectio
 import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionServiceDomain;
 import ee.recipebank.backrecipebank.domain.user.User;
 import ee.recipebank.backrecipebank.business.user.UserService;
+import ee.recipebank.backrecipebank.domain.user.UserServiceDomain;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +36,7 @@ public class MenuService {
     @Resource
     private SectionInMenuMapper sectionInMenuMapper;
     @Resource
-    private UserService userService;
+    private UserServiceDomain userServiceDomain;
     @Resource
     private RecipeServiceDomain recipeServiceDomain;
     @Resource
@@ -46,7 +47,7 @@ public class MenuService {
     private MenuMapper menuMapper;
 
     public Integer addNewMenu(Integer userId) {
-        Menu menu = getMenu(userService.getValidUser(userId));
+        Menu menu = getMenu(userServiceDomain.getValidUser(userId));
         return menuServiceDomain.saveMenu(menu);
     }
 
