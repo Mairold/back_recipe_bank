@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.Date;
 
 @Data
 @Entity
@@ -51,10 +52,10 @@ public class ShoppingListIngredient {
 
     @NotNull
     @Column(name = "date_time_added", nullable = false)
-    private Instant dateTimeAdded;
+    private Date dateTimeAdded;
 
     @Column(name = "date_time_modified")
-    private Instant dateTimeModified;
+    private Date dateTimeModified;
 
     @Size(max = 1)
     @NotNull

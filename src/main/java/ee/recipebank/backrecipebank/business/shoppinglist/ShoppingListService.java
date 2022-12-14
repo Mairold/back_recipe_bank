@@ -22,7 +22,9 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.time.Instant;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -73,7 +75,17 @@ public class ShoppingListService {
     }
 
     public List<MainViewInfoRequest> getALlShoppingListsAndMenusBy(Integer userId) {
-        return shoppingListMapper.toMainViewInfoRequests(shoppingListServiceDomain.getAllShoppingListsBy(userId));
+        List<ShoppingList> allShoppingListsBy = shoppingListServiceDomain.getAllShoppingListsBy(userId);
+        List<MainViewInfoRequest> mainViewInfoRequests = shoppingListMapper.toMainViewInfoRequests(allShoppingListsBy);
+//        for (ShoppingList shoppingList : allShoppingListsBy) {
+//            for (MainViewInfoRequest mainViewInfoRequest : mainViewInfoRequests) {
+//                if (shoppingList.getId().equals(mainViewInfoRequest.getShoppingListId())) {
+//                    mainViewInfoRequest.setShoppingListDate(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss").format(shoppingList.getDateTimeAdded()));
+//                    mainViewInfoRequest.setMenuDate(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss").format(shoppingList.getMenu().getDateTimeAdded()));
+//                }
+//            }
+//        }
+        return mainViewInfoRequests;
     }
 
     public void deleteShoppingListItem(Integer ingredientId) {
@@ -93,7 +105,7 @@ public class ShoppingListService {
     private ShoppingList generateShoppingList(Menu validMenuBy) {
         ShoppingList shoppingList = new ShoppingList();
         shoppingList.setMenu(validMenuBy);
-        shoppingList.setDateTimeAdded(Instant.now());
+        shoppingList.setDateTimeAdded(Date.from(Instant.now()));
         return shoppingList;
     }
 
@@ -134,7 +146,7 @@ public class ShoppingListService {
                 recipeInSection.getRecipe().getServingSize(), recipeInSection.getPlannedServingSize());
         shoppingListIngredient.setQuantity(shoppingListQuantity);
         shoppingListIngredient.setStatus("A");
-        shoppingListIngredient.setDateTimeAdded(Instant.now());
+        shoppingListIngredient.setDateTimeAdded(Date.from(Instant.now()));
         shoppingListIngredient.setIsCustom(false);
         return shoppingListIngredient;
     }
@@ -150,7 +162,7 @@ public class ShoppingListService {
         shoppingListItem.setIngredientGroup(ingredientGroupService.getIngredientGroupBy(customItem.getIngredientGroupId()));
         shoppingListItem.setMeasurementUnit(measurementUnitService.getMeasurementUnitBy(customItem.getMeasurementId()));
         shoppingListItem.setStatus("A");
-        shoppingListItem.setDateTimeAdded(Instant.now());
+        shoppingListItem.setDateTimeAdded(Date.from(Instant.now()));
         return shoppingListItem;
     }
 
@@ -165,7 +177,7 @@ public class ShoppingListService {
     private ShoppingListIngredient setIngredient(ShoppingListIngredientChange request, ShoppingListIngredient ingredient) {
         ingredient.setIngredientGroup(ingredientGroupService.getIngredientGroupBy(request.getIngredientGroupId()));
         ingredient.setMeasurementUnit(measurementUnitService.getMeasurementUnitBy(request.getIngredientMeasurementId()));
-        ingredient.setDateTimeModified(Instant.now());
+        ingredient.setDateTimeModified(Date.from(Instant.now()));
         return ingredient;
     }
 }

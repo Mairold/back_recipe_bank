@@ -23,8 +23,8 @@ public interface ShoppingListMapper {
     @Mapping(source = "id", target = "shoppingListId")
     @Mapping(source = "menu.id", target = "menuId")
     @Mapping(source = "menu.user.id", target = "userId")
-    @Mapping(source = "menu.dateTimeAdded", target = "menuDate")
     @Mapping(source = "dateTimeAdded", target = "shoppingListDate")
+    @Mapping(source = "menu.dateTimeAdded", target = "menuDate")
     MainViewInfoRequest toMainViewInfoRequest(ShoppingList allShoppingListsByUserId);
 
     List<MainViewInfoRequest> toMainViewInfoRequests(List<ShoppingList> allShoppingListsByUserId);

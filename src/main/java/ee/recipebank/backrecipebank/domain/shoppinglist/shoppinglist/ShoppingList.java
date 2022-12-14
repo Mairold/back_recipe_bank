@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.Instant;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -26,7 +27,7 @@ public class ShoppingList {
 
     @NotNull
     @Column(name = "date_time_added", nullable = false)
-    private Instant dateTimeAdded;
+    private Date dateTimeAdded;
 
     @Size(max = 255)
     @Column(name = "comment")

@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -90,7 +91,7 @@ public class MenuService {
     private Menu getMenu(User validUser) {
         Menu menu = new Menu();
         menu.setUser(validUser);
-        menu.setDateTimeAdded(Instant.now());
+        menu.setDateTimeAdded(Date.from(Instant.now()));
         menu.setStatus("A");
         return menu;
     }

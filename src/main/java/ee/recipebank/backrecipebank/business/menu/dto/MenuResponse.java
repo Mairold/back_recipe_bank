@@ -20,5 +20,5 @@ public class MenuResponse implements Serializable {
     private Integer menuId;
     @Size(max = 100)
     @NotNull
-    private Instant menuDate;
+    private String menuDate;
 }

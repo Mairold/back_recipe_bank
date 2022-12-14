@@ -20,7 +20,7 @@ public class MainViewInfoRequest implements Serializable {
     private Integer menuId;
     private Integer userId;
     @NotNull
-    private Instant menuDate;
+    private String menuDate;
     @NotNull
-    private Instant shoppingListDate;
+    private String shoppingListDate;
 }
