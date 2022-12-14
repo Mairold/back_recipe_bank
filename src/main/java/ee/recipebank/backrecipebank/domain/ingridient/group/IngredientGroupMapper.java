@@ -1,7 +1,9 @@
 package ee.recipebank.backrecipebank.domain.ingridient.group;
 
 import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientGroupDto;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
@@ -13,8 +15,6 @@ public interface IngredientGroupMapper {
     IngredientGroupDto toDto(IngredientGroup ingredientGroup);
 
     List<IngredientGroupDto> toDtos(List<IngredientGroup> ingredientGroups);
-
-
 
 
 }

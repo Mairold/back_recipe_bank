@@ -1,6 +1,5 @@
 package ee.recipebank.backrecipebank.domain.user;
 
-import ee.recipebank.backrecipebank.business.user.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 

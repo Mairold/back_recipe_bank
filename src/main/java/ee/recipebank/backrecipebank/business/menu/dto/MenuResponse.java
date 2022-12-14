@@ -1,5 +1,6 @@
-package ee.recipebank.backrecipebank.domain.menu;
+package ee.recipebank.backrecipebank.business.menu.dto;
 
+import ee.recipebank.backrecipebank.domain.menu.menu.Menu;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

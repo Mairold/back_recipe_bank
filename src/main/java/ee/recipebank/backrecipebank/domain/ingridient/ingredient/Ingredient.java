@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.domain.ingridient;
+package ee.recipebank.backrecipebank.domain.ingridient.ingredient;
 
 import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroup;
 

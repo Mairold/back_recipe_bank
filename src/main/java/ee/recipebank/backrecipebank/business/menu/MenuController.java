@@ -1,9 +1,10 @@
 package ee.recipebank.backrecipebank.business.menu;
 
+import ee.recipebank.backrecipebank.business.menu.dto.SectionInMenuDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeRequest;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInSectionDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInsertRequest;
-import ee.recipebank.backrecipebank.domain.menu.MenuResponse;
+import ee.recipebank.backrecipebank.business.menu.dto.MenuResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 

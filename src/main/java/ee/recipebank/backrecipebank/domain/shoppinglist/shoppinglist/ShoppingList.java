@@ -1,6 +1,6 @@
 package ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist;
 
-import ee.recipebank.backrecipebank.domain.menu.Menu;
+import ee.recipebank.backrecipebank.domain.menu.menu.Menu;
 import lombok.Getter;
 import lombok.Setter;
 

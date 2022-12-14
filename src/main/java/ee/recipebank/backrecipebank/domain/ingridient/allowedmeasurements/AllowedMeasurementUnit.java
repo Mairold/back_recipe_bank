@@ -1,6 +1,6 @@
 package ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements;
 
-import ee.recipebank.backrecipebank.domain.ingridient.Ingredient;
+import ee.recipebank.backrecipebank.domain.ingridient.ingredient.Ingredient;
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnit;
 
 import javax.persistence.*;

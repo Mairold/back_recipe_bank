@@ -1,7 +1,7 @@
 package ee.recipebank.backrecipebank.business.user;
 
 import ee.recipebank.backrecipebank.Validation.Validation;
-import ee.recipebank.backrecipebank.business.user.User;
+import ee.recipebank.backrecipebank.domain.user.User;
 import ee.recipebank.backrecipebank.domain.user.UserRepository;
 import ee.recipebank.backrecipebank.domain.user.UserServiceDomain;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.domain.recipe;
+package ee.recipebank.backrecipebank.domain.recipe.recipe;
 
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeRequestDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeResponseDto;

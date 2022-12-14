@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.domain.ingridient;
+package ee.recipebank.backrecipebank.domain.ingridient.ingredient;
 
 import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientInfo;
 import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientRequest;
@@ -23,10 +23,10 @@ public interface IngredientMapper {
     @Mapping(constant = "A", target = "status")
     Ingredient toEntity(IngredientRequest ingredientRequest);
 
-
     @Mapping(source = "name", target = "ingredientName")
     @Mapping(source = "id", target = "ingredientId")
     IngredientInfo toDto(Ingredient ingredient);
+
     List<IngredientInfo> toAwesomeDtos(List<Ingredient> ingredients);
 
 

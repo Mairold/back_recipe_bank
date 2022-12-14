@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.domain.shoppinglist;
+package ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist;
 
 import ee.recipebank.backrecipebank.Validation.Validation;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingList;

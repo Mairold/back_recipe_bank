@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.domain.recipe;
+package ee.recipebank.backrecipebank.domain.recipe.recipe;
 
 import ee.recipebank.backrecipebank.domain.recipe.preparationtime.PreparationTime;
 import ee.recipebank.backrecipebank.domain.recipe.recipecategory.RecipeCategory;

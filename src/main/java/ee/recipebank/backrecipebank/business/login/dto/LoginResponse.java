@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.business.login;
+package ee.recipebank.backrecipebank.business.login.dto;
 
 
 import lombok.AllArgsConstructor;

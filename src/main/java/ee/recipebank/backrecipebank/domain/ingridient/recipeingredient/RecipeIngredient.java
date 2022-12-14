@@ -1,8 +1,8 @@
 package ee.recipebank.backrecipebank.domain.ingridient.recipeingredient;
 
-import ee.recipebank.backrecipebank.domain.ingridient.Ingredient;
+import ee.recipebank.backrecipebank.domain.ingridient.ingredient.Ingredient;
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnit;
-import ee.recipebank.backrecipebank.domain.recipe.Recipe;
+import ee.recipebank.backrecipebank.domain.recipe.recipe.Recipe;
 import lombok.Getter;
 import lombok.Setter;
 

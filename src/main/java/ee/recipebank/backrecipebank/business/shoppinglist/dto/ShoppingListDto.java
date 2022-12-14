@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.business.ingredient.dto;
+package ee.recipebank.backrecipebank.business.shoppinglist.dto;
 
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingList;
 import lombok.AllArgsConstructor;

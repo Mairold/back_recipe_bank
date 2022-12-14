@@ -5,9 +5,9 @@ import ee.recipebank.backrecipebank.business.recipe.dto.RecipeContentDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeRequestDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeResponseDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeToListDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.recipecategory.RecipeCategoryDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.recipecategory.preparationTime.PreparationTimeDto;
-import ee.recipebank.backrecipebank.domain.recipe.RecipeDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeCategoryDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.PreparationTimeDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeDto;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 

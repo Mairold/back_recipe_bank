@@ -1,12 +1,12 @@
 package ee.recipebank.backrecipebank.business.recipe;
 
 import ee.recipebank.backrecipebank.business.recipe.dto.*;
-import ee.recipebank.backrecipebank.business.recipe.dto.recipecategory.RecipeCategoryDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.recipecategory.preparationTime.PreparationTimeDto;
-import ee.recipebank.backrecipebank.domain.recipe.Recipe;
-import ee.recipebank.backrecipebank.domain.recipe.RecipeDto;
-import ee.recipebank.backrecipebank.domain.recipe.RecipeMapper;
-import ee.recipebank.backrecipebank.domain.recipe.RecipeServiceDomain;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeCategoryDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.PreparationTimeDto;
+import ee.recipebank.backrecipebank.domain.recipe.recipe.Recipe;
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeDto;
+import ee.recipebank.backrecipebank.domain.recipe.recipe.RecipeMapper;
+import ee.recipebank.backrecipebank.domain.recipe.recipe.RecipeServiceDomain;
 import ee.recipebank.backrecipebank.domain.recipe.preparationtime.PreparationTime;
 import ee.recipebank.backrecipebank.domain.recipe.preparationtime.PreparationTimeMapper;
 import ee.recipebank.backrecipebank.domain.recipe.preparationtime.PreparationTimeService;

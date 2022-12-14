@@ -2,22 +2,14 @@ package ee.recipebank.backrecipebank.domain.ingridient.recipeingredient;
 
 import ee.recipebank.backrecipebank.business.ingredient.dto.RecipeIngredientDto;
 import ee.recipebank.backrecipebank.business.ingredient.dto.RecipeIngredientRequest;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface RecipeIngredientMapper {
-//    @Mapping(source = "ingredientName", target = "ingredient.name")
-//    @Mapping(source = "measureUnitName", target = "measureUnit.name")
-//    RecipeIngredient recipeIngredientDtoToRecipeIngredient(RecipeIngredientDto recipeIngredientDto);
-
-//    @InheritInverseConfiguration(name = "recipeIngredientDtoToRecipeIngredient")
-//    RecipeIngredientDto recipeIngredientToRecipeIngredientDto(RecipeIngredient recipeIngredient);
-//
-//    @InheritConfiguration(name = "recipeIngredientDtoToRecipeIngredient")
-//    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-//    RecipeIngredient updateRecipeIngredientFromRecipeIngredientDto(RecipeIngredientDto recipeIngredientDto, @MappingTarget RecipeIngredient recipeIngredient);
 
     @Mapping(source = "ingredient.name", target = "ingredientName")
     @Mapping(source = "id", target = "recipeIngredientId")
@@ -27,6 +19,6 @@ public interface RecipeIngredientMapper {
 
     List<RecipeIngredientDto> toDtos(List<RecipeIngredient> recipeIngredients);
 
-@Mapping(source = "ingredientQuantity", target = "quantity")
+    @Mapping(source = "ingredientQuantity", target = "quantity")
     RecipeIngredient toEntity(RecipeIngredientRequest recipeIngredient);
 }

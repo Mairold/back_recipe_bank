@@ -1,6 +1,6 @@
 package ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist;
 
-import ee.recipebank.backrecipebank.business.ingredient.dto.ShoppingListDto;
+import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListDto;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListRequest;
 import org.mapstruct.*;
 

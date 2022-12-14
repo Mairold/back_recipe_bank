@@ -1,7 +1,7 @@
 package ee.recipebank.backrecipebank.domain.recipe.recipeinsection;
 
-import ee.recipebank.backrecipebank.domain.menu.SectionInMenu;
-import ee.recipebank.backrecipebank.domain.recipe.Recipe;
+import ee.recipebank.backrecipebank.domain.menu.sectioninmenu.SectionInMenu;
+import ee.recipebank.backrecipebank.domain.recipe.recipe.Recipe;
 import lombok.Getter;
 import lombok.Setter;
 

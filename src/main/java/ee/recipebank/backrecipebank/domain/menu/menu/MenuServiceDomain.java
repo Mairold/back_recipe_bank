@@ -1,4 +1,4 @@
-package ee.recipebank.backrecipebank.domain.menu;
+package ee.recipebank.backrecipebank.domain.menu.menu;
 
 import ee.recipebank.backrecipebank.Validation.Validation;
 import org.springframework.stereotype.Service;

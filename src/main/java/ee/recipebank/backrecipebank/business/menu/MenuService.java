@@ -1,15 +1,22 @@
 package ee.recipebank.backrecipebank.business.menu;
 
+import ee.recipebank.backrecipebank.business.menu.dto.MenuResponse;
+import ee.recipebank.backrecipebank.business.menu.dto.SectionInMenuDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeRequest;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInSectionDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInsertRequest;
-import ee.recipebank.backrecipebank.domain.menu.*;
-import ee.recipebank.backrecipebank.domain.recipe.Recipe;
-import ee.recipebank.backrecipebank.domain.recipe.RecipeServiceDomain;
+import ee.recipebank.backrecipebank.domain.menu.menu.Menu;
+import ee.recipebank.backrecipebank.domain.menu.menu.MenuMapper;
+import ee.recipebank.backrecipebank.domain.menu.menu.MenuServiceDomain;
+import ee.recipebank.backrecipebank.domain.menu.sectioninmenu.SectionInMenu;
+import ee.recipebank.backrecipebank.domain.menu.sectioninmenu.SectionInMenuMapper;
+import ee.recipebank.backrecipebank.domain.menu.sectioninmenu.SectionInMenuServiceDomain;
+import ee.recipebank.backrecipebank.domain.recipe.recipe.Recipe;
+import ee.recipebank.backrecipebank.domain.recipe.recipe.RecipeServiceDomain;
 import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSection;
 import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionMapper;
 import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionServiceDomain;
-import ee.recipebank.backrecipebank.business.user.User;
+import ee.recipebank.backrecipebank.domain.user.User;
 import ee.recipebank.backrecipebank.business.user.UserService;
 import lombok.Data;
 import org.springframework.stereotype.Service;
@@ -109,7 +116,7 @@ public class MenuService {
 
     public List<MenuResponse> getAllMenusByUserId(Integer userId) {
         List<Menu> allMenusByUserId = menuServiceDomain.getAllMenusByUserId(userId);
-        List<MenuResponse> menuResponses = menuMapper.toMenuRequest(allMenusByUserId);
+        List<MenuResponse> menuResponses = menuMapper.toMenuResponse(allMenusByUserId);
         return menuResponses;
     }
 }

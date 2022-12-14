@@ -47,11 +47,6 @@ public class IngredientController {
         ingredientService.deleteRecipeIngredient(recipeIngredientId);
     }
 
-    //    @PostMapping("/quantity")
-//    @Operation(summary = "See teenus saadame backi retseptireale lisatud ühiku koguse")
-//    public void addQuantity(@RequestBody RecipeIngredientDto recipeIngredientDto) {
-//        ingredientService.addQuantity(recipeIngredientDto);
-    //
     @PostMapping("/ingredientToRecipe")
     @Operation(summary = "See teenus salvestab/püüab kinni valitud ingredienti.")
     public void addRecipeIngredientToRecipe(@RequestBody RecipeIngredientRequest recipeIngredient) {
@@ -61,8 +56,7 @@ public class IngredientController {
     @GetMapping("/recipeAllowedMeasurement")
     @Operation(summary = "See teenus kuvab valitud ingredienti allowed measurementsid.")
     public List<AllowedMeasurementUnitDto> getAllowedMeasurementUnits(@RequestParam Integer ingredientId) {
-        List<AllowedMeasurementUnitDto> allowedMeasurementUnits = ingredientService.getAllowedMeasurementUnits(ingredientId);
-        return allowedMeasurementUnits;
+        return ingredientService.getAllowedMeasurementUnits(ingredientId);
     }
 }
 

@@ -1,6 +1,7 @@
-package ee.recipebank.backrecipebank.domain.menu;
+package ee.recipebank.backrecipebank.domain.menu.sectioninmenu;
 
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInsertRequest;
+import ee.recipebank.backrecipebank.domain.menu.menu.MenuRepository;
 import ee.recipebank.backrecipebank.domain.user.UserRepository;
 import lombok.Data;
 import org.springframework.stereotype.Service;

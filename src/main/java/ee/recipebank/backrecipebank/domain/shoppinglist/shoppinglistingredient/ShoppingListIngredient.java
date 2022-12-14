@@ -1,6 +1,6 @@
 package ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient;
 
-import ee.recipebank.backrecipebank.domain.ingridient.Ingredient;
+import ee.recipebank.backrecipebank.domain.ingridient.ingredient.Ingredient;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingList;
 import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroup;
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnit;

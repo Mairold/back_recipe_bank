@@ -1,6 +1,6 @@
 package ee.recipebank.backrecipebank.business.shoppinglist;
 
-import ee.recipebank.backrecipebank.business.ingredient.dto.ShoppingListDto;
+import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListDto;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;

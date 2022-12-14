@@ -1,9 +1,9 @@
 package ee.recipebank.backrecipebank.Validation;
 
-import ee.recipebank.backrecipebank.domain.menu.Menu;
-import ee.recipebank.backrecipebank.domain.ingridient.Ingredient;
+import ee.recipebank.backrecipebank.domain.menu.menu.Menu;
+import ee.recipebank.backrecipebank.domain.ingridient.ingredient.Ingredient;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingList;
-import ee.recipebank.backrecipebank.business.user.User;
+import ee.recipebank.backrecipebank.domain.user.User;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredient;
 import ee.recipebank.backrecipebank.infrastructure.exception.BusinessException;
 

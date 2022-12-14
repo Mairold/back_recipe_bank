@@ -1,10 +1,6 @@
-package ee.recipebank.backrecipebank.domain.ingridient;
+package ee.recipebank.backrecipebank.domain.ingridient.ingredient;
 
 import ee.recipebank.backrecipebank.business.ingredient.dto.IngredientRequest;
-import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnit;
-import ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements.AllowedMeasurementUnitService;
-import ee.recipebank.backrecipebank.domain.recipe.RecipeServiceDomain;
-import ee.recipebank.backrecipebank.business.ingredient.dto.RecipeIngredientDto;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,12 +12,6 @@ public class IngredientServiceDomain {
     @Resource
     private IngredientRepository ingredientRepository;
 
-    @Resource
-    private RecipeServiceDomain recipeServiceDomain;
-
-    @Resource
-    private AllowedMeasurementUnitService allowedMeasurementUnitService;
-
     public Optional<Ingredient> getOptionalIngredient(IngredientRequest ingredientRequest) {
         return ingredientRepository.findByName(ingredientRequest.getIngredientName());
     }
@@ -30,13 +20,15 @@ public class IngredientServiceDomain {
         ingredientRepository.save(ingredient);
     }
 
-
     public List<Ingredient> getAllIngredients() {
         return ingredientRepository.findAll();
     }
 
     public Ingredient getIngredientBy(Integer ingredientId) {
-        return ingredientRepository.findById(ingredientId).get();
+        if (ingredientRepository.findById(ingredientId).isPresent()) {
+            return ingredientRepository.findById(ingredientId).get();
+        } else {
+            throw new NullPointerException("No such ingredient present in database");
+        }
     }
-
 }

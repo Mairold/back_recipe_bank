@@ -1,16 +1,16 @@
 package ee.recipebank.backrecipebank.business.shoppinglist;
 
-import ee.recipebank.backrecipebank.business.ingredient.dto.ShoppingListDto;
+import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListDto;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.*;
 import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroupService;
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnitService;
 import ee.recipebank.backrecipebank.domain.ingridient.recipeingredient.RecipeIngredient;
 import ee.recipebank.backrecipebank.domain.ingridient.recipeingredient.RecipeIngredientService;
-import ee.recipebank.backrecipebank.domain.menu.Menu;
-import ee.recipebank.backrecipebank.domain.menu.MenuServiceDomain;
+import ee.recipebank.backrecipebank.domain.menu.menu.Menu;
+import ee.recipebank.backrecipebank.domain.menu.menu.MenuServiceDomain;
 import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSection;
 import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionServiceDomain;
-import ee.recipebank.backrecipebank.domain.shoppinglist.ShoppingListServiceDomain;
+import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingListServiceDomain;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingList;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingListMapper;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredient;
