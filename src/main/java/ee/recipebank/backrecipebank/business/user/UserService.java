@@ -15,10 +15,6 @@ public class UserService {
     @Resource
     private UserMapper userMapper;
 
-    private Integer getValidUserId(String username, String password) {
-        return userServiceDomain.getValidUserBy(username, password).getId();
-    }
-
     public String getUsername(Integer userId) {
         return userServiceDomain.getUserName(userId);
     }
@@ -30,5 +26,9 @@ public class UserService {
     public void createUser(String username, String password) {
         User user = userMapper.toUser(username, password);
         userServiceDomain.validateAndSaveUser(user);
+    }
+
+    private Integer getValidUserId(String username, String password) {
+        return userServiceDomain.getValidUserBy(username, password).getId();
     }
 }

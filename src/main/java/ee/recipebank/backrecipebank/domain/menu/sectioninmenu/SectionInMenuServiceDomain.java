@@ -1,8 +1,5 @@
 package ee.recipebank.backrecipebank.domain.menu.sectioninmenu;
 
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInsertRequest;
-import ee.recipebank.backrecipebank.domain.menu.menu.MenuRepository;
-import ee.recipebank.backrecipebank.domain.user.UserRepository;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
@@ -12,13 +9,9 @@ import java.util.List;
 @Data
 @Service
 public class SectionInMenuServiceDomain {
-    @Resource
-    private UserRepository userRepository;
-    @Resource
-    private MenuRepository menuRepository;
+
     @Resource
     SectionInMenuRepository sectionInMenuRepository;
-
 
     public Integer saveSectionInMenu(SectionInMenu sectionInMenu) {
         sectionInMenuRepository.save(sectionInMenu);
@@ -29,8 +22,12 @@ public class SectionInMenuServiceDomain {
         return sectionInMenuRepository.findBy(menuId);
     }
 
-    public SectionInMenu findThisSectionId(RecipeInsertRequest request) {
-        return sectionInMenuRepository.findById(request.getSectionInMenuId()).get();
+    public SectionInMenu findSectionById(Integer sectionId) {
+        if (sectionInMenuRepository.findById(sectionId).isPresent()) {
+            return sectionInMenuRepository.findById(sectionId).get();
+        } else {
+            throw new NullPointerException("Section with id: " + sectionId + " does not exist");
+        }
     }
 
     public void deleteSectionBy(Integer menuSectionId) {

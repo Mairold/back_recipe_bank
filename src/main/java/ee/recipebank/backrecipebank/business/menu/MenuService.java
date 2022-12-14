@@ -17,7 +17,6 @@ import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectio
 import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionMapper;
 import ee.recipebank.backrecipebank.domain.recipe.recipeinsection.RecipeInSectionServiceDomain;
 import ee.recipebank.backrecipebank.domain.user.User;
-import ee.recipebank.backrecipebank.business.user.UserService;
 import ee.recipebank.backrecipebank.domain.user.UserServiceDomain;
 import lombok.Data;
 import org.springframework.stereotype.Service;
@@ -34,41 +33,24 @@ public class MenuService {
     @Resource
     private MenuServiceDomain menuServiceDomain;
     @Resource
-    private SectionInMenuMapper sectionInMenuMapper;
-    @Resource
     private UserServiceDomain userServiceDomain;
     @Resource
     private RecipeServiceDomain recipeServiceDomain;
     @Resource
     private RecipeInSectionServiceDomain recipeInSectionServiceDomain;
     @Resource
+    private SectionInMenuMapper sectionInMenuMapper;
+    @Resource
     private RecipeInSectionMapper recipeInSectionMapper;
     @Resource
     private MenuMapper menuMapper;
 
     public Integer addNewMenu(Integer userId) {
-        Menu menu = getMenu(userServiceDomain.getValidUser(userId));
-        return menuServiceDomain.saveMenu(menu);
-    }
-
-    private Menu getMenu(User validUser) {
-        Menu menu = new Menu();
-        menu.setUser(validUser);
-        menu.setDateTimeAdded(Instant.now());
-        menu.setStatus("A");
-        return menu;
+        return menuServiceDomain.saveMenu(getMenu(userServiceDomain.getValidUser(userId)));
     }
 
     public Integer addNewSectionInMenu(Integer menuId, String sectionInMenuName) {
-        SectionInMenu sectionInMenu = getSectionInMenu(menuId, sectionInMenuName);
-        return sectionInMenuServiceDomain.saveSectionInMenu(sectionInMenu);
-    }
-
-    private SectionInMenu getSectionInMenu(Integer menuId, String sectionInMenuName) {
-        SectionInMenu sectionInMenu = new SectionInMenu();
-        sectionInMenu.setMenu(menuServiceDomain.getValidMenuBy(menuId));
-        sectionInMenu.setName(sectionInMenuName);
-        return sectionInMenu;
+        return sectionInMenuServiceDomain.saveSectionInMenu(getSectionInMenu(menuId, sectionInMenuName));
     }
 
     public List<SectionInMenuDto> getAllSectionsInMenu(Integer menuId) {
@@ -80,30 +62,16 @@ public class MenuService {
     }
 
     public void saveRecipeInMenu(RecipeInsertRequest request) {
-        Recipe recipe = recipeServiceDomain.findRecipeById(request.getRecipeId()); // selle küsib andmebaasist
-        SectionInMenu section = sectionInMenuServiceDomain.findThisSectionId(request); // selle küsib andmebaasist
-        RecipeInSection recipeInSection = recipeInSectionMapper.toEntity(request); // mäpib 2 ülejäänud rida Entityks
-        recipeInSection.setRecipe(recipe); // lisab entityle andmebaasist küsitud retsepti Id
-        recipeInSection.setSectionInMenu(section); // lisab entityle andmebaasist küsitud section'i id
-        recipeInSection.setDateTimeAdded(Instant.now()); // lisab entityle Date&Time'i
-        recipeInSectionServiceDomain.saveRecipeInSection(recipeInSection); // salvestab retsepti andmebaasi tabelisse recipeInSection
-        // todo: teha ridadest 71-74 eraldi meetod siia samma publik meetodi sisse
+        recipeInSectionServiceDomain.saveRecipeInSection(getRecipeInSection(request));
     }
 
     public RecipeChangeRequest getRecipeInMenuById(Integer recipeInSectionId) {
-        RecipeInSection recipeInSection = recipeInSectionServiceDomain.findRecipeInSectionById(recipeInSectionId);
-        RecipeChangeRequest recipeChangeRequest = recipeInSectionMapper.toDto(recipeInSection); // saadame kommi mäpperisse ja teeme sellest RecipeChangeRequest klassi objekti
-        return recipeChangeRequest; // tagastame mäpitud Dto kontrollerisse
+        return recipeInSectionMapper.toDto(recipeInSectionServiceDomain.findRecipeInSectionById(recipeInSectionId));
     }
 
-    public void changeRecipeInMenu(RecipeChangeRequest recipeChangeRequest) {
-        RecipeInSection recipeInSectionById = recipeInSectionServiceDomain.findRecipeInSectionById(recipeChangeRequest.getRecipeInSectionId());
-        // Objekt, mida hakkan üle kirjutama, tuleb kõigepealt RecipeInSection tabelist kätte saada. Dto'st Id kättesaamiseks kasutan getterit:
-        RecipeInSection recipeInSection = recipeInSectionMapper.updateRecipeInSection(recipeChangeRequest, recipeInSectionById);
-        // Sissetuleva dto muutmine entity'ks:
-        recipeInSectionServiceDomain.updateRecipeInSection(recipeInSection);
-        // suunan edasi domeeni servicesse
-
+    public void changeRecipeInMenu(RecipeChangeRequest request) {
+        RecipeInSection recipeInSectionById = recipeInSectionServiceDomain.findRecipeInSectionById(request.getRecipeInSectionId());
+        recipeInSectionServiceDomain.updateRecipeInSection(recipeInSectionMapper.updateRecipeInSection(request, recipeInSectionById));
     }
 
     public void deleteRecipeInSection(Integer recipeInSectionId) {
@@ -116,8 +84,31 @@ public class MenuService {
     }
 
     public List<MenuResponse> getAllMenusByUserId(Integer userId) {
-        List<Menu> allMenusByUserId = menuServiceDomain.getAllMenusByUserId(userId);
-        List<MenuResponse> menuResponses = menuMapper.toMenuResponse(allMenusByUserId);
-        return menuResponses;
+        return menuMapper.toMenuResponse(menuServiceDomain.getAllMenusByUserId(userId));
+    }
+
+    private Menu getMenu(User validUser) {
+        Menu menu = new Menu();
+        menu.setUser(validUser);
+        menu.setDateTimeAdded(Instant.now());
+        menu.setStatus("A");
+        return menu;
+    }
+
+    private SectionInMenu getSectionInMenu(Integer menuId, String sectionInMenuName) {
+        SectionInMenu sectionInMenu = new SectionInMenu();
+        sectionInMenu.setMenu(menuServiceDomain.getValidMenuBy(menuId));
+        sectionInMenu.setName(sectionInMenuName);
+        return sectionInMenu;
+    }
+
+    private RecipeInSection getRecipeInSection(RecipeInsertRequest request) {
+        Recipe recipe = recipeServiceDomain.findRecipeById(request.getRecipeId());
+        SectionInMenu section = sectionInMenuServiceDomain.findSectionById(request.getSectionInMenuId());
+        RecipeInSection recipeInSection = recipeInSectionMapper.toEntity(request);
+        recipeInSection.setRecipe(recipe);
+        recipeInSection.setSectionInMenu(section);
+        recipeInSection.setDateTimeAdded(Instant.now());
+        return recipeInSection;
     }
 }

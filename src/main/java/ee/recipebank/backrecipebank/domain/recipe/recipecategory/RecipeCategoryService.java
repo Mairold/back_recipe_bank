@@ -14,4 +14,12 @@ public class RecipeCategoryService {
     public List<RecipeCategory> getAllCategories() {
         return recipeCategoryRepository.findAll();
     }
+
+    public RecipeCategory findCategoryBy(Integer recipeCategoryId) {
+        if (recipeCategoryRepository.findById(recipeCategoryId).isPresent()) {
+            return recipeCategoryRepository.findById(recipeCategoryId).get();
+        } else {
+            throw new NullPointerException("Recipe category with id: " + recipeCategoryId + " does not exist");
+        }
+    }
 }

@@ -1,10 +1,10 @@
 package ee.recipebank.backrecipebank.business.menu;
 
+import ee.recipebank.backrecipebank.business.menu.dto.MenuResponse;
 import ee.recipebank.backrecipebank.business.menu.dto.SectionInMenuDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeRequest;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInSectionDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInsertRequest;
-import ee.recipebank.backrecipebank.business.menu.dto.MenuResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +39,7 @@ public class MenuController {
     @GetMapping("/recipe-in-menu") // töötab
     @Operation(summary = "Toob fronti menüü sektsiooni salvestatud muudetava retsepti nime, sööjate arvu ja kommentaarid")
     public RecipeChangeRequest getRecipeInMenuById(@RequestParam Integer recipeInSectionId) {
-        return menuService.getRecipeInMenuById(recipeInSectionId); // tagastame Dto fronti
+        return menuService.getRecipeInMenuById(recipeInSectionId);
     }
 
 
@@ -54,6 +54,7 @@ public class MenuController {
     public void addRecipeToMenu(@RequestBody RecipeInsertRequest recipeRequest) {
         menuService.saveRecipeInMenu(recipeRequest);
     }
+
     @GetMapping("/section/recipe")
     @Operation(summary = "See teenus toob ära kõik retseptid, mis on seotud antud menüü plaani id-ga")
     public List<RecipeInSectionDto> getAllRecipeInSectionsInMenu(@RequestParam Integer menuId) {
@@ -65,6 +66,7 @@ public class MenuController {
     public void deleteRecipeInSection(@RequestParam Integer recipeInSectionId) {
         menuService.deleteRecipeInSection(recipeInSectionId);
     }
+
     @DeleteMapping("/section")
     @Operation(summary = "See teenus kustutab ära menüü välja ja kõik retseptid menüü väljas.")
     public void deleteSection(@RequestParam Integer menuSectionId) {
@@ -74,8 +76,6 @@ public class MenuController {
     @GetMapping("/menus")
     @Operation(summary = "See teenus toob fronti kõik kasutaja menüüd.")
     public List<MenuResponse> getAllMenus(@RequestParam Integer userId) {
-        List<MenuResponse> allMenusByUserId = menuService.getAllMenusByUserId(userId);
-        return allMenusByUserId;
+        return menuService.getAllMenusByUserId(userId);
     }
-
 }

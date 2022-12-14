@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class RecipeInSectionServiceDomain {
@@ -12,8 +11,7 @@ public class RecipeInSectionServiceDomain {
     @Resource
     private RecipeInSectionRepository recipeInSectionRepository;
 
-    public List<RecipeInSection> getAllRecipes(Integer menuId)
-    {
+    public List<RecipeInSection> getAllRecipes(Integer menuId) {
         return recipeInSectionRepository.findBy(menuId);
     }
 
@@ -21,15 +19,12 @@ public class RecipeInSectionServiceDomain {
         recipeInSectionRepository.save(recipeInSection);
     }
 
-    public Optional<RecipeInSection> getRecipeInfo(Integer recipeInSectionId) {
-       return recipeInSectionRepository.findById(recipeInSectionId);
-
-    }
-
     public RecipeInSection findRecipeInSectionById(Integer recipeInSectionId) {
-        Optional<RecipeInSection> optionalRecipeInSection = recipeInSectionRepository.findById(recipeInSectionId); //siin saame paberi sees kommi
-        RecipeInSection recipeInSection = optionalRecipeInSection.get(); // siin võtame kommi paberist lahti ja saame entity
-        return recipeInSection; // tagastame eelmisesse meetodisse paberist väljavõetud kommi
+        if (recipeInSectionRepository.findById(recipeInSectionId).isPresent()) {
+            return recipeInSectionRepository.findById(recipeInSectionId).get();
+        } else {
+            throw new NullPointerException("RecipeInSection with id: " + recipeInSectionId + " does not exist");
+        }
     }
 
     public void updateRecipeInSection(RecipeInSection recipeInSection) {

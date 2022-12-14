@@ -1,9 +1,12 @@
 package ee.recipebank.backrecipebank.domain.recipe.recipeinsection;
 
+import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeRequest;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInSectionDto;
 import ee.recipebank.backrecipebank.business.recipe.dto.RecipeInsertRequest;
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeChangeRequest;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
@@ -30,10 +33,8 @@ public interface RecipeInSectionMapper {
     @Mapping(source = "plannedServingSize", target = "servingSize")
     RecipeChangeRequest toDto(RecipeInSection recipeInSection);
 
-    @Mapping(source = "recipeInSectionId", target = "id")
-    @Mapping(source = "recipeName", target = "recipe.name")
+
     @Mapping(source = "servingSize", target = "plannedServingSize")
     @Mapping(source = "commentToRecipe", target = "comment")
     RecipeInSection updateRecipeInSection(RecipeChangeRequest recipeChangeRequest, @MappingTarget RecipeInSection recipeInSection);
-
 }

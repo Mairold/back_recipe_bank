@@ -16,6 +16,7 @@ import ee.recipebank.backrecipebank.domain.recipe.recipecategory.RecipeCategoryS
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -62,11 +63,17 @@ public class RecipeService {
     } // tagastab controllerisse väljaotsitud retsepti
 
     public RecipeResponseDto addRecipe(RecipeRequestDto newRecipe) {
-        RecipeResponseDto recipeResponseDto = recipeServiceDomain.addRecipe(newRecipe);
+        Recipe recipe = getRecipe(newRecipe);
+        recipeServiceDomain.saveRecipe(recipe);
+        return recipeMapper.toResponseDto(recipe);
+    }
 
-        //  recipeServiceDomain.addRecipe(newRecipe); //recipeService domain siin tagastab RecipeResponseDto, teha
-        // sellest muutuja
-        return recipeResponseDto;
+    private Recipe getRecipe(RecipeRequestDto newRecipe) {
+        Recipe recipe = recipeMapper.recipeRequestDtoToRecipe(newRecipe);
+        recipe.setDateFrom(LocalDate.now());
+        recipe.setRecipeCategory(recipeCategoryService.findCategoryBy(newRecipe.getRecipeCategoryId()));
+        recipe.setPreparationTime(preparationTimeService.findPreparationTimeBy(newRecipe.getPreparationTimeId()));
+        return recipe;
     }
 
 
@@ -91,6 +98,6 @@ public class RecipeService {
     }
 
     public RecipeResponseDto getRecipeGeneralInfo(Integer recipeId) {
-        return recipeMapper.toResponseDto(recipeServiceDomain.getRecipeById(recipeId));
+        return recipeMapper.toResponseDto(recipeServiceDomain.findRecipeById(recipeId));
     }
 }

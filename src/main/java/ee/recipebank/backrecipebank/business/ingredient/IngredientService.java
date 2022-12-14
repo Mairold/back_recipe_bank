@@ -90,7 +90,7 @@ public class IngredientService {
 
     private void getRecipeIngredient(RecipeIngredientRequest request, RecipeIngredient recipeIngredient) {
         recipeIngredient.setIngredient(ingredientServiceDomain.getIngredientBy(request.getIngredientId()));
-        recipeIngredient.setRecipe(recipeServiceDomain.getRecipeById(request.getRecipeId()));
+        recipeIngredient.setRecipe(recipeServiceDomain.findRecipeById(request.getRecipeId()));
         recipeIngredient.setMeasureUnit(measurementUnitService.getMeasurementUnitBy(request.getMeasurementUnitId()));
         recipeIngredient.setDateFrom(Instant.now());
     }

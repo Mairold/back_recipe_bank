@@ -7,7 +7,5 @@ import java.util.List;
 
 public interface SectionInMenuRepository extends JpaRepository<SectionInMenu, Integer> {
     @Query("select s from SectionInMenu s where s.menu.id = ?1")
-    List<SectionInMenu> findBy(Integer MenuId);
-
-
+    List<SectionInMenu> findBy(Integer menuId);
 }

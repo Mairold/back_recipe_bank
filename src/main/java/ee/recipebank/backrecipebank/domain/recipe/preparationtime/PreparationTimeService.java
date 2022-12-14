@@ -14,4 +14,12 @@ public class PreparationTimeService {
     public List<PreparationTime> getAllPrepTimes() {
         return preparationTimeRepository.findAll();
     }
+
+    public PreparationTime findPreparationTimeBy(Integer preparationTimeId) {
+        if (preparationTimeRepository.findById(preparationTimeId).isPresent()) {
+            return preparationTimeRepository.findById(preparationTimeId).get();
+        } else {
+            throw new NullPointerException("Prep Time with id: " + preparationTimeId + " does not exist");
+        }
+    }
 }

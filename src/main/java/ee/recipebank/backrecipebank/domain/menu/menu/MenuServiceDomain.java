@@ -24,7 +24,6 @@ public class MenuServiceDomain {
     }
 
     public List<Menu> getAllMenusByUserId(Integer userId) {
-        List<Menu> allByUserId = menuRepository.findAllByUserId(userId);
-        return allByUserId;
+        return menuRepository.findAllByUserId(userId);
     }
 }
