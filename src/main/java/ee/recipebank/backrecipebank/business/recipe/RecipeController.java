@@ -1,13 +1,7 @@
 package ee.recipebank.backrecipebank.business.recipe;
 
 
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeContentDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeRequestDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeResponseDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeToListDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeCategoryDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.PreparationTimeDto;
-import ee.recipebank.backrecipebank.business.recipe.dto.RecipeDto;
+import ee.recipebank.backrecipebank.business.recipe.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +17,7 @@ public class RecipeController {
     @GetMapping("/category")
     @Operation(summary = "Selle teenuse abil tagastame retseptide kategooriate valikud frondi add-to-menu vaatesse")
     public List<RecipeCategoryDto> getAllCategories() {
-        List<RecipeCategoryDto> allCategories = recipeService.getAllCategories();
-        return allCategories;
+        return recipeService.getAllCategories();
     }
 
     @GetMapping("/prep-time")
@@ -48,7 +41,7 @@ public class RecipeController {
     @GetMapping("/recipe/name")
     @Operation(summary = "See teenus tagastab pooleli oleva retsepti nime")
     public RecipeResponseDto getRecipeGeneralInfo(@RequestParam Integer recipeId) {
-       return recipeService.getRecipeGeneralInfo(recipeId);
+        return recipeService.getRecipeGeneralInfo(recipeId);
     }
 
     @GetMapping("/filter-recipes") // urli nimes ei tohi olla tegusõna, vaja ära parandada
@@ -66,7 +59,7 @@ public class RecipeController {
     @PutMapping("/recipe")
     @Operation(summary = "Selle teenusega uuendatakse retsepti lisades valmistamise juhendi.")
     public void saveRecipeComment(@RequestBody RecipeDto recipeComment) {
-        recipeService.saveRecipeComment(recipeComment);
+        recipeService.saveRecipeInstructions(recipeComment);
     }
 }
 

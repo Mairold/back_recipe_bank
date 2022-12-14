@@ -15,7 +15,7 @@ import java.time.Instant;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ShoppingListRequest implements Serializable {
+public class MainViewInfoRequest implements Serializable {
     private Integer shoppingListId;
     private Integer menuId;
     private Integer userId;

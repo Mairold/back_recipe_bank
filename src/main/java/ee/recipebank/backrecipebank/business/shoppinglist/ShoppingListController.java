@@ -58,9 +58,8 @@ public class ShoppingListController {
 
     @GetMapping("/menus")
     @Operation(summary = "See teenus toob fronti kõik kasutaja shoppinglistid ja menüüd.")
-    public List<ShoppingListRequest> getAllShoppingListsByUserId(@RequestParam Integer userId) {
-        List<ShoppingListRequest> aLlShoppingListsByUserId = shoppingListService.getALlShoppingListsByUserId(userId);
-        return aLlShoppingListsByUserId;
+    public List<MainViewInfoRequest> getALlShoppingListsAndMenusBy(@RequestParam Integer userId) {
+        return shoppingListService.getALlShoppingListsAndMenusBy(userId);
     }
 
     @PutMapping("/ingredient")

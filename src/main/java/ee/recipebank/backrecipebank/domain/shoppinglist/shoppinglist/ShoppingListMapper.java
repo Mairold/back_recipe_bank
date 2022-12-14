@@ -1,7 +1,7 @@
 package ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist;
 
+import ee.recipebank.backrecipebank.business.shoppinglist.dto.MainViewInfoRequest;
 import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListDto;
-import ee.recipebank.backrecipebank.business.shoppinglist.dto.ShoppingListRequest;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -22,9 +22,9 @@ public interface ShoppingListMapper {
     @Mapping(source = "menu.user.id", target = "userId")
     @Mapping(source = "menu.dateTimeAdded", target = "menuDate")
     @Mapping(source = "dateTimeAdded", target = "shoppingListDate")
-    ShoppingListRequest toShoppingListRequest1(ShoppingList allShoppingListsByUserId);
+    MainViewInfoRequest toMainViewInfoRequest(ShoppingList allShoppingListsByUserId);
 
-    List<ShoppingListRequest> toShoppingListRequests1(List<ShoppingList> allShoppingListsByUserId);
+    List<MainViewInfoRequest> toMainViewInfoRequests(List<ShoppingList> allShoppingListsByUserId);
 
 }
 

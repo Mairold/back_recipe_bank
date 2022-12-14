@@ -1,5 +1,6 @@
 package ee.recipebank.backrecipebank.domain.recipe.preparationtime;
 
+import ee.recipebank.backrecipebank.Validation.Validation;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,10 +17,7 @@ public class PreparationTimeService {
     }
 
     public PreparationTime findPreparationTimeBy(Integer preparationTimeId) {
-        if (preparationTimeRepository.findById(preparationTimeId).isPresent()) {
-            return preparationTimeRepository.findById(preparationTimeId).get();
-        } else {
-            throw new NullPointerException("Prep Time with id: " + preparationTimeId + " does not exist");
-        }
+        Validation.validatePrepTime(preparationTimeRepository.findById(preparationTimeId));
+        return preparationTimeRepository.findById(preparationTimeId).get();
     }
 }

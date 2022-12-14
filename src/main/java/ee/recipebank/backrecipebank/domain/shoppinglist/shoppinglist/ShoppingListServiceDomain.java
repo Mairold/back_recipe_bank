@@ -1,8 +1,6 @@
 package ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist;
 
 import ee.recipebank.backrecipebank.Validation.Validation;
-import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingList;
-import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingListRepository;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredient;
 import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglistingredient.ShoppingListIngredientRepository;
 import org.springframework.stereotype.Service;
@@ -48,9 +46,8 @@ public class ShoppingListServiceDomain {
         shoppingListRepository.save(shoppingList);
     }
 
-    public List<ShoppingList> getAllShoppingListsByUserId(Integer userId) {
-        List<ShoppingList> allByUserId = shoppingListRepository.findAllByUserId(userId);
-        return allByUserId;
+    public List<ShoppingList> getAllShoppingListsBy(Integer userId) {
+        return shoppingListRepository.findAllByUserId(userId);
     }
 
     public void deleteItemBy(Integer ingredientId) {
@@ -58,8 +55,7 @@ public class ShoppingListServiceDomain {
     }
 
     public ShoppingListIngredient getShoppingIngredientBy(Integer shoppingListItemId) {
-        Optional<ShoppingListIngredient> shoppingListIngredient = shoppingListIngredientRepository.findById(shoppingListItemId);
-        Validation.validateShoppingListIngredient(shoppingListIngredient);
-        return shoppingListIngredient.get();
+        Validation.validateShoppingListIngredient(shoppingListIngredientRepository.findById(shoppingListItemId));
+        return shoppingListIngredientRepository.findById(shoppingListItemId).get();
     }
 }

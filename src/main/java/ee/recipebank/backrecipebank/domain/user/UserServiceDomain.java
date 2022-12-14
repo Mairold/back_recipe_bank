@@ -12,11 +12,8 @@ public class UserServiceDomain {
     private UserRepository userRepository;
 
     public String getUserName(Integer userId) {
-        if (userRepository.findById(userId).isPresent()) {
-            return userRepository.findById(userId).get().getUsername();
-        } else {
-            throw new NullPointerException("No user with id: " + userId + " exists");
-        }
+        Validation.validateUser(userRepository.findById(userId));
+        return userRepository.findById(userId).get().getUsername();
     }
 
     public User getValidUserBy(String username, String password) {

@@ -16,6 +16,4 @@ public interface RecipeCategoryMapper {
     RecipeCategoryDto toDto(RecipeCategory recipeCategory);
 
     List<RecipeCategoryDto> toDtos(List<RecipeCategory> recipeCategories);
-
-
 }

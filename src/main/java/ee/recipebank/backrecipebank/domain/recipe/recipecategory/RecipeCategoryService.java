@@ -1,5 +1,6 @@
 package ee.recipebank.backrecipebank.domain.recipe.recipecategory;
 
+import ee.recipebank.backrecipebank.Validation.Validation;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,10 +17,7 @@ public class RecipeCategoryService {
     }
 
     public RecipeCategory findCategoryBy(Integer recipeCategoryId) {
-        if (recipeCategoryRepository.findById(recipeCategoryId).isPresent()) {
-            return recipeCategoryRepository.findById(recipeCategoryId).get();
-        } else {
-            throw new NullPointerException("Recipe category with id: " + recipeCategoryId + " does not exist");
-        }
+        Validation.validateRecipeGategory(recipeCategoryRepository.findById(recipeCategoryId));
+        return recipeCategoryRepository.findById(recipeCategoryId).get();
     }
 }

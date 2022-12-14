@@ -1,5 +1,6 @@
 package ee.recipebank.backrecipebank.domain.recipe.recipeinsection;
 
+import ee.recipebank.backrecipebank.Validation.Validation;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,11 +21,8 @@ public class RecipeInSectionServiceDomain {
     }
 
     public RecipeInSection findRecipeInSectionById(Integer recipeInSectionId) {
-        if (recipeInSectionRepository.findById(recipeInSectionId).isPresent()) {
+            Validation.validateRecipeInSection(recipeInSectionRepository.findById(recipeInSectionId));
             return recipeInSectionRepository.findById(recipeInSectionId).get();
-        } else {
-            throw new NullPointerException("RecipeInSection with id: " + recipeInSectionId + " does not exist");
-        }
     }
 
     public void updateRecipeInSection(RecipeInSection recipeInSection) {

@@ -1,5 +1,6 @@
 package ee.recipebank.backrecipebank.domain.menu.sectioninmenu;
 
+import ee.recipebank.backrecipebank.Validation.Validation;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +24,8 @@ public class SectionInMenuServiceDomain {
     }
 
     public SectionInMenu findSectionById(Integer sectionId) {
-        if (sectionInMenuRepository.findById(sectionId).isPresent()) {
-            return sectionInMenuRepository.findById(sectionId).get();
-        } else {
-            throw new NullPointerException("Section with id: " + sectionId + " does not exist");
-        }
+        Validation.validateSection(sectionInMenuRepository.findById(sectionId));
+        return sectionInMenuRepository.findById(sectionId).get();
     }
 
     public void deleteSectionBy(Integer menuSectionId) {
