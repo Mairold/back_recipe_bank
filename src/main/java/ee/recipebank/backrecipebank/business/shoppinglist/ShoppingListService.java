@@ -152,8 +152,12 @@ public class ShoppingListService {
     }
 
     private BigDecimal getAllShoppingListIngredientQuantity(BigDecimal quantity, Integer servingSize, Integer plannedServingSize) {
+        BigDecimal amount = quantity;
+        if (quantity == null) {
+            amount = BigDecimal.valueOf(0);
+        }
         MathContext precision = new MathContext(6);
-        return quantity.divide(BigDecimal.valueOf(servingSize), 10, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(plannedServingSize)).round(precision);
+        return amount.divide(BigDecimal.valueOf(servingSize), 10, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(plannedServingSize)).round(precision);
 
     }
 

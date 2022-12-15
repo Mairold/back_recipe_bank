@@ -19,7 +19,7 @@ public class Ingredient {
     @JoinColumn(name = "ingredient_group_id", nullable = false)
     private IngredientGroup ingredientGroup;
 
-    @Size(max = 20)
+    @Size(max = 100)
     @NotNull
     @Column(name = "name", nullable = false, length = 20)
     private String name;

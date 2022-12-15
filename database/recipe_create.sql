@@ -18,7 +18,7 @@ CREATE INDEX allowed_measurement_unit_idx_2 on allowed_measurement_unit (measure
 CREATE TABLE ingredient (
                             id serial  NOT NULL,
                             ingredient_group_id int  NOT NULL,
-                            name varchar(20)  NOT NULL,
+                            name varchar(100)  NOT NULL,
                             status char(1)  NOT NULL DEFAULT 'A',
                             CONSTRAINT ingredient_ak_1 UNIQUE (name) NOT DEFERRABLE  INITIALLY IMMEDIATE,
                             CONSTRAINT ingredient_pk PRIMARY KEY (id)
@@ -96,7 +96,7 @@ CREATE TABLE recipe_ingredient (
                                    recipe_id int  NOT NULL,
                                    ingredient_id int  NOT NULL,
                                    measure_unit_id int  NOT NULL,
-                                   quantity decimal(6,2)  NOT NULL,
+                                   quantity decimal(6,2)  NULL,
                                    date_from timestamp  NOT NULL DEFAULT now(),
                                    date_to date  NULL,
                                    CONSTRAINT recipe_ingredient_pk PRIMARY KEY (id)
