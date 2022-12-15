@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -44,11 +44,10 @@ public class Recipe {
     @Column(name = "instructions", nullable = false, length = 2000)
     private String instructions;
 
-    @NotNull
     @Column(name = "date_from", nullable = false)
-    private LocalDate dateFrom;
+    private Date dateFrom;
 
     @Column(name = "date_to")
-    private LocalDate dateTo;
+    private Date dateTo;
 
 }

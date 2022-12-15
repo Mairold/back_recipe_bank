@@ -37,7 +37,7 @@ public class RecipeIngredient {
     @JoinColumn(name = "measure_unit_id", nullable = false)
     private MeasurementUnit measureUnit;
 
-    @Column(name = "quantity", nullable = false, precision = 6, scale = 2)
+    @Column(name = "quantity", precision = 6, scale = 2)
     private BigDecimal quantity;
 
     @NotNull

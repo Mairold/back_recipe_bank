@@ -5,6 +5,8 @@ import ee.recipebank.backrecipebank.domain.shoppinglist.shoppinglist.ShoppingLis
 import ee.recipebank.backrecipebank.domain.ingridient.group.IngredientGroup;
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnit;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,7 +15,8 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Date;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "shopping_list_ingredient")
 public class ShoppingListIngredient {
@@ -23,7 +26,7 @@ public class ShoppingListIngredient {
     private Integer id;
 
     @Size(max = 255)
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
     @NotNull

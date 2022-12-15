@@ -2,11 +2,14 @@ package ee.recipebank.backrecipebank.domain.ingridient.allowedmeasurements;
 
 import ee.recipebank.backrecipebank.domain.ingridient.ingredient.Ingredient;
 import ee.recipebank.backrecipebank.domain.ingridient.measurement.MeasurementUnit;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-
+@Getter
+@Setter
 @Entity
 @Table(name = "allowed_measurement_unit")
 public class AllowedMeasurementUnit {

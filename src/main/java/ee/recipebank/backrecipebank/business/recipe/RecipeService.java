@@ -11,7 +11,8 @@ import ee.recipebank.backrecipebank.domain.recipe.recipecategory.RecipeCategoryS
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.time.LocalDate;
+import java.sql.Date;
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -69,7 +70,7 @@ public class RecipeService {
 
     private Recipe getRecipe(RecipeRequestDto newRecipe) {
         Recipe recipe = recipeMapper.recipeRequestDtoToRecipe(newRecipe);
-        recipe.setDateFrom(LocalDate.now());
+        recipe.setDateFrom(Date.from(Instant.now()));
         recipe.setRecipeCategory(recipeCategoryService.findCategoryBy(newRecipe.getRecipeCategoryId()));
         recipe.setPreparationTime(preparationTimeService.findPreparationTimeBy(newRecipe.getPreparationTimeId()));
         return recipe;
