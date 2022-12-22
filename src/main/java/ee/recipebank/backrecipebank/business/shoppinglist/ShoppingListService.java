@@ -76,16 +76,7 @@ public class ShoppingListService {
 
     public List<MainViewInfoRequest> getALlShoppingListsAndMenusBy(Integer userId) {
         List<ShoppingList> allShoppingListsBy = shoppingListServiceDomain.getAllShoppingListsBy(userId);
-        List<MainViewInfoRequest> mainViewInfoRequests = shoppingListMapper.toMainViewInfoRequests(allShoppingListsBy);
-//        for (ShoppingList shoppingList : allShoppingListsBy) {
-//            for (MainViewInfoRequest mainViewInfoRequest : mainViewInfoRequests) {
-//                if (shoppingList.getId().equals(mainViewInfoRequest.getShoppingListId())) {
-//                    mainViewInfoRequest.setShoppingListDate(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss").format(shoppingList.getDateTimeAdded()));
-//                    mainViewInfoRequest.setMenuDate(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss").format(shoppingList.getMenu().getDateTimeAdded()));
-//                }
-//            }
-//        }
-        return mainViewInfoRequests;
+        return shoppingListMapper.toMainViewInfoRequests(allShoppingListsBy);
     }
 
     public void deleteShoppingListItem(Integer ingredientId) {
