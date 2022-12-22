@@ -23,4 +23,6 @@ public class MainViewInfoRequest implements Serializable {
     private String menuDate;
     @NotNull
     private String shoppingListDate;
+    private String shoppingListComment;
+
 }
