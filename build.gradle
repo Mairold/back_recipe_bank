@@ -28,6 +28,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.13'
 
+
     //	Swagger
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
 
@@ -43,7 +44,7 @@ dependencies {
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
 
     // H2 mälupõhine andmebaas
-    runtimeOnly 'com.h2database:h2'
+//    runtimeOnly 'com.h2database:h2'
 
 }
 
