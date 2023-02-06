@@ -22,7 +22,7 @@ public class BackRecipeBankApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("http://retseptipank.eu").
+				registry.addMapping("/**").allowedOrigins("http://retseptipank.eu","http://192.168.1.221:8081").
 						allowedMethods("GET","POST","DELETE","PUT","OPTIONS");
 			}
 		};
