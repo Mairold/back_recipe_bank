@@ -22,7 +22,6 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.time.Instant;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -133,7 +132,7 @@ public class ShoppingListService {
         shoppingListIngredient.setShoppingList(shoppingList);
         shoppingListIngredient.setIngredient(recipeIngredient.getIngredient());
         shoppingListIngredient.setIngredientGroup(recipeIngredient.getIngredient().getIngredientGroup());
-        BigDecimal shoppingListQuantity = getAllShoppingListIngredientQuantity(recipeIngredient.getQuantity(),
+        BigDecimal shoppingListQuantity = adjustIngredientQuantityToPlannedServingSize(recipeIngredient.getQuantity(),
                 recipeInSection.getRecipe().getServingSize(), recipeInSection.getPlannedServingSize());
         shoppingListIngredient.setQuantity(shoppingListQuantity);
         shoppingListIngredient.setStatus("A");
@@ -142,7 +141,7 @@ public class ShoppingListService {
         return shoppingListIngredient;
     }
 
-    private BigDecimal getAllShoppingListIngredientQuantity(BigDecimal quantity, Integer servingSize, Integer plannedServingSize) {
+    private BigDecimal adjustIngredientQuantityToPlannedServingSize(BigDecimal quantity, Integer servingSize, Integer plannedServingSize) {
         BigDecimal amount = quantity;
         if (quantity == null) {
             amount = BigDecimal.valueOf(0);
