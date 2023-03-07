@@ -25,13 +25,13 @@ public class MenuController {
     }
 
     @PostMapping("/section")
-    @Operation(summary = "Selle meetodi alusel salvestame uue Menüü plaani ja tagastame loodud kande id")
+    @Operation(summary = "See meetod loob menüüsse uue sektsiooni")
     public Integer addNewSectionInMenu(@RequestParam Integer menuId, @RequestParam String sectionInMenuName) {
         return menuService.addNewSectionInMenu(menuId, sectionInMenuName);
     }
 
     @GetMapping("/section")
-    @Operation(summary = "See teenus otsib kõik menüü plaani sektsioonid menüü plaani id järgi ja tagastab fronti")
+    @Operation(summary = "See teenus otsib kõik menüü sektsioonid menüü id järgi")
     public List<SectionInMenuDto> getAllSectionsInMenu(@RequestParam Integer menuId) {
         return menuService.getAllSectionsInMenu(menuId);
     }
